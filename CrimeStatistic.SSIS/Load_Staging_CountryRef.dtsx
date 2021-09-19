@@ -9,10 +9,10 @@
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.170"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Package1"
+  DTS:ObjectName="Load_Staging_CountryRef"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{017974DB-C2B7-43C0-87B3-37DF39EC8A62}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{4D329068-600C-456D-A409-1ABED06E6A63}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -21,15 +21,17 @@
       DTS:CreationName="OLEDB"
       DTS:DTSID="{E6E26FD5-C0BD-4C98-ABAB-70A93EE59FCB}"
       DTS:ObjectName="SourceConnectionOLEDB">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::SourceConnectionOLEDB_ConnectionString]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
           DTS:ConnectionString="Data Source=epamsqllabsrv.database.windows.net;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11.1;Auto Translate=false;">
           <DTS:Password
-            DTS:Name="Password"
+            DTS:Name="pwd"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGzb1O5M0FEejUPzW4nvQdwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAB8NxAhYQ9FGerIimodToicMEspK3dunAyIKL8iOZOEygAAAAAOgAAAAAIAACAAAAA+mnOLwnstHNBvQ3Bb43bJSXMm6c3bD0z6FllUZTiGTyAAAACbbPvF19DAtu6HuNiHPoyaYz9JnFau1/9vNpoiEvlD60AAAAD9OcgmuSMmYGLVGzKkaJrJPHJ85sSxRpV7H2lVbK5v8vaNba04ez/qPwmbSh/nIUsQ2XZNzsKzWxhQWR6aIduC</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAGzb1O5M0FEejUPzW4nvQdwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADGKkn0ElFSrYhhrVHtLCfSUVHGggoOMsFOdtLbXANxwAAAAAAOgAAAAAIAACAAAABWBOV3n6xHU+ExYfXMbRWcplBOk4WgKukfC8XR+iAKiyAAAAA87edj3aPQNls2yW2IaRfiLJa6ywvY3awKaJOh4HrzfUAAAAB2ZZb7OxQexPH4YnpZeTtrxn3bJ9GGigptKeNgAWzYWJOeHrkmk0y5OUgVEcT0nvoFmQZfchCsjbBUNBXzu66m</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -675,10 +677,6 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="284.8,41.6"
-          Id="Package\SQL Truncate staging_countriesref_untyped"
-          TopLeft="94.2857158913904,27.5294121507955" />
-        <NodeLayout
           Size="240,41.6"
           Id="Package\SEQC Load staging_countriesref_untyped\DFT staging_countriesref_untyped"
           TopLeft="37.5142874294398,18.0470611186177" />
@@ -689,6 +687,10 @@
           Size="319.2,157.6"
           Id="Package\SEQC Load staging_countriesref_untyped"
           TopLeft="76.4285727301423,107.823530923949" />
+        <NodeLayout
+          Size="284.8,41.6"
+          Id="Package\SQL Truncate staging_countriesref_untyped"
+          TopLeft="94.2857158913904,27.5294121507955" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="236.357144310766,69.1294121507955">
@@ -753,7 +755,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\SEQC Load staging_countriesref_untyped\DFT staging_countriesref_untyped\OLE_SRC CountryRef">
+    design-time-name="Package\SEQC Load staging_countriesref_untyped\DFT staging_countriesref_untyped\OLE_DST staging_countriesref_untyped">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -766,7 +768,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\SEQC Load staging_countriesref_untyped\DFT staging_countriesref_untyped\OLE_DST staging_countriesref_untyped">
+    design-time-name="Package\SEQC Load staging_countriesref_untyped\DFT staging_countriesref_untyped\OLE_SRC CountryRef">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
