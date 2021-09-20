@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="9/20/2021 1:55:20 PM"
@@ -12,22 +12,11 @@
   DTS:LocaleID="1049"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="New Package"
-  DTS:VersionGUID="{F84C5F56-2FC1-4BDF-967B-48026388FF43}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{B2A1DFE1-3183-4148-B066-6B237DF03516}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{B0CF1D53-3A7E-4132-80A8-C7DD057B3869}"
-      DTS:ObjectName="DestinationConnectionOLEDB">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=DESKTOP-OSIUE9O\MSSQL2019;Initial Catalog=CrimeStatistic.DWH;Provider=SQLNCLI11;Integrated Security=SSPI;Auto Translate=false;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[SourceConnectionOLEDB]"
       DTS:CreationName="OLEDB"
@@ -37,604 +26,1330 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=epamsqllabsrv.database.windows.net;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11;Auto Translate=false;" />
+          DTS:ConnectionString="Data Source=epamsqllabsrv.database.windows.net;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=false;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqk7RxltTWkqxrySWMi1Z6gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAHzuyflHHPfGOGK8sxOZzsOjjKekTOypaSEcywUGFbRQAAAAAOgAAAAAIAACAAAAC629A90HKQG2SjnGut6shXBjRDL2+OFt+/oHuhCna0kyAAAACMTNEcU9moZzCt87p8gAVshiQEeXIWc1bLWb7uvN4KakAAAAC6V7MnFq1qNDXS+4tJmuj5PeE2iXl99BaV9xl/7bIHU8jrxUvdHBP4KCCscC/2bjgMsqx6ZBdR0NV871e531f6</DTS:Password>
+        </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8965428E-9531-4022-AB2D-777125AB5ED8}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Counter">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4EF83CD3-80AB-40DB-AA45-3A90C8C5898B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentFile">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E757EDE2-7CBD-435B-A975-1C050A78BB76}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Flag">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Data Flow Task 1"
-      DTS:CreationName="Microsoft.Pipeline"
-      DTS:DelayValidation="True"
-      DTS:DTSID="{D925F213-2AC6-4698-AA58-D6049EC2EA9B}"
-      DTS:ExecutableType="Microsoft.Pipeline"
-      DTS:FailPackageOnFailure="True"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Data Flow Task 1"
-      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <pipeline
-          defaultBufferSize="3145728"
-          version="1">
-          <components>
-            <component
-              refId="Package\Data Flow Task 1\Destination - CountryRef"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="Destination - CountryRef"
-              usesDispositions="true"
-              validateExternalMetadata="False"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[CountryRef]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1251</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Data Flow Task 1\Destination - CountryRef.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[name]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="name"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[name]"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[name]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[alpha_2]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="alpha_2"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[alpha_2]"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[alpha_2]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[alpha_3]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="alpha_3"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[alpha_3]"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[alpha_3]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[country_code]"
-                      cachedDataType="i4"
-                      cachedName="country_code"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[country_code]"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[country_code]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[iso_3166_2]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="iso_3166_2"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[iso_3166_2]"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[iso_3166_2]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[region]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="region"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[region]"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[region]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[sub_region]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="sub_region"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[sub_region]"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[sub_region]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[intermediate_region]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="intermediate_region"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[intermediate_region]"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[region_code]"
-                      cachedDataType="i4"
-                      cachedName="region_code"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[region_code]"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[region_code]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[sub_region_code]"
-                      cachedDataType="i4"
-                      cachedName="sub_region_code"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[sub_region_code]"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[sub_region_code]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[intermediate_region_code]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="intermediate_region_code"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[intermediate_region_code]"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region_code]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[name]"
-                      dataType="wstr"
-                      length="100"
-                      name="name" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[alpha_2]"
-                      dataType="wstr"
-                      length="50"
-                      name="alpha_2" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[alpha_3]"
-                      dataType="wstr"
-                      length="50"
-                      name="alpha_3" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[country_code]"
-                      dataType="i4"
-                      name="country_code" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[iso_3166_2]"
-                      dataType="wstr"
-                      length="50"
-                      name="iso_3166_2" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[region]"
-                      dataType="wstr"
-                      length="50"
-                      name="region" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[sub_region]"
-                      dataType="wstr"
-                      length="50"
-                      name="sub_region" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[intermediate_region]"
-                      dataType="wstr"
-                      length="50"
-                      name="intermediate_region" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[region_code]"
-                      dataType="i4"
-                      name="region_code" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[sub_region_code]"
-                      dataType="i4"
-                      name="sub_region_code" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[intermediate_region_code]"
-                      dataType="wstr"
-                      length="50"
-                      name="intermediate_region_code" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Data Flow Task 1\Destination - CountryRef.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination - CountryRef.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Destination - CountryRef.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Destination - CountryRef.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Data Flow Task 1\Source - CountryRef"
-              componentClassID="Microsoft.OLEDBSource"
-              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
-              description="OLE DB Source"
-              name="Source - CountryRef"
-              usesDispositions="true"
-              version="7">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[CountryRef]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
-                <property
-                  dataType="System.String"
-                  description="The variable that contains the SQL command to be executed."
-                  name="SqlCommandVariable"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1251</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">0</property>
-                <property
-                  dataType="System.String"
-                  description="The mappings between the parameters in the SQL command and variables."
-                  name="ParameterMapping"></property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Data Flow Task 1\Source - CountryRef.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
-                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output]"
-                  name="OLE DB Source Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[name]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[name]"
-                      length="100"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[name]"
-                      name="name"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[alpha_2]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[alpha_2]"
-                      length="50"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[alpha_2]"
-                      name="alpha_2"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[alpha_3]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[alpha_3]"
-                      length="50"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[alpha_3]"
-                      name="alpha_3"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[country_code]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[country_code]"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[country_code]"
-                      name="country_code"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[iso_3166_2]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[iso_3166_2]"
-                      length="50"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[iso_3166_2]"
-                      name="iso_3166_2"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[region]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[region]"
-                      length="50"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[region]"
-                      name="region"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[sub_region]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[sub_region]"
-                      length="50"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[sub_region]"
-                      name="sub_region"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[intermediate_region]"
-                      length="50"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region]"
-                      name="intermediate_region"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[region_code]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[region_code]"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[region_code]"
-                      name="region_code"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[sub_region_code]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[sub_region_code]"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[sub_region_code]"
-                      name="sub_region_code"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region_code]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[intermediate_region_code]"
-                      length="50"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region_code]"
-                      name="intermediate_region_code"
-                      truncationRowDisposition="FailComponent" />
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[name]"
-                      dataType="wstr"
-                      length="100"
-                      name="name" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[alpha_2]"
-                      dataType="wstr"
-                      length="50"
-                      name="alpha_2" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[alpha_3]"
-                      dataType="wstr"
-                      length="50"
-                      name="alpha_3" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[country_code]"
-                      dataType="i4"
-                      name="country_code" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[iso_3166_2]"
-                      dataType="wstr"
-                      length="50"
-                      name="iso_3166_2" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[region]"
-                      dataType="wstr"
-                      length="50"
-                      name="region" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[sub_region]"
-                      dataType="wstr"
-                      length="50"
-                      name="sub_region" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[intermediate_region]"
-                      dataType="wstr"
-                      length="50"
-                      name="intermediate_region" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[region_code]"
-                      dataType="i4"
-                      name="region_code" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[sub_region_code]"
-                      dataType="i4"
-                      name="sub_region_code" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[intermediate_region_code]"
-                      dataType="wstr"
-                      length="50"
-                      name="intermediate_region_code" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output]"
-                  isErrorOut="true"
-                  name="OLE DB Source Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[name]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[name]"
-                      name="name" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[alpha_2]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[alpha_2]"
-                      name="alpha_2" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[alpha_3]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[alpha_3]"
-                      name="alpha_3" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[country_code]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[country_code]"
-                      name="country_code" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[iso_3166_2]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[iso_3166_2]"
-                      name="iso_3166_2" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[region]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[region]"
-                      name="region" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[sub_region]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[sub_region]"
-                      name="sub_region" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[intermediate_region]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[intermediate_region]"
-                      name="intermediate_region" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[region_code]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[region_code]"
-                      name="region_code" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[sub_region_code]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[sub_region_code]"
-                      name="sub_region_code" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[intermediate_region_code]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[intermediate_region_code]"
-                      name="intermediate_region_code" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-          </components>
-          <paths>
-            <path
-              refId="Package\Data Flow Task 1.Paths[OLE DB Source Output]"
-              endId="Package\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input]"
-              name="OLE DB Source Output"
-              startId="Package\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output]" />
-          </paths>
-        </pipeline>
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Preparation SQL Task 1"
+      DTS:refId="Package\Execute SQL Task 1"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:DTSID="{81044983-6BAF-4263-8C1F-D0F1F1AB7889}"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{e844a159-1600-4ea2-93aa-06bb94f1386a}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:FailPackageOnFailure="True"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Preparation SQL Task 1"
-      DTS:ThreadHint="0">
+      DTS:ObjectName="Execute SQL Task 1"
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{B0CF1D53-3A7E-4132-80A8-C7DD057B3869}"
-          SQLTask:SqlStatementSource="CREATE TABLE [dbo].[CountryRef] (&#xA;[name] nvarchar(100) NOT NULL,&#xA;[alpha_2] nvarchar(50) NOT NULL,&#xA;[alpha_3] nvarchar(50) NOT NULL,&#xA;[country_code] int NOT NULL,&#xA;[iso_3166_2] nvarchar(50) NOT NULL,&#xA;[region] nvarchar(50),&#xA;[sub_region] nvarchar(50),&#xA;[intermediate_region] nvarchar(50),&#xA;[region_code] int,&#xA;[sub_region_code] int,&#xA;[intermediate_region_code] nvarchar(50)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:Connection="{B150BFC6-68AF-42C9-930A-F7AAD1C0B747}"
+          SQLTask:SqlStatementSource="SELECT 1;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task 2"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1e3b7f98-62f4-4971-9268-997750359adf}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task 2"
+      DTS:ThreadHint="7">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B150BFC6-68AF-42C9-930A-F7AAD1C0B747}"
+          SQLTask:SqlStatementSource="SELECT 2;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task 3"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{a3d6e114-f8e8-4fa7-bc8c-7f3446db5e2c}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task 3"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B150BFC6-68AF-42C9-930A-F7AAD1C0B747}"
+          SQLTask:SqlStatementSource="SELECT 1/0;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task 4"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{d15873c4-1f91-4f64-99c5-ab7e2c1c03a2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task 4"
+      DTS:ThreadHint="5">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B150BFC6-68AF-42C9-930A-F7AAD1C0B747}"
+          SQLTask:SqlStatementSource="SELECT 4;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task 5"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{47c939e8-ba89-4dfc-8574-395f6266cad7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task 5"
+      DTS:ThreadHint="4">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B150BFC6-68AF-42C9-930A-F7AAD1C0B747}"
+          SQLTask:SqlStatementSource="SELECT 5;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task 6"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7bcd0ac3-02c6-4769-b2b2-0b3e9af395c8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task 6"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B150BFC6-68AF-42C9-930A-F7AAD1C0B747}"
+          SQLTask:SqlStatementSource="SELECT 6;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task 7"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{18894f2e-d606-4f99-9bc4-03d39fd3a4ff}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task 7"
+      DTS:ThreadHint="6">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B150BFC6-68AF-42C9-930A-F7AAD1C0B747}"
+          SQLTask:SqlStatementSource="SELECT 7;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\For Loop Container"
+      DTS:AssignExpression="@Counter=@Counter+1"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For Loop Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{E9886F18-A8E2-4365-AC69-82B835298171}"
+      DTS:EvalExpression="@Counter&lt;4"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:InitExpression="@Counter=0"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="For Loop Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\For Loop Container\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{37371EDD-D53B-4C53-B83B-A817A182B520}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:ThreadHint="1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B150BFC6-68AF-42C9-930A-F7AAD1C0B747}"
+              SQLTask:SqlStatementSource="SELECT 1;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{69F790DE-650B-4C2A-9C67-114DDD3367CA}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{7F3CE5BA-45E7-4D17-9560-D5EB4E8EDD26}"
+        DTS:ObjectName="{7F3CE5BA-45E7-4D17-9560-D5EB4E8EDD26}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="Z:\RU.BI.LAB.SSIS\Source Files\undoc-changed\csv" />
+            <FEFEProperty
+              FileSpec="*.*" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Execute SQL Task 1"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{016a9d58-1d1c-4a15-b5f9-1b79ae38fe89}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task 1"
+          DTS:ThreadHint="2">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"SELECT '" + (DT_WSTR, 100) @[User::CurrentFile] +"';"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B150BFC6-68AF-42C9-930A-F7AAD1C0B747}"
+              SQLTask:SqlStatementSource="SELECT '';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{FC96765E-8C22-4881-BA07-1F2830157F1F}"
+          DTS:ObjectName="{FC96765E-8C22-4881-BA07-1F2830157F1F}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::CurrentFile" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{F78EA753-E8FC-4242-962C-DC0AA5095253}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Data Flow Task 1"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:DelayValidation="True"
+          DTS:DTSID="{D925F213-2AC6-4698-AA58-D6049EC2EA9B}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task 1"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              defaultBufferSize="3145728"
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Destination - CountryRef"
+                  usesDispositions="true"
+                  validateExternalMetadata="False"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[CountryRef]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1251</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Connections[OleDbConnection]"
+                      connectionManagerID="{B0CF1D53-3A7E-4132-80A8-C7DD057B3869}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[DestinationConnectionOLEDB]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[name]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="name"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[name]"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[name]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[alpha_2]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="alpha_2"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[alpha_2]"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[alpha_2]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[alpha_3]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="alpha_3"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[alpha_3]"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[alpha_3]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[country_code]"
+                          cachedDataType="i4"
+                          cachedName="country_code"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[country_code]"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[country_code]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[iso_3166_2]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="iso_3166_2"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[iso_3166_2]"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[iso_3166_2]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[region]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="region"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[region]"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[region]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[sub_region]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="sub_region"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[sub_region]"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[sub_region]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[intermediate_region]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="intermediate_region"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[intermediate_region]"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[region_code]"
+                          cachedDataType="i4"
+                          cachedName="region_code"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[region_code]"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[region_code]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[sub_region_code]"
+                          cachedDataType="i4"
+                          cachedName="sub_region_code"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[sub_region_code]"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[sub_region_code]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].Columns[intermediate_region_code]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="intermediate_region_code"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[intermediate_region_code]"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region_code]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[name]"
+                          dataType="wstr"
+                          length="100"
+                          name="name" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[alpha_2]"
+                          dataType="wstr"
+                          length="50"
+                          name="alpha_2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[alpha_3]"
+                          dataType="wstr"
+                          length="50"
+                          name="alpha_3" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[country_code]"
+                          dataType="i4"
+                          name="country_code" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[iso_3166_2]"
+                          dataType="wstr"
+                          length="50"
+                          name="iso_3166_2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[region]"
+                          dataType="wstr"
+                          length="50"
+                          name="region" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[sub_region]"
+                          dataType="wstr"
+                          length="50"
+                          name="sub_region" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[intermediate_region]"
+                          dataType="wstr"
+                          length="50"
+                          name="intermediate_region" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[region_code]"
+                          dataType="i4"
+                          name="region_code" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[sub_region_code]"
+                          dataType="i4"
+                          name="sub_region_code" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input].ExternalColumns[intermediate_region_code]"
+                          dataType="wstr"
+                          length="50"
+                          name="intermediate_region_code" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Source - CountryRef"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[CountryRef]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1251</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                      connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[name]"
+                          length="100"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[name]"
+                          name="name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[alpha_2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[alpha_2]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[alpha_2]"
+                          name="alpha_2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[alpha_3]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[alpha_3]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[alpha_3]"
+                          name="alpha_3"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[country_code]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[country_code]"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[country_code]"
+                          name="country_code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[iso_3166_2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[iso_3166_2]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[iso_3166_2]"
+                          name="iso_3166_2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[region]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[region]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[region]"
+                          name="region"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[sub_region]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[sub_region]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[sub_region]"
+                          name="sub_region"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[intermediate_region]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region]"
+                          name="intermediate_region"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[region_code]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[region_code]"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[region_code]"
+                          name="region_code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[sub_region_code]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[sub_region_code]"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[sub_region_code]"
+                          name="sub_region_code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region_code]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[intermediate_region_code]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region_code]"
+                          name="intermediate_region_code"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[name]"
+                          dataType="wstr"
+                          length="100"
+                          name="name" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[alpha_2]"
+                          dataType="wstr"
+                          length="50"
+                          name="alpha_2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[alpha_3]"
+                          dataType="wstr"
+                          length="50"
+                          name="alpha_3" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[country_code]"
+                          dataType="i4"
+                          name="country_code" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[iso_3166_2]"
+                          dataType="wstr"
+                          length="50"
+                          name="iso_3166_2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[region]"
+                          dataType="wstr"
+                          length="50"
+                          name="region" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[sub_region]"
+                          dataType="wstr"
+                          length="50"
+                          name="sub_region" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[intermediate_region]"
+                          dataType="wstr"
+                          length="50"
+                          name="intermediate_region" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[region_code]"
+                          dataType="i4"
+                          name="region_code" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[sub_region_code]"
+                          dataType="i4"
+                          name="sub_region_code" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output].ExternalColumns[intermediate_region_code]"
+                          dataType="wstr"
+                          length="50"
+                          name="intermediate_region_code" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[name]"
+                          dataType="wstr"
+                          length="100"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[name]"
+                          name="name" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[alpha_2]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[alpha_2]"
+                          name="alpha_2" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[alpha_3]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[alpha_3]"
+                          name="alpha_3" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[country_code]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[country_code]"
+                          name="country_code" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[iso_3166_2]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[iso_3166_2]"
+                          name="iso_3166_2" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[region]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[region]"
+                          name="region" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[sub_region]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[sub_region]"
+                          name="sub_region" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[intermediate_region]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[intermediate_region]"
+                          name="intermediate_region" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[region_code]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[region_code]"
+                          name="region_code" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[sub_region_code]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[sub_region_code]"
+                          name="sub_region_code" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[intermediate_region_code]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[intermediate_region_code]"
+                          name="intermediate_region_code" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container\Data Flow Task 1.Paths[OLE DB Source Output]"
+                  endId="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef.Inputs[Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Sequence Container\Data Flow Task 1\Source - CountryRef.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Preparation SQL Task 1"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:DTSID="{81044983-6BAF-4263-8C1F-D0F1F1AB7889}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Preparation SQL Task 1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{B0CF1D53-3A7E-4132-80A8-C7DD057B3869}"
+              SQLTask:SqlStatementSource="CREATE TABLE [dbo].[CountryRef] (&#xA;[name] nvarchar(100) NOT NULL,&#xA;[alpha_2] nvarchar(50) NOT NULL,&#xA;[alpha_3] nvarchar(50) NOT NULL,&#xA;[country_code] int NOT NULL,&#xA;[iso_3166_2] nvarchar(50) NOT NULL,&#xA;[region] nvarchar(50),&#xA;[sub_region] nvarchar(50),&#xA;[intermediate_region] nvarchar(50),&#xA;[region_code] int,&#xA;[sub_region_code] int,&#xA;[intermediate_region_code] nvarchar(50)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Sequence Container.PrecedenceConstraints[{D4F83F09-7713-41B0-953B-7EA26A255486\}]"
+          DTS:CreationName=""
+          DTS:DTSID="{D4F83F09-7713-41B0-953B-7EA26A255486}"
+          DTS:From="Package\Sequence Container\Preparation SQL Task 1"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="{D4F83F09-7713-41B0-953B-7EA26A255486}"
+          DTS:To="Package\Sequence Container\Data Flow Task 1" />
+      </DTS:PrecedenceConstraints>
     </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[{4E26DE0D-51D9-4705-B166-46C9528DDF5C\}]"
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{D4F83F09-7713-41B0-953B-7EA26A255486}"
-      DTS:From="Package\Preparation SQL Task 1"
+      DTS:DTSID="{0487D49D-3D22-42BD-8062-E36EC23ED696}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::Flag]==1"
+      DTS:From="Package\Execute SQL Task 1"
       DTS:LogicalAnd="True"
-      DTS:ObjectName="{D4F83F09-7713-41B0-953B-7EA26A255486}"
-      DTS:To="Package\Data Flow Task 1" />
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Execute SQL Task 3" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{CCCB8E61-A953-4EB0-9E1B-32538CC2006D}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::Flag]==0"
+      DTS:From="Package\Execute SQL Task 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Execute SQL Task 2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{C6ABFB90-F3C0-4238-81C3-AE2877C21B5E}"
+      DTS:From="Package\Execute SQL Task 3"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Execute SQL Task 4"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{9A1D6032-62AD-4224-A074-39BED88934A3}"
+      DTS:From="Package\Execute SQL Task 3"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Execute SQL Task 5" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{5177B704-4614-4AD8-9256-FFF5463E8E75}"
+      DTS:From="Package\Execute SQL Task 3"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Execute SQL Task 6"
+      DTS:Value="2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{D05A7E94-D110-498C-8B2B-2CFD92CBB810}"
+      DTS:From="Package\Execute SQL Task 6"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Execute SQL Task 7" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{40AB3043-0351-4787-8718-51384EEF796F}"
+      DTS:From="Package\Execute SQL Task 4"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Execute SQL Task 7" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{09F381C0-2E97-4D5C-900A-5A0A6D31A543}"
+      DTS:From="Package\Execute SQL Task 5"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Execute SQL Task 7" />
   </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="160,41.6"
+          Id="Package\Sequence Container\Data Flow Task 1"
+          TopLeft="38.6000062159131,75.9588252131915" />
+        <EdgeLayout
+          Id="Package\Sequence Container.PrecedenceConstraints[{D4F83F09-7713-41B0-953B-7EA26A255486\}]"
+          TopLeft="118.600006215913,51.1352962947634">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24.823528918428"
+              Start="0,0"
+              End="0,17.323528918428">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.323528918428" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="188.8,41.6"
+          Id="Package\Sequence Container\Preparation SQL Task 1"
+          TopLeft="24.2000062159132,9.53529629476341" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="254.4,172.8"
+          Size="254.4,216"
+          Id="Package\Sequence Container"
+          TopLeft="1184.88573057968,29.3137259013101" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\For Loop Container\Execute SQL Task"
+          TopLeft="29.9714299946416,17.0352957478032" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="197.6,215.2"
+          Size="197.6,258.4"
+          Id="Package\For Loop Container"
+          TopLeft="928.69524173842,25.8725493824607" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Foreach Loop Container\Execute SQL Task 1"
+          TopLeft="25.5619058647933,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="214.4,102.4"
+          Size="214.4,145.6"
+          Id="Package\Foreach Loop Container"
+          TopLeft="925.585729898483,306.13725919542" />
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\Execute SQL Task 1"
+          TopLeft="353.628574262833,64.3999996353599" />
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\Execute SQL Task 3"
+          TopLeft="267.914287088842,227.266666970534" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="412.2952409295,105.99999963536">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-58.3809538406581,121.266667335174"
+              Start="0,0"
+              End="-58.3809538406581,113.766667335174">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.1772660161073" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.1772660161073"
+                    Point2="0,49.1772660161073"
+                    Point3="-4,49.1772660161073" />
+                  <mssgle:LineSegment
+                    End="-54.3809538406581,49.1772660161073" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-54.3809538406581,49.1772660161073"
+                    Point2="-58.3809538406581,49.1772660161073"
+                    Point3="-58.3809538406581,53.1772660161073" />
+                  <mssgle:LineSegment
+                    End="-58.3809538406581,113.766667335174" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-37.190476920329,54.1772660161073,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\Execute SQL Task 2"
+          TopLeft="440.057147163275,227.266666970534" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="466.961907596167,105.99999963536">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="54.2952395671079,121.266667335174"
+              Start="0,0"
+              End="54.2952395671079,113.766667335174">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.1772660161073" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.1772660161073"
+                    Point2="0,49.1772660161073"
+                    Point3="4,49.1772660161073" />
+                  <mssgle:LineSegment
+                    End="50.2952395671079,49.1772660161073" />
+                  <mssgle:CubicBezierSegment
+                    Point1="50.2952395671079,49.1772660161073"
+                    Point2="54.2952395671079,49.1772660161073"
+                    Point3="54.2952395671079,53.1772660161073" />
+                  <mssgle:LineSegment
+                    End="54.2952395671079,113.766667335174" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="19.1476197835539,54.1772660161073,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\Execute SQL Task 4"
+          TopLeft="197.200000170299,428.019609133678" />
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\Execute SQL Task 5"
+          TopLeft="400.057146482079,426.749021284473" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="353.914287088842,268.866666970534">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-70.7142869185428,159.152942163144"
+              Start="0,0"
+              End="-70.7142869185428,151.652942163144">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,75.576471081572" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,75.576471081572"
+                    Point2="0,79.576471081572"
+                    Point3="-4,79.576471081572" />
+                  <mssgle:LineSegment
+                    End="-66.7142869185428,79.576471081572" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-66.7142869185428,79.576471081572"
+                    Point2="-70.7142869185428,79.576471081572"
+                    Point3="-70.7142869185428,83.576471081572" />
+                  <mssgle:LineSegment
+                    End="-70.7142869185428,151.652942163144" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-50.5984911155214,84.576471081572,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="394.914287088842,268.866666970534">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="91.142859393237,157.88235431394"
+              Start="0,0"
+              End="91.142859393237,150.38235431394">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.2343965200556" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,50.2343965200556"
+                    Point2="0,54.2343965200556"
+                    Point3="4,54.2343965200556" />
+                  <mssgle:LineSegment
+                    End="87.142859393237,54.2343965200556" />
+                  <mssgle:CubicBezierSegment
+                    Point1="87.142859393237,54.2343965200556"
+                    Point2="91.142859393237,54.2343965200556"
+                    Point3="91.142859393237,58.2343965200556" />
+                  <mssgle:LineSegment
+                    End="91.142859393237,150.38235431394" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\Execute SQL Task 6"
+          TopLeft="0.771425396568915,428.384316849956" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="312.914287088842,268.866666970534">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-226.142861692273,159.517649879423"
+              Start="0,0"
+              End="-226.142861692273,152.017649879423">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.7961392715574" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,50.7961392715574"
+                    Point2="0,54.7961392715574"
+                    Point3="-4,54.7961392715574" />
+                  <mssgle:LineSegment
+                    End="-222.142861692273,54.7961392715574" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-222.142861692273,54.7961392715574"
+                    Point2="-226.142861692273,54.7961392715574"
+                    Point3="-226.142861692273,58.7961392715574" />
+                  <mssgle:LineSegment
+                    End="-226.142861692273,152.017649879423" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-138.375883971136,59.7961392715574,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\Execute SQL Task 7"
+          TopLeft="196.485714443849,572.866669158375" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="86.7714253965689,469.984316849956">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="171.428574347983,102.882352308419"
+              Start="0,0"
+              End="171.428574347983,95.3823523084187">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.8529411603837" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,68.8529411603837"
+                    Point2="0,72.8529411603837"
+                    Point3="4,72.8529411603837" />
+                  <mssgle:LineSegment
+                    End="167.428574347983,72.8529411603837" />
+                  <mssgle:CubicBezierSegment
+                    Point1="167.428574347983,72.8529411603837"
+                    Point2="171.428574347983,72.8529411603837"
+                    Point3="171.428574347983,76.8529411603837" />
+                  <mssgle:LineSegment
+                    End="171.428574347983,95.3823523084187" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="280.438095128617,469.619609133678">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,103.247060024697"
+              Start="0,0"
+              End="0,95.7470600246972">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,95.7470600246972" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="486.057146482079,468.349021284473">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-162.57143203823,104.517647873902"
+              Start="0,0"
+              End="-162.57143203823,97.0176478739016">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.614639062256" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,64.614639062256"
+                    Point2="0,68.614639062256"
+                    Point3="-4,68.614639062256" />
+                  <mssgle:LineSegment
+                    End="-158.57143203823,68.614639062256" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-158.57143203823,68.614639062256"
+                    Point2="-162.57143203823,68.614639062256"
+                    Point3="-162.57143203823,72.614639062256" />
+                  <mssgle:LineSegment
+                    End="-162.57143203823,97.0176478739016" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Sequence Container\Data Flow Task 1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="173.6,41.6"
+          Id="Package\Sequence Container\Data Flow Task 1\Source - CountryRef"
+          TopLeft="15.9,5.49999999999995" />
+        <NodeLayout
+          Size="194.4,41.6"
+          Id="Package\Sequence Container\Data Flow Task 1\Destination - CountryRef"
+          TopLeft="5.50000000000001,107.1" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Data Flow Task 1.Paths[OLE DB Source Output]"
+          TopLeft="102.7,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
