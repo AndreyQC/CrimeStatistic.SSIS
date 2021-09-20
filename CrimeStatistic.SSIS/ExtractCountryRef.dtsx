@@ -1,37 +1,56 @@
 ﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="9/18/2021 2:28:32 PM"
+  DTS:CreationDate="9/20/2021 12:42:08 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="EPRUPETW0645"
   DTS:CreatorName="MOSCOW\Mariia_Petrova3"
-  DTS:DTSID="{C181D74E-A971-49C0-880C-18FAED1A7AD8}"
+  DTS:DTSID="{D4F2466B-3DA7-49EF-9B2F-15E23B03141D}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.170"
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{D34B71EC-5747-4BBA-BE9A-0E398AF7C1FB}">
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{25CB4605-A284-4341-9C32-DC88A86FF627}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{246D0B70-6828-4C02-BE1F-2A88A65A2611}"
+      DTS:ObjectName="SourceConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=ECSC00A014AD\MSSQL2019;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11.1;Auto Translate=false;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAANV8a1pk5y0KjPwRBor5MRAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACc6jYNQQKDTwyXQVPiLApiVHJ9Fj89RksSaq9wCWPFsQAAAAAOgAAAAAIAACAAAADz77So2eXeU2A5qrowYNnoGaZ+OnpmXrsFixgDOhwA2iAAAACYdGy7y0UHcbqyX21ryzyeCVbSKFb11vZiWBbNiUdlYUAAAAAK2swyEaImFQ2MUn3fWzHg3lK5g1c1Z+tFT30/MI0yWbhhuZah9RZoJOiPSEHKN+SqolszTPjyKh6+NPfZjs7j</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\SEQC staging countriesref_untyped"
+      DTS:refId="Package\SEQC Load staging countriesref_untyped"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:DTSID="{DCC85E74-03FC-4D86-B05C-0567A5FD5BBB}"
+      DTS:DTSID="{3AA66D0E-1C05-4D59-872A-60572117EBBA}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="SEQC staging countriesref_untyped">
+      DTS:ObjectName="SEQC Load staging countriesref_untyped">
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\SEQC staging countriesref_untyped\DFT staging countriesref_untyped"
+          DTS:refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{0E56D7E0-7420-4FDE-894A-903B6BF57D58}"
+          DTS:DTSID="{F0CA3DD8-E9A0-4233-A550-3B592469F17E}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
           DTS:ObjectName="DFT staging countriesref_untyped"
@@ -42,11 +61,263 @@
               version="1">
               <components>
                 <component
-                  refId="Package\SEQC staging countriesref_untyped\DFT staging countriesref_untyped\OLE DB Source"
+                  refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE_DST staging countriesref_untyped"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[staging].[countriesref_untyped]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Connections[OleDbConnection]"
+                      connectionManagerID="{D4883E2D-E200-4346-BA4A-D6F9CE3B9199}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[DestinationConnectionOLEDB]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].Columns[name]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="name"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[name]" />
+                        <inputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].Columns[region]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="region"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[region]"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[region]" />
+                        <inputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].Columns[alpha_2]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="alpha_2"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[alpha-2]"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[alpha_2]" />
+                        <inputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].Columns[alpha_3]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="alpha_3"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[alpha-3]"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[alpha_3]" />
+                        <inputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].Columns[country_code]"
+                          cachedDataType="i4"
+                          cachedName="country_code"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[country-code]"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[country_code]" />
+                        <inputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].Columns[iso_3166_2]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="iso_3166_2"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[iso_3166-2]"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[iso_3166_2]" />
+                        <inputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].Columns[sub_region]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="sub_region"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sub-region]"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[sub_region]" />
+                        <inputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].Columns[region_code]"
+                          cachedDataType="i4"
+                          cachedName="region_code"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[region-code]"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[region_code]" />
+                        <inputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].Columns[sub_region_code]"
+                          cachedDataType="i4"
+                          cachedName="sub_region_code"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sub-region-code]"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[sub_region_code]" />
+                        <inputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].Columns[intermediate_region_code]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="intermediate_region_code"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[intermediate-region-code]"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region_code]" />
+                        <inputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].Columns[intermediate_region]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="intermediate_region"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[intermediate-region]"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[SourceItemId]"
+                          dataType="i4"
+                          name="SourceItemId" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[name]"
+                          dataType="wstr"
+                          length="100"
+                          name="name" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[alpha-2]"
+                          dataType="wstr"
+                          length="100"
+                          name="alpha-2" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[alpha-3]"
+                          dataType="wstr"
+                          length="100"
+                          name="alpha-3" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[country-code]"
+                          dataType="wstr"
+                          length="100"
+                          name="country-code" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[iso_3166-2]"
+                          dataType="wstr"
+                          length="100"
+                          name="iso_3166-2" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[region]"
+                          dataType="wstr"
+                          length="100"
+                          name="region" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sub-region]"
+                          dataType="wstr"
+                          length="100"
+                          name="sub-region" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[intermediate-region]"
+                          dataType="wstr"
+                          length="100"
+                          name="intermediate-region" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[region-code]"
+                          dataType="wstr"
+                          length="100"
+                          name="region-code" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sub-region-code]"
+                          dataType="wstr"
+                          length="100"
+                          name="sub-region-code" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[intermediate-region-code]"
+                          dataType="wstr"
+                          length="100"
+                          name="intermediate-region-code" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sysCreatedAt]"
+                          dataType="dbTimeStamp"
+                          name="sysCreatedAt" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sysChangedAt]"
+                          dataType="dbTimeStamp"
+                          name="sysChangedAt" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sysChangedBy]"
+                          dataType="i4"
+                          name="sysChangedBy" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sysCreatedBy]"
+                          dataType="i4"
+                          name="sysCreatedBy" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef"
                   componentClassID="Microsoft.OLEDBSource"
                   contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
                   description="OLE DB Source"
-                  name="OLE DB Source"
+                  name="OLE_SCR CountryRef"
                   usesDispositions="true"
                   version="7">
                   <properties>
@@ -57,7 +328,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset"></property>
+                      name="OpenRowset">[dbo].[CountryRef]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -91,32 +362,259 @@
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\SEQC staging countriesref_untyped\DFT staging countriesref_untyped\OLE DB Source.Connections[OleDbConnection]"
+                      refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Connections[OleDbConnection]"
+                      connectionManagerID="{D4883E2D-E200-4346-BA4A-D6F9CE3B9199}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[DestinationConnectionOLEDB]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
                   <outputs>
                     <output
-                      refId="Package\SEQC staging countriesref_untyped\DFT staging countriesref_untyped\OLE DB Source.Outputs[OLE DB Source Output]"
+                      refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output]"
                       name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[name]"
+                          length="100"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[name]"
+                          name="name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[alpha_2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[alpha_2]"
+                          length="50"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[alpha_2]"
+                          name="alpha_2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[alpha_3]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[alpha_3]"
+                          length="50"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[alpha_3]"
+                          name="alpha_3"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[country_code]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[country_code]"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[country_code]"
+                          name="country_code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[iso_3166_2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[iso_3166_2]"
+                          length="50"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[iso_3166_2]"
+                          name="iso_3166_2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[region]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[region]"
+                          length="50"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[region]"
+                          name="region"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[sub_region]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[sub_region]"
+                          length="50"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[sub_region]"
+                          name="sub_region"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[intermediate_region]"
+                          length="50"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region]"
+                          name="intermediate_region"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[region_code]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[region_code]"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[region_code]"
+                          name="region_code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[sub_region_code]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[sub_region_code]"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[sub_region_code]"
+                          name="sub_region_code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region_code]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[intermediate_region_code]"
+                          length="50"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].Columns[intermediate_region_code]"
+                          name="intermediate_region_code"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
                       <externalMetadataColumns
-                        isUsed="True" />
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[name]"
+                          dataType="wstr"
+                          length="100"
+                          name="name" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[alpha_2]"
+                          dataType="wstr"
+                          length="50"
+                          name="alpha_2" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[alpha_3]"
+                          dataType="wstr"
+                          length="50"
+                          name="alpha_3" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[country_code]"
+                          dataType="i4"
+                          name="country_code" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[iso_3166_2]"
+                          dataType="wstr"
+                          length="50"
+                          name="iso_3166_2" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[region]"
+                          dataType="wstr"
+                          length="50"
+                          name="region" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[sub_region]"
+                          dataType="wstr"
+                          length="50"
+                          name="sub_region" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[intermediate_region]"
+                          dataType="wstr"
+                          length="50"
+                          name="intermediate_region" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[region_code]"
+                          dataType="i4"
+                          name="region_code" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[sub_region_code]"
+                          dataType="i4"
+                          name="sub_region_code" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output].ExternalColumns[intermediate_region_code]"
+                          dataType="wstr"
+                          length="50"
+                          name="intermediate_region_code" />
+                      </externalMetadataColumns>
                     </output>
                     <output
-                      refId="Package\SEQC staging countriesref_untyped\DFT staging countriesref_untyped\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output]"
                       isErrorOut="true"
                       name="OLE DB Source Error Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\SEQC staging countriesref_untyped\DFT staging countriesref_untyped\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[name]"
+                          dataType="wstr"
+                          length="100"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[name]"
+                          name="name" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[alpha_2]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[alpha_2]"
+                          name="alpha_2" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[alpha_3]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[alpha_3]"
+                          name="alpha_3" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[country_code]"
                           dataType="i4"
-                          lineageId="Package\SEQC staging countriesref_untyped\DFT staging countriesref_untyped\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[country_code]"
+                          name="country_code" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[iso_3166_2]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[iso_3166_2]"
+                          name="iso_3166_2" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[region]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[region]"
+                          name="region" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[sub_region]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[sub_region]"
+                          name="sub_region" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[intermediate_region]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[intermediate_region]"
+                          name="intermediate_region" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[region_code]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[region_code]"
+                          name="region_code" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[sub_region_code]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[sub_region_code]"
+                          name="sub_region_code" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[intermediate_region_code]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[intermediate_region_code]"
+                          name="intermediate_region_code" />
+                        <outputColumn
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\SEQC staging countriesref_untyped\DFT staging countriesref_untyped\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\SEQC staging countriesref_untyped\DFT staging countriesref_untyped\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -125,24 +623,31 @@
                   </outputs>
                 </component>
               </components>
+              <paths>
+                <path
+                  refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped.Paths[OLE DB Source Output]"
+                  endId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef.Outputs[OLE DB Source Output]" />
+              </paths>
             </pipeline>
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\SQL Trancate staging countriesref_untyped"
+      DTS:refId="Package\SQL Truncate staging countriesref_untyped"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:DTSID="{E43F61D8-D776-4822-B0DF-90585CD40588}"
+      DTS:DTSID="{9F6BBF3A-C10E-4F39-9FD2-8B1FA706F762}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="SQL Trancate staging countriesref_untyped"
+      DTS:ObjectName="SQL Truncate staging countriesref_untyped"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{0B59A348-4ECC-4F27-94DA-4C07CC52ED1B}"
+          SQLTask:Connection="{D4883E2D-E200-4346-BA4A-D6F9CE3B9199}"
           SQLTask:SqlStatementSource="TRUNCATE TABLE [staging].[countriesref_untyped];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -151,11 +656,11 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{78EAAF80-9146-4AAF-BB7B-CD9AC0D91267}"
-      DTS:From="Package\SQL Trancate staging countriesref_untyped"
+      DTS:DTSID="{6A9DD295-6FDB-4FA5-81F2-0541598301D7}"
+      DTS:From="Package\SQL Truncate staging countriesref_untyped"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
-      DTS:To="Package\SEQC staging countriesref_untyped" />
+      DTS:To="Package\SEQC Load staging countriesref_untyped" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -170,46 +675,46 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="285.333333333334,42.6666666666667"
-          Id="Package\SQL Trancate staging countriesref_untyped"
-          TopLeft="194.374997103587,48.5789482827993" />
+          Size="291,42"
+          Id="Package\SQL Truncate staging countriesref_untyped"
+          TopLeft="345,205" />
         <NodeLayout
-          Size="240,42.6666666666667"
-          Id="Package\SEQC staging countriesref_untyped\DFT staging countriesref_untyped"
-          TopLeft="35.2916636771212,5.5" />
+          Size="245,42"
+          Id="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped"
+          TopLeft="30,4" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="280,103.333333333334"
-          Size="280,146"
-          Id="Package\SEQC staging countriesref_untyped"
-          TopLeft="165.624997531995,186.789477200059" />
+          PanelSize="310,101"
+          Size="310,144"
+          Id="Package\SEQC Load staging countriesref_untyped"
+          TopLeft="411,356" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="337.041663770254,91.2456149494659">
+          TopLeft="490.5,247">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-35.7499995715917,95.5438622505932"
+              EndConnector="75.5,109"
               Start="0,0"
-              End="-35.7499995715917,88.0438622505932">
+              End="75.5,101.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,43.7719311252966" />
+                    End="0,50.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,43.7719311252966"
-                    Point2="0,47.7719311252966"
-                    Point3="-4,47.7719311252966" />
+                    Point1="0,50.5"
+                    Point2="0,54.5"
+                    Point3="4,54.5" />
                   <mssgle:LineSegment
-                    End="-31.7499995715917,47.7719311252966" />
+                    End="71.5,54.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-31.7499995715917,47.7719311252966"
-                    Point2="-35.7499995715917,47.7719311252966"
-                    Point3="-35.7499995715917,51.7719311252966" />
+                    Point1="71.5,54.5"
+                    Point2="75.5,54.5"
+                    Point3="75.5,58.5" />
                   <mssgle:LineSegment
-                    End="-35.7499995715917,88.0438622505932" />
+                    End="75.5,101.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -222,16 +727,80 @@
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\SEQC staging countriesref_untyped\DFT staging countriesref_untyped">
+    design-time-name="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="154.666666666667,42.6666666666667"
-          Id="Package\SEQC staging countriesref_untyped\DFT staging countriesref_untyped\OLE DB Source"
-          TopLeft="243,93" />
+          Size="189,42"
+          Id="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef"
+          TopLeft="380,102" />
+        <NodeLayout
+          Size="273,42"
+          Id="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped"
+          TopLeft="431,284" />
+        <EdgeLayout
+          Id="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped.Paths[OLE DB Source Output]"
+          TopLeft="474.5,144">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="93,140"
+              Start="0,0"
+              End="93,132.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,66"
+                    Point2="0,70"
+                    Point3="4,70" />
+                  <mssgle:LineSegment
+                    End="89,70" />
+                  <mssgle:CubicBezierSegment
+                    Point1="89,70"
+                    Point2="93,70"
+                    Point3="93,74" />
+                  <mssgle:LineSegment
+                    End="93,132.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SCR CountryRef">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
