@@ -26,17 +26,18 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">EPRUSARW1710</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAABDXbMbGf2E+MZwHOCeceNwAAAAACAAAAAAAQZgAAAAEAACAAAACZcD8dKFkdqBEogzLvG4acoRnPFyPdBk7wJF4SUTAeKAAAAAAOgAAAAAIAACAAAADBKIswQmHdRR00nXy1/ZqBOkNzfN+ueYCV4JcTUlRRipAAAABMvDOknc/v10zRkXnQVZTy2MCHjfvUnw+6eRuB7i7Mi2s4RuVkZGVsaddxrY8S9YLLmO3usCwWip8Nd15ehg8pz0ESJm9qcbnPN5WltmCLWs5aLE/CbfWFg6mbtcRTHuVpfvw+lPkrMr0t65a7nLampF1Ovp0VV4MjRGnH793BGgvUtZcMhOfFE5BGcDBlA3JAAAAAx9S0xIft8g0ZlfkeB5OZDNf3t/rxzlXuy31GmJGg6we5mOcwpYb/oiGIM9nOoY0BpAiQo81vs9xbsvVdfEs0iQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAABDXbMbGf2E+MZwHOCeceNwAAAAACAAAAAAAQZgAAAAEAACAAAADv3wMhoUR/a4WktbBYr6kaHoAMbwBSeX4oWsBD4Fu1KAAAAAAOgAAAAAIAACAAAAAV4Rb73/rhBr5ESOSFetWZrz91so54/Ko/2kOQfvP1BpAAAADwz1XBOv1Ery8Lhv3w8JiIVnQkyZBQIwHp0fLkAhBv9BC40xiaCPKnrkjhLTYhJRzrNx5qWEcx7oQk/E+dsjmrHovlXeJa4qT5TEhueXeJP4cTje4HtbkqqI/PiA0S20TUVGPAJ7C1Jj7+b4QsPETtC51B/jJ3JgV15xjeVtWTST5+EimP7gBjb1W+6q/t2cJAAAAAYZ9DmLzmydCUT/Cf/s26JbJIOI+/3/xlDc+/+GA/i94hCIC4XPSScsd8sjNN1KfAIvPSNB8WpBt2MPwFqj2Tag==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
           <SSIS:Package SSIS:Name="Package.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Task01.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="ExtractCountryRef.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Task03.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="CrimeStatisticDWH.conmgr" />
-          <SSIS:ConnectionManager SSIS:Name="SourceCrimeStatistic.conmgr" />
+          <SSIS:ConnectionManager SSIS:Name="SourceCrimeStatisticDB.conmgr" />
         </SSIS:ConnectionManagers>
         <SSIS:DeploymentInfo>
           <SSIS:ProjectConnectionParameters>
@@ -188,7 +189,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SourceConnectionOLEDB.ConnectByProxy">
+            <SSIS:Parameter SSIS:Name="CM.SourceCrimeStatisticDB.ConnectByProxy">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -203,7 +204,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SourceConnectionOLEDB.ConnectionString">
+            <SSIS:Parameter SSIS:Name="CM.SourceCrimeStatisticDB.ConnectionString">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -214,11 +215,11 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Data Source=epamsqllabsrv.database.windows.net;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11.1;Auto Translate=false;</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Data Source=epamsqllabsrv.database.windows.net;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SourceConnectionOLEDB.ConnectRetryCount">
+            <SSIS:Parameter SSIS:Name="CM.SourceCrimeStatisticDB.ConnectRetryCount">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -233,7 +234,7 @@
                 <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SourceConnectionOLEDB.ConnectRetryInterval">
+            <SSIS:Parameter SSIS:Name="CM.SourceCrimeStatisticDB.ConnectRetryInterval">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -248,7 +249,7 @@
                 <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SourceConnectionOLEDB.ConnectUsingManagedIdentity">
+            <SSIS:Parameter SSIS:Name="CM.SourceCrimeStatisticDB.ConnectUsingManagedIdentity">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -263,7 +264,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SourceConnectionOLEDB.InitialCatalog">
+            <SSIS:Parameter SSIS:Name="CM.SourceCrimeStatisticDB.InitialCatalog">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -278,7 +279,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SourceConnectionOLEDB.Password">
+            <SSIS:Parameter SSIS:Name="CM.SourceCrimeStatisticDB.Password">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -292,7 +293,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SourceConnectionOLEDB.RetainSameConnection">
+            <SSIS:Parameter SSIS:Name="CM.SourceCrimeStatisticDB.RetainSameConnection">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -307,7 +308,7 @@
                 <SSIS:Property SSIS:Name="DataType">3</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SourceConnectionOLEDB.ServerName">
+            <SSIS:Parameter SSIS:Name="CM.SourceCrimeStatisticDB.ServerName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -322,7 +323,7 @@
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
-            <SSIS:Parameter SSIS:Name="CM.SourceConnectionOLEDB.UserName">
+            <SSIS:Parameter SSIS:Name="CM.SourceCrimeStatisticDB.UserName">
               <SSIS:Properties>
                 <SSIS:Property SSIS:Name="ID">
                 </SSIS:Property>
@@ -362,10 +363,10 @@
                 <SSIS:Property SSIS:Name="Name">Task01</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">4</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">6</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{272C1C6A-2326-4ECD-B3BB-6FB6BE5FDD68}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{387F60EE-D236-46A9-8743-AEFA07F3603B}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">Описание пакета служб SSIS</SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
@@ -538,6 +539,23 @@
                   </SSIS:Properties>
                 </SSIS:Parameter>
               </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Task03.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{9B0C2311-51D7-4558-958B-D932B0B8F634}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{DC9F06F5-7A18-48A3-BF75-DE6EB8B17C91}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
             </SSIS:PackageMetaData>
           </SSIS:PackageInfo>
         </SSIS:DeploymentInfo>
