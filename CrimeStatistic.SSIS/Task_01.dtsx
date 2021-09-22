@@ -1,27 +1,69 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="9/18/2021 1:45:59 PM"
+  DTS:CreationDate="9/22/2021 7:32:02 PM"
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="NEOPC"
   DTS:CreatorName="NEOPC\TusaevMI"
   DTS:Description="Описание пакета служб SSIS"
-  DTS:DTSID="{3E2485CD-43A2-4ADA-86C7-E7E95216ADAD}"
+  DTS:DTSID="{1486F506-3495-446B-B808-AA4BDB61ACBE}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.170"
   DTS:LocaleID="1049"
   DTS:MaxErrorCount="0"
-  DTS:ObjectName="Task01"
-  DTS:VersionBuild="6"
-  DTS:VersionGUID="{387F60EE-D236-46A9-8743-AEFA07F3603B}">
+  DTS:ObjectName="ExportDataToLocalDB"
+  DTS:VersionGUID="{18303DEB-B465-4164-8645-97FAC5AA5FF4}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BF63E1FF-FD7E-4C61-8C23-B43EF47113D9}"
+      DTS:ObjectName="DestinationConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=NEOPC\MSSQL2019;Initial Catalog=CrimeStatistic.DWH;Provider=SQLNCLI11;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1A970C2C-573F-4BA0-8D8F-AB0F9B764E6D}"
+      DTS:ObjectName="SourceConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=epamsqllabsrv.database.windows.net;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
+      DTS:refId="Package\Задача SQL 1 - &quot;Подготовка SQL&quot;"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{599D281F-D195-4CB6-87EB-01A111F06235}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Задача SQL 1 - &quot;Подготовка SQL&quot;"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BF63E1FF-FD7E-4C61-8C23-B43EF47113D9}"
+          SQLTask:SqlStatementSource="CREATE TABLE [dbo].[CountryRef] (&#xA;[name] nvarchar(100) NOT NULL,&#xA;[alpha_2] nvarchar(50) NOT NULL,&#xA;[alpha_3] nvarchar(50) NOT NULL,&#xA;[country_code] int NOT NULL,&#xA;[iso_3166_2] nvarchar(50) NOT NULL,&#xA;[region] nvarchar(50),&#xA;[sub_region] nvarchar(50),&#xA;[intermediate_region] nvarchar(50),&#xA;[region_code] int,&#xA;[sub_region_code] int,&#xA;[intermediate_region_code] nvarchar(50)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\Задача потока данных 1"
       DTS:CreationName="Microsoft.Pipeline"
-      DTS:DTSID="{B5108496-A7F1-4306-84EC-73D9298CD528}"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{87B5CA7A-A7BF-42B2-84C4-E84DB4B30806}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:FailPackageOnFailure="True"
       DTS:LocaleID="-1"
@@ -84,8 +126,8 @@
               <connections>
                 <connection
                   refId="Package\Задача потока данных 1\Источник - CountryRef.Connections[OleDbConnection]"
-                  connectionManagerID="{A47683E3-3DCE-4F1E-80FE-E62619130A96}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[SourceCrimeStatisticDB]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
                   description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                   name="OleDbConnection" />
               </connections>
@@ -350,6 +392,7 @@
               description="Назначение &quot;OLE DB&quot;"
               name="Назначение - CountryRef"
               usesDispositions="true"
+              validateExternalMetadata="False"
               version="4">
               <properties>
                 <property
@@ -402,8 +445,8 @@
               <connections>
                 <connection
                   refId="Package\Задача потока данных 1\Назначение - CountryRef.Connections[OleDbConnection]"
-                  connectionManagerID="{C2379215-1D24-44D0-ACFD-D438A6636EEF}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[CrimeStatisticDWH]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
                   description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                   name="OleDbConnection" />
               </connections>
@@ -584,88 +627,14 @@
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
-  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
-<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
-<!--If you manually edit this section and make a mistake, you can delete it. -->
-<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
-<Objects
-  Version="8">
-  <!--Each node below will contain properties that do not affect runtime behavior.-->
-  <Package
-    design-time-name="Package">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
-        <NodeLayout
-          Size="205,42"
-          Id="Package\Задача потока данных 1"
-          TopLeft="5.5,5.5" />
-      </GraphLayout>
-    </LayoutInfo>
-  </Package>
-  <TaskHost
-    design-time-name="Package\Задача потока данных 1">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="192,42"
-          Id="Package\Задача потока данных 1\Источник - CountryRef"
-          TopLeft="12.5,5.5" />
-        <NodeLayout
-          Size="206,42"
-          Id="Package\Задача потока данных 1\Назначение - CountryRef"
-          TopLeft="5.50000000000001,107.5" />
-        <EdgeLayout
-          Id="Package\Задача потока данных 1.Paths[Выход источника &quot;OLE DB&quot;]"
-          TopLeft="108.5,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Задача потока данных 1\Источник - CountryRef">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Задача потока данных 1\Назначение - CountryRef">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-</Objects>]]></DTS:DesignTimeProperties>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{CBF0768E-46D3-45E5-AAB1-19E77F17C0D6\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{7A953670-0665-4684-8F42-598A5D5CE3BD}"
+      DTS:From="Package\Задача SQL 1 - &quot;Подготовка SQL&quot;"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{7A953670-0665-4684-8F42-598A5D5CE3BD}"
+      DTS:To="Package\Задача потока данных 1" />
+  </DTS:PrecedenceConstraints>
 </DTS:Executable>
