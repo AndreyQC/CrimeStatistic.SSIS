@@ -9,40 +9,42 @@
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.170"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Package1"
+  DTS:ObjectName="Load_Staging_CountryRef"
   DTS:PackageType="5"
-  DTS:VersionBuild="4"
-  DTS:VersionGUID="{1308DD6F-DCC5-4284-A051-F8AEBE7E2F12}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{155FD413-7E11-4F4C-8F43-8829F9DCD8AC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[ECSC00A014AD\MSSQL2019.RU.BI.LAB.SSIS.DB.student_reader]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{4A87C347-93F6-41B4-86F3-46F175277862}"
-      DTS:ObjectName="ECSC00A014AD\MSSQL2019.RU.BI.LAB.SSIS.DB.student_reader">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=ECSC00A014AD\MSSQL2019;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11.1;Auto Translate=False;">
-          <DTS:Password
-            DTS:Name="Password"
-            Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAApC1JipFqakqvpaRiZ9hKjwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACFoSg6+WBaFicSI6jr2ShQ8eKshP2Ys0k1H9pbrfrjsQAAAAAOgAAAAAIAACAAAAAqTs5WFKt4CJP8XNrcThvm9MqLRyJ1cjokOokipBSvvCAAAAC9N2+SVYBJOr5GJyxEA/jPLXemddZmbz+ZiIanpRRq6UAAAAD0ATmBiFDz3vqAAlSKGfJBw1HSTRVmh2c441DG1ieQuTElvlf5CE7uOSwb9zy7bx2XHTw7Dc004LE7Z+eI/C2B</DTS:Password>
-        </DTS:ConnectionManager>
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[EPRUSAMW016B\MSSQL2019.CrimeStatistic.DWH]"
+      DTS:refId="Package.ConnectionManagers[LocalDB]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{F1EABDA0-98E3-4921-B2E9-2B2933A2474A}"
-      DTS:ObjectName="EPRUSAMW016B\MSSQL2019.CrimeStatistic.DWH">
+      DTS:ObjectName="LocalDB">
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
           DTS:ConnectionString="Data Source=EPRUSAMW016B\MSSQL2019;Initial Catalog=CrimeStatistic.DWH;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4A87C347-93F6-41B4-86F3-46F175277862}"
+      DTS:ObjectName="RU.BI.LAB.SSIS.DB">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::RUBILABSSISDB_ConnectionString]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=ECSC00A014AD\MSSQL2019;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11;Auto Translate=false;">
+          <DTS:Password
+            DTS:Name="pwd"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAApC1JipFqakqvpaRiZ9hKjwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAD7awLlU3pFocf6+kXRW+p1F2IbA6OAPT1KkTebzpS+hwAAAAAOgAAAAAIAACAAAACiCLEGfMBBOK+X7mCA4xMc7fOqKO4i6f8QM9cDt/rELyAAAAAUuYzs/9f46Rf3sms287/OLatKAClxSIqFytZS1a/3W0AAAABnsx2X4M0PjxCrJWZuAeyWfqaTGHONN/xBjn9Acig6FhSZxz5E4lREhByk/zuLKPdxFNxT/GywxReys/Tqg/OU</DTS:Password>
+        </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -131,8 +133,8 @@
                   <connections>
                     <connection
                       refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Connections[OleDbConnection]"
-                      connectionManagerID="Package.ConnectionManagers[EPRUSAMW016B\MSSQL2019.CrimeStatistic.DWH]"
-                      connectionManagerRefId="Package.ConnectionManagers[EPRUSAMW016B\MSSQL2019.CrimeStatistic.DWH]"
+                      connectionManagerID="Package.ConnectionManagers[LocalDB]"
+                      connectionManagerRefId="Package.ConnectionManagers[LocalDB]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -375,8 +377,8 @@
                   <connections>
                     <connection
                       refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SRC CountryRef.Connections[OleDbConnection]"
-                      connectionManagerID="Package.ConnectionManagers[ECSC00A014AD\MSSQL2019.RU.BI.LAB.SSIS.DB.student_reader]"
-                      connectionManagerRefId="Package.ConnectionManagers[ECSC00A014AD\MSSQL2019.RU.BI.LAB.SSIS.DB.student_reader]"
+                      connectionManagerID="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
+                      connectionManagerRefId="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -687,10 +689,6 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="276,42.6666666666667"
-          Id="Package\SQL Truncate staging countryref_untyped"
-          TopLeft="116.458331597969,23.0388884769214" />
-        <NodeLayout
           Size="238.666666666667,42.6666666666667"
           Id="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped"
           TopLeft="58.7777753521997,44.6166644621889" />
@@ -701,6 +699,10 @@
           Size="302.666666666667,197.333333333334"
           Id="Package\SEQC Load staging countriesref_untyped"
           TopLeft="104.166665114462,109.05555360549" />
+        <NodeLayout
+          Size="276,42.6666666666667"
+          Id="Package\SQL Truncate staging countryref_untyped"
+          TopLeft="116.458331597969,23.0388884769214" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="254.458331597969,65.7055551435881">
@@ -746,37 +748,37 @@
         <NodeLayout
           Size="178.666666666667,42.6666666666667"
           Id="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SRC CountryRef"
-          TopLeft="84.9999987334013,39.6499992910028" />
+          TopLeft="85.6249987240881,40.2999992793799" />
         <NodeLayout
           Size="264,42.6666666666667"
           Id="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped"
           TopLeft="75.6249988730997,161.199997117519" />
         <EdgeLayout
           Id="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped.Paths[OLE DB Source Output]"
-          TopLeft="174.333332066735,82.3166659576694">
+          TopLeft="174.958332057421,82.9666659460466">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="33.291666806365,78.88333115985"
+              EndConnector="32.6666668156783,78.2333311714724"
               Start="0,0"
-              End="33.291666806365,71.38333115985">
+              End="32.6666668156783,70.7333311714724">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.441665579925" />
+                    End="0,35.1166655857362" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,35.441665579925"
-                    Point2="0,39.441665579925"
-                    Point3="4,39.441665579925" />
+                    Point1="0,35.1166655857362"
+                    Point2="0,39.1166655857362"
+                    Point3="4,39.1166655857362" />
                   <mssgle:LineSegment
-                    End="29.291666806365,39.441665579925" />
+                    End="28.6666668156783,39.1166655857362" />
                   <mssgle:CubicBezierSegment
-                    Point1="29.291666806365,39.441665579925"
-                    Point2="33.291666806365,39.441665579925"
-                    Point3="33.291666806365,43.441665579925" />
+                    Point1="28.6666668156783,39.1166655857362"
+                    Point2="32.6666668156783,39.1166655857362"
+                    Point3="32.6666668156783,43.1166655857362" />
                   <mssgle:LineSegment
-                    End="33.291666806365,71.38333115985" />
+                    End="32.6666668156783,70.7333311714724" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -789,7 +791,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SRC CountryRef">
+    design-time-name="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -802,7 +804,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped">
+    design-time-name="Package\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SRC CountryRef">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
