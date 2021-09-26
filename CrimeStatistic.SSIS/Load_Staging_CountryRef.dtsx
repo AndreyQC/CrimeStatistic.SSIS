@@ -11,16 +11,18 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{8A1AA267-C4FF-4A56-BECB-EF612FA76C8B}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{D8F5459C-AA9E-4E8F-A05A-5D5B08C30037}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+      DTS:refId="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{9E7FDDD7-28B8-4425-A2F1-FEF8D0F139BE}"
-      DTS:ObjectName="SourceConnectionOLEDB">
+      DTS:ObjectName="RU.BI.LAB.SSIS.DB">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::RUBILABSSISDB_ConnectionString]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
@@ -115,7 +117,7 @@
                     <connection
                       refId="Package\SEQC Load staging CountryRef\DFT staging CountryRef\OLE DST CountryRef.Connections[OleDbConnection]"
                       connectionManagerID="{388AC8C8-E52C-454E-AF36-E5EDE0AA70B5}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[DestinationConnectionOLEDB]"
+                      connectionManagerRefId="Project.ConnectionManagers[CrimeStatistic.DWH]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -335,8 +337,8 @@
                   <connections>
                     <connection
                       refId="Package\SEQC Load staging CountryRef\DFT staging CountryRef\OLE SRC CountryRef.Connections[OleDbConnection]"
-                      connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
-                      connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                      connectionManagerID="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
+                      connectionManagerRefId="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
                       description="The OLE DB runtime connection used to access the database."
                       name="OleDbConnection" />
                   </connections>
@@ -737,7 +739,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\SEQC Load staging CountryRef\DFT staging CountryRef\OLE SRC CountryRef">
+    design-time-name="Package\SEQC Load staging CountryRef\DFT staging CountryRef\OLE DST CountryRef">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -750,7 +752,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\SEQC Load staging CountryRef\DFT staging CountryRef\OLE DST CountryRef">
+    design-time-name="Package\SEQC Load staging CountryRef\DFT staging CountryRef\OLE SRC CountryRef">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
