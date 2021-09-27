@@ -12,8 +12,8 @@
   DTS:MaxErrorCount="2"
   DTS:ObjectName="Load_Staging_CountryRef"
   DTS:PackageType="5"
-  DTS:VersionBuild="20"
-  DTS:VersionGUID="{178F9052-2F4B-4F05-BE4A-AB1255AB0C70}">
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{A5E77951-6EF0-4018-BFE6-7AB12789ABD6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -23,7 +23,7 @@
       DTS:DTSID="{89847123-67F3-4BBF-9F61-635A56202131}"
       DTS:ObjectName="FFCUdoccsvfile">
       <DTS:PropertyExpression
-        DTS:Name="ConnectionString">@[User::CurrentFile]</DTS:PropertyExpression>
+        DTS:Name="ConnectionString">@[$Project::UNDocSourceFileFolder]+"\\"+ @[User::CurrentFile]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Format="Delimited"
@@ -368,7 +368,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="CurrentFile">
       <DTS:VariableValue
-        DTS:DataType="8">\\epamssislabstac.file.core.windows.net\rubilabssis\RU.BI.LAB.SSIS\Source files\undoc-changed\csv\burglary.csv</DTS:VariableValue>
+        DTS:DataType="8">burglary.csv</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -556,596 +556,6 @@
             DTS:FilterKind="0" />
           <DTS:Executables>
             <DTS:Executable
-              DTS:refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped"
-              DTS:CreationName="Microsoft.Pipeline"
-              DTS:Description="Задача потока данных"
-              DTS:Disabled="True"
-              DTS:DTSID="{727D02C5-2500-4F3F-8AFB-5C4233B11479}"
-              DTS:ExecutableType="Microsoft.Pipeline"
-              DTS:LocaleID="-1"
-              DTS:ObjectName="DFT staging contryref_untyped"
-              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-              <DTS:Variables />
-              <DTS:LoggingOptions
-                DTS:FilterKind="0" />
-              <DTS:ObjectData>
-                <pipeline
-                  version="1">
-                  <components>
-                    <component
-                      refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped"
-                      componentClassID="Microsoft.OLEDBDestination"
-                      contactInfo="Назначение &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;4"
-                      description="Назначение &quot;OLE DB&quot;"
-                      name="OLE DST staging countryref_untyped"
-                      usesDispositions="true"
-                      version="4">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
-                          name="CommandTimeout">0</property>
-                        <property
-                          dataType="System.String"
-                          description="Указывает имя объекта базы данных, используемого для открытия набора строк."
-                          name="OpenRowset">[staging].[countriesref_untyped]</property>
-                        <property
-                          dataType="System.String"
-                          description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
-                          name="OpenRowsetVariable"></property>
-                        <property
-                          dataType="System.String"
-                          description="Команда SQL для выполнения."
-                          name="SqlCommand"
-                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
-                        <property
-                          dataType="System.Int32"
-                          description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
-                          name="DefaultCodePage">1251</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
-                          name="AlwaysUseDefaultCodePage">false</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Указывает используемый режим доступа к базе данных."
-                          name="AccessMode"
-                          typeConverter="AccessMode">3</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Указывает, должны ли значения в столбцах идентификаторов копироваться в назначение. Если свойство имеет значение false, значения в столбцах идентификаторов будут созданы автоматически в месте назначения. Применяется только в том случае, если включена быстрая загрузка."
-                          name="FastLoadKeepIdentity">false</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Указывает, будут ли в назначение вставляться значения NULL для столбцов, содержащих их. Значение false показывает, что если столбец имеет значение NULL, то в назначение будет вставлено его значение по умолчанию. Применяется только в случае, если включена быстрая загрузка."
-                          name="FastLoadKeepNulls">false</property>
-                        <property
-                          dataType="System.String"
-                          description="Задает параметры быстрой загрузки. Применяется только в том случае, если включена быстрая загрузка."
-                          name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Задает, когда выдаются сообщения о фиксации транзакции в ходе вставки данных. Значение 0 задает, что по окончании вставки данных будет выдано одно сообщение о фиксации транзакции. Применяется только в том случае, если включена быстрая загрузка."
-                          name="FastLoadMaxInsertCommitSize">2147483647</property>
-                      </properties>
-                      <connections>
-                        <connection
-                          refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Connections[OleDbConnection]"
-                          connectionManagerID="{CBC4AEEC-68B5-4BB6-90EB-563CE6601509}:external"
-                          connectionManagerRefId="Project.ConnectionManagers[CrimeStatistic.DWH]"
-                          description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
-                          name="OleDbConnection" />
-                      </connections>
-                      <inputs>
-                        <input
-                          refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;]"
-                          errorOrTruncationOperation="Вставить"
-                          errorRowDisposition="FailComponent"
-                          hasSideEffects="true"
-                          name="Вход назначения &quot;OLE DB&quot;">
-                          <inputColumns>
-                            <inputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[name]"
-                              cachedDataType="wstr"
-                              cachedLength="100"
-                              cachedName="name"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[name]"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[name]" />
-                            <inputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[alpha_2]"
-                              cachedDataType="wstr"
-                              cachedLength="50"
-                              cachedName="alpha_2"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[alpha-2]"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_2]" />
-                            <inputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[alpha_3]"
-                              cachedDataType="wstr"
-                              cachedLength="50"
-                              cachedName="alpha_3"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[alpha-3]"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_3]" />
-                            <inputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[country_code]"
-                              cachedDataType="i4"
-                              cachedName="country_code"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[country-code]"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[country_code]" />
-                            <inputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[iso_3166_2]"
-                              cachedDataType="wstr"
-                              cachedLength="50"
-                              cachedName="iso_3166_2"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[iso_3166-2]"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[iso_3166_2]" />
-                            <inputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[region]"
-                              cachedDataType="wstr"
-                              cachedLength="100"
-                              cachedName="region"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[region]"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region]" />
-                            <inputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[sub_region]"
-                              cachedDataType="wstr"
-                              cachedLength="50"
-                              cachedName="sub_region"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[sub-region]"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region]" />
-                            <inputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[intermediate_region]"
-                              cachedDataType="wstr"
-                              cachedLength="50"
-                              cachedName="intermediate_region"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[intermediate-region]"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region]" />
-                            <inputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[region_code]"
-                              cachedDataType="i4"
-                              cachedName="region_code"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[region-code]"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region_code]" />
-                            <inputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[sub_region_code]"
-                              cachedDataType="i4"
-                              cachedName="sub_region_code"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[sub-region-code]"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region_code]" />
-                            <inputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[intermediate_region_code]"
-                              cachedDataType="wstr"
-                              cachedLength="50"
-                              cachedName="intermediate_region_code"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[intermediate-region-code]"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region_code]" />
-                          </inputColumns>
-                          <externalMetadataColumns
-                            isUsed="True">
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[SourceItemId]"
-                              dataType="i4"
-                              name="SourceItemId" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[name]"
-                              dataType="wstr"
-                              length="100"
-                              name="name" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[alpha-2]"
-                              dataType="wstr"
-                              length="100"
-                              name="alpha-2" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[alpha-3]"
-                              dataType="wstr"
-                              length="100"
-                              name="alpha-3" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[country-code]"
-                              dataType="wstr"
-                              length="100"
-                              name="country-code" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[iso_3166-2]"
-                              dataType="wstr"
-                              length="100"
-                              name="iso_3166-2" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[region]"
-                              dataType="wstr"
-                              length="100"
-                              name="region" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[sub-region]"
-                              dataType="wstr"
-                              length="100"
-                              name="sub-region" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[intermediate-region]"
-                              dataType="wstr"
-                              length="100"
-                              name="intermediate-region" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[region-code]"
-                              dataType="wstr"
-                              length="100"
-                              name="region-code" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[sub-region-code]"
-                              dataType="wstr"
-                              length="100"
-                              name="sub-region-code" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[intermediate-region-code]"
-                              dataType="wstr"
-                              length="100"
-                              name="intermediate-region-code" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[sysCreatedAt]"
-                              dataType="dbTimeStamp"
-                              name="sysCreatedAt" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[sysChangedAt]"
-                              dataType="dbTimeStamp"
-                              name="sysChangedAt" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[sysChangedBy]"
-                              dataType="i4"
-                              name="sysChangedBy" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[sysCreatedBy]"
-                              dataType="i4"
-                              name="sysCreatedBy" />
-                          </externalMetadataColumns>
-                        </input>
-                      </inputs>
-                      <outputs>
-                        <output
-                          refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;]"
-                          exclusionGroup="1"
-                          isErrorOut="true"
-                          name="Вывод ошибок назначения &quot;OLE DB&quot;"
-                          synchronousInputId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;]">
-                          <outputColumns>
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
-                              dataType="i4"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
-                              name="ErrorCode"
-                              specialFlags="1" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
-                              dataType="i4"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
-                              name="ErrorColumn"
-                              specialFlags="2" />
-                          </outputColumns>
-                          <externalMetadataColumns />
-                        </output>
-                      </outputs>
-                    </component>
-                    <component
-                      refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref"
-                      componentClassID="Microsoft.OLEDBSource"
-                      contactInfo="Источник &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;7"
-                      description="Источник &quot;OLE DB&quot;"
-                      name="OLE SCR countryref"
-                      usesDispositions="true"
-                      version="7">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
-                          name="CommandTimeout">0</property>
-                        <property
-                          dataType="System.String"
-                          description="Указывает имя объекта базы данных, используемого для открытия набора строк."
-                          name="OpenRowset">[staging].[CountryRef]</property>
-                        <property
-                          dataType="System.String"
-                          description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
-                          name="OpenRowsetVariable"></property>
-                        <property
-                          dataType="System.String"
-                          description="Команда SQL для выполнения."
-                          name="SqlCommand"
-                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
-                        <property
-                          dataType="System.String"
-                          description="Переменная, содержащая команду SQL для выполнения."
-                          name="SqlCommandVariable"></property>
-                        <property
-                          dataType="System.Int32"
-                          description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
-                          name="DefaultCodePage">1251</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
-                          name="AlwaysUseDefaultCodePage">false</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Указывает используемый режим доступа к базе данных."
-                          name="AccessMode"
-                          typeConverter="AccessMode">0</property>
-                        <property
-                          dataType="System.String"
-                          description="Сопоставления между параметрами в команде SQL и переменными."
-                          name="ParameterMapping"></property>
-                      </properties>
-                      <connections>
-                        <connection
-                          refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Connections[OleDbConnection]"
-                          connectionManagerID="{CBC4AEEC-68B5-4BB6-90EB-563CE6601509}:external"
-                          connectionManagerRefId="Project.ConnectionManagers[CrimeStatistic.DWH]"
-                          description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
-                          name="OleDbConnection" />
-                      </connections>
-                      <outputs>
-                        <output
-                          refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;]"
-                          name="Выход источника &quot;OLE DB&quot;">
-                          <outputColumns>
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[name]"
-                              dataType="wstr"
-                              errorOrTruncationOperation="Преобразование"
-                              errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[name]"
-                              length="100"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[name]"
-                              name="name"
-                              truncationRowDisposition="FailComponent" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region]"
-                              dataType="wstr"
-                              errorOrTruncationOperation="Преобразование"
-                              errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[region]"
-                              length="100"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region]"
-                              name="region"
-                              truncationRowDisposition="FailComponent" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_2]"
-                              dataType="wstr"
-                              errorOrTruncationOperation="Преобразование"
-                              errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[alpha_2]"
-                              length="50"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_2]"
-                              name="alpha_2"
-                              truncationRowDisposition="FailComponent" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_3]"
-                              dataType="wstr"
-                              errorOrTruncationOperation="Преобразование"
-                              errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[alpha_3]"
-                              length="50"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_3]"
-                              name="alpha_3"
-                              truncationRowDisposition="FailComponent" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[country_code]"
-                              dataType="i4"
-                              errorOrTruncationOperation="Преобразование"
-                              errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[country_code]"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[country_code]"
-                              name="country_code"
-                              truncationRowDisposition="FailComponent" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[iso_3166_2]"
-                              dataType="wstr"
-                              errorOrTruncationOperation="Преобразование"
-                              errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[iso_3166_2]"
-                              length="50"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[iso_3166_2]"
-                              name="iso_3166_2"
-                              truncationRowDisposition="FailComponent" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region]"
-                              dataType="wstr"
-                              errorOrTruncationOperation="Преобразование"
-                              errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sub_region]"
-                              length="50"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region]"
-                              name="sub_region"
-                              truncationRowDisposition="FailComponent" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region]"
-                              dataType="wstr"
-                              errorOrTruncationOperation="Преобразование"
-                              errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[intermediate_region]"
-                              length="50"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region]"
-                              name="intermediate_region"
-                              truncationRowDisposition="FailComponent" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region_code]"
-                              dataType="i4"
-                              errorOrTruncationOperation="Преобразование"
-                              errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[region_code]"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region_code]"
-                              name="region_code"
-                              truncationRowDisposition="FailComponent" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region_code]"
-                              dataType="i4"
-                              errorOrTruncationOperation="Преобразование"
-                              errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sub_region_code]"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region_code]"
-                              name="sub_region_code"
-                              truncationRowDisposition="FailComponent" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region_code]"
-                              dataType="wstr"
-                              errorOrTruncationOperation="Преобразование"
-                              errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[intermediate_region_code]"
-                              length="50"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region_code]"
-                              name="intermediate_region_code"
-                              truncationRowDisposition="FailComponent" />
-                          </outputColumns>
-                          <externalMetadataColumns
-                            isUsed="True">
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[name]"
-                              dataType="wstr"
-                              length="100"
-                              name="name" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[region]"
-                              dataType="wstr"
-                              length="50"
-                              name="region" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[alpha_2]"
-                              dataType="wstr"
-                              length="50"
-                              name="alpha_2" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[alpha_3]"
-                              dataType="wstr"
-                              length="50"
-                              name="alpha_3" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[country_code]"
-                              dataType="i4"
-                              name="country_code" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[iso_3166_2]"
-                              dataType="wstr"
-                              length="50"
-                              name="iso_3166_2" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sub_region]"
-                              dataType="wstr"
-                              length="50"
-                              name="sub_region" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[intermediate_region]"
-                              dataType="wstr"
-                              length="50"
-                              name="intermediate_region" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[region_code]"
-                              dataType="i4"
-                              name="region_code" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sub_region_code]"
-                              dataType="i4"
-                              name="sub_region_code" />
-                            <externalMetadataColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[intermediate_region_code]"
-                              dataType="wstr"
-                              length="50"
-                              name="intermediate_region_code" />
-                          </externalMetadataColumns>
-                        </output>
-                        <output
-                          refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;]"
-                          isErrorOut="true"
-                          name="Вывод ошибок источника &quot;OLE DB&quot;">
-                          <outputColumns>
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[name]"
-                              dataType="wstr"
-                              length="100"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[name]"
-                              name="name" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[alpha_2]"
-                              dataType="wstr"
-                              length="50"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[alpha_2]"
-                              name="alpha_2" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[alpha_3]"
-                              dataType="wstr"
-                              length="50"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[alpha_3]"
-                              name="alpha_3" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[country_code]"
-                              dataType="i4"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[country_code]"
-                              name="country_code" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[iso_3166_2]"
-                              dataType="wstr"
-                              length="50"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[iso_3166_2]"
-                              name="iso_3166_2" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[region]"
-                              dataType="wstr"
-                              length="50"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[region]"
-                              name="region" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[sub_region]"
-                              dataType="wstr"
-                              length="50"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[sub_region]"
-                              name="sub_region" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[intermediate_region]"
-                              dataType="wstr"
-                              length="50"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[intermediate_region]"
-                              name="intermediate_region" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[region_code]"
-                              dataType="i4"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[region_code]"
-                              name="region_code" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[sub_region_code]"
-                              dataType="i4"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[sub_region_code]"
-                              name="sub_region_code" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[intermediate_region_code]"
-                              dataType="wstr"
-                              length="50"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[intermediate_region_code]"
-                              name="intermediate_region_code" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
-                              dataType="i4"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
-                              name="ErrorCode"
-                              specialFlags="1" />
-                            <outputColumn
-                              refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
-                              dataType="i4"
-                              lineageId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
-                              name="ErrorColumn"
-                              specialFlags="2" />
-                          </outputColumns>
-                          <externalMetadataColumns />
-                        </output>
-                      </outputs>
-                    </component>
-                  </components>
-                  <paths>
-                    <path
-                      refId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped.Paths[Выход источника &quot;OLE DB&quot;]"
-                      endId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped.Inputs[Вход назначения &quot;OLE DB&quot;]"
-                      name="Выход источника &quot;OLE DB&quot;"
-                      startId="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref.Outputs[Выход источника &quot;OLE DB&quot;]" />
-                  </paths>
-                </pipeline>
-              </DTS:ObjectData>
-            </DTS:Executable>
-            <DTS:Executable
               DTS:refId="Package\SEQC main\SEQC load staging uncrime_untyped\FELC iterate UNdoc sourse file"
               DTS:CreationName="STOCK:FOREACHLOOP"
               DTS:Description="Контейнер &quot;Цикл по каждому элементу&quot;"
@@ -1167,7 +577,7 @@
                     <FEFEProperty
                       FileSpec="*.csv" />
                     <FEFEProperty
-                      FileNameRetrievalType="0" />
+                      FileNameRetrievalType="1" />
                     <FEFEProperty
                       Recurse="0" />
                   </ForEachFileEnumeratorProperties>
@@ -2685,13 +2095,13 @@
                                       containsID="true"
                                       dataType="System.String"
                                       description="Выражение производного столбца"
-                                      name="Expression">(DT_WSTR,100)"CurrentFile"</property>
+                                      name="Expression">(DT_WSTR,100)@[User::CurrentFile]</property>
                                     <property
                                       containsID="true"
                                       dataType="System.String"
                                       description="Понятное выражение производного столбца"
                                       expressionType="Notify"
-                                      name="FriendlyExpression">(DT_WSTR,100)"CurrentFile"</property>
+                                      name="FriendlyExpression">(DT_WSTR,100)@[User::CurrentFile]</property>
                                   </properties>
                                 </outputColumn>
                               </outputColumns>
@@ -2742,8 +2152,8 @@
               <DTS:ForEachVariableMappings>
                 <DTS:ForEachVariableMapping
                   DTS:CreationName=""
-                  DTS:DTSID="{C5890D52-6B7B-4DE6-9C3C-982DB613ADB0}"
-                  DTS:ObjectName="{C5890D52-6B7B-4DE6-9C3C-982DB613ADB0}"
+                  DTS:DTSID="{9E00AB96-427D-46EE-96BD-641006FB3E37}"
+                  DTS:ObjectName="{9E00AB96-427D-46EE-96BD-641006FB3E37}"
                   DTS:ValueIndex="0"
                   DTS:VariableName="User::CurrentFile" />
               </DTS:ForEachVariableMappings>
@@ -2821,9 +2231,17 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="225,42"
-          Id="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped"
-          TopLeft="58,22" />
+          Size="117,42"
+          Id="Package\Log end"
+          TopLeft="931,1095" />
+        <NodeLayout
+          Size="117,42"
+          Id="Package\Log pack failure"
+          TopLeft="927,840" />
+        <NodeLayout
+          Size="121,42"
+          Id="Package\lOG start"
+          TopLeft="935,623" />
         <NodeLayout
           Size="240,42"
           Id="Package\SEQC main\SEQC load staging uncrime_untyped\FELC iterate UNdoc sourse file\DFTload staging uncrime_untyped"
@@ -2834,7 +2252,7 @@
           PanelSize="345,117"
           Size="345,160"
           Id="Package\SEQC main\SEQC load staging uncrime_untyped\FELC iterate UNdoc sourse file"
-          TopLeft="376,46" />
+          TopLeft="155,34" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -2842,9 +2260,13 @@
           Size="726,304"
           Id="Package\SEQC main\SEQC load staging uncrime_untyped"
           TopLeft="5.5,168.5" />
+        <NodeLayout
+          Size="266,42"
+          Id="Package\SEQC main\SQL  truncate staging uncrime_untyped"
+          TopLeft="6.5,5.5" />
         <EdgeLayout
           Id="Package\SEQC main.PrecedenceConstraints[Ограничение]"
-          TopLeft="139.5,47.5000000000001">
+          TopLeft="139.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2876,55 +2298,39 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="266,42"
-          Id="Package\SEQC main\SQL  truncate staging uncrime_untyped"
-          TopLeft="6.5,5.5" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
           PanelSize="736,528"
-          Size="736,570"
+          Size="736,571"
           Id="Package\SEQC main"
           TopLeft="66,617.333333333333" />
-        <NodeLayout
-          Size="121,42"
-          Id="Package\lOG start"
-          TopLeft="935,623" />
-        <NodeLayout
-          Size="117,42"
-          Id="Package\Log end"
-          TopLeft="931,1095" />
-        <NodeLayout
-          Size="117,42"
-          Id="Package\Log pack failure"
-          TopLeft="927,840" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Ограничение 1]"
           TopLeft="935,644">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-133,117.833333333333"
+              EndConnector="-133,118.083333333333"
               Start="0,0"
-              End="-125.5,117.833333333333">
+              End="-125.5,118.083333333333">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-84.2537834691503,0" />
+                    End="-84.2545031958164,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="-84.2537834691503,0"
-                    Point2="-88.2537834691503,0"
-                    Point3="-88.2537834691503,4" />
+                    Point1="-84.2545031958164,0"
+                    Point2="-88.2545031958164,0"
+                    Point3="-88.2545031958164,4" />
                   <mssgle:LineSegment
-                    End="-88.2537834691503,113.833333333333" />
+                    End="-88.2545031958164,114.083333333333" />
                   <mssgle:CubicBezierSegment
-                    Point1="-88.2537834691503,113.833333333333"
-                    Point2="-88.2537834691503,117.833333333333"
-                    Point3="-92.2537834691503,117.833333333333" />
+                    Point1="-88.2545031958164,114.083333333333"
+                    Point2="-88.2545031958164,118.083333333333"
+                    Point3="-92.2545031958164,118.083333333333" />
                   <mssgle:LineSegment
-                    End="-125.5,117.833333333333" />
+                    End="-125.5,118.083333333333" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2935,30 +2341,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Ограничение 2]"
-          TopLeft="802,1042.83333333333">
+          TopLeft="802,1043.58333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="129,73.1666666666665"
+              EndConnector="129,72.416666666667"
               Start="0,0"
-              End="121.5,73.1666666666665">
+              End="121.5,72.416666666667">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="39.4004656577416,0" />
+                    End="39.3997675769901,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="39.4004656577416,0"
-                    Point2="43.4004656577416,0"
-                    Point3="43.4004656577416,4" />
+                    Point1="39.3997675769901,0"
+                    Point2="43.3997675769901,0"
+                    Point3="43.3997675769901,4" />
                   <mssgle:LineSegment
-                    End="43.4004656577416,69.1666666666665" />
+                    End="43.3997675769901,68.416666666667" />
                   <mssgle:CubicBezierSegment
-                    Point1="43.4004656577416,69.1666666666665"
-                    Point2="43.4004656577416,73.1666666666665"
-                    Point3="47.4004656577416,73.1666666666665" />
+                    Point1="43.3997675769901,68.416666666667"
+                    Point2="43.3997675769901,72.416666666667"
+                    Point3="47.3997675769901,72.416666666667" />
                   <mssgle:LineSegment
-                    End="121.5,73.1666666666665" />
+                    End="121.5,72.416666666667" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2969,37 +2375,37 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Ограничение 3]"
-          TopLeft="802,902.333333333333">
+          TopLeft="802,902.833333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="125,-41.3333333333334"
+              EndConnector="125,-41.833333333333"
               Start="0,0"
-              End="117.5,-41.3333333333334">
+              End="117.5,-41.833333333333">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="58.5000000000001,0" />
+                    End="58.5,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="58.5000000000001,0"
-                    Point2="62.5000000000001,0"
-                    Point3="62.5000000000001,-4" />
+                    Point1="58.5,0"
+                    Point2="62.5,0"
+                    Point3="62.5,-4" />
                   <mssgle:LineSegment
-                    End="62.5000000000001,-37.3333333333334" />
+                    End="62.5,-37.833333333333" />
                   <mssgle:CubicBezierSegment
-                    Point1="62.5000000000001,-37.3333333333334"
-                    Point2="62.5000000000001,-41.3333333333334"
-                    Point3="66.5000000000001,-41.3333333333334" />
+                    Point1="62.5,-37.833333333333"
+                    Point2="62.5,-41.833333333333"
+                    Point3="66.5,-41.833333333333" />
                   <mssgle:LineSegment
-                    End="117.5,-41.3333333333334" />
+                    End="117.5,-41.833333333333" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="50.7057812500001,1,23.5884375,10.1396484375"
+              BoundingBox="50.70578125,1,23.5884375,10.1396484375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -3007,88 +2413,10 @@
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="172,42"
-          Id="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref"
-          TopLeft="367,204" />
-        <NodeLayout
-          Size="254,42"
-          Id="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped"
-          TopLeft="335,313" />
-        <EdgeLayout
-          Id="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped.Paths[Выход источника &quot;OLE DB&quot;]"
-          TopLeft="453,246">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="9,67"
-              Start="0,0"
-              End="9,59.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,29.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,29.5"
-                    Point2="0,33.5"
-                    Point3="4,33.5" />
-                  <mssgle:LineSegment
-                    End="5,33.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="5,33.5"
-                    Point2="9,33.5"
-                    Point3="9,37.5" />
-                  <mssgle:LineSegment
-                    End="9,59.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE DST staging countryref_untyped">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\SEQC main\SEQC load staging uncrime_untyped\DFT staging contryref_untyped\OLE SCR countryref">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
     design-time-name="Package\SEQC main\SEQC load staging uncrime_untyped\FELC iterate UNdoc sourse file\DFTload staging uncrime_untyped">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="188,42"
           Id="Package\SEQC main\SEQC load staging uncrime_untyped\FELC iterate UNdoc sourse file\DFTload staging uncrime_untyped\Производный столбец"
@@ -3132,9 +2460,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3168,9 +2494,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
