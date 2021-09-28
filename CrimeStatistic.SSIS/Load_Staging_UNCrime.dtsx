@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Load_Staging_UBCrine"
   DTS:PackageType="5"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{973E790E-8595-400F-80F7-9F30C9CEE537}">
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{B46ACEE0-AD45-4BB2-B049-1B314BA7B683}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -336,6 +336,18 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="CrimeStatisticDWH"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Writes log entries for events to a SQL Server database"
+      DTS:DTSID="{D64720C3-5370-4E2E-8916-83CD4049299C}"
+      DTS:ObjectName="SSIS log provider for SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
@@ -347,6 +359,89 @@
         DTS:DataType="8">\\epamssislabstac.file.core.windows.net\rubilabssis\RU.BI.LAB.SSIS\Source files\undoc-changed\csv\burglary.csv</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">4,7,OnError,13,OnPostExecute,12,OnPreExecute,12,OnTaskFailed</DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{D64720C3-5370-4E2E-8916-83CD4049299C}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\SEQC Load staging uncrime_untyped"
@@ -357,6 +452,8 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="SEQC Load staging uncrime_untyped">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:Executables>
         <DTS:Executable
           DTS:refId="Package\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files"
@@ -386,6 +483,8 @@
             </DTS:ObjectData>
           </DTS:ForEachEnumerator>
           <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
           <DTS:Executables>
             <DTS:Executable
               DTS:refId="Package\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped"
@@ -397,6 +496,8 @@
               DTS:ObjectName="DFT Load staging uncrime_untyped"
               DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
               <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
               <DTS:ObjectData>
                 <pipeline
                   version="1">
@@ -1968,6 +2069,8 @@
       DTS:ObjectName="SQL Truncate staging uncrime_untyped"
       DTS:ThreadHint="0">
       <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{7686E9E8-9235-40C8-B659-5EA1D6C8384B}"
@@ -2062,13 +2165,13 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="168,42.6666666666667"
-          Id="Package\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS UNDoc csv file"
-          TopLeft="149.999997764826,39.6499992910028" />
-        <NodeLayout
           Size="236,42.6666666666667"
           Id="Package\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLEDst staging uncrime_untyped"
           TopLeft="229.999996572733,248.949995548427" />
+        <NodeLayout
+          Size="168,42.6666666666667"
+          Id="Package\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS UNDoc csv file"
+          TopLeft="149.999997764826,39.6499992910028" />
         <NodeLayout
           Size="146.666666666667,42.6666666666667"
           Id="Package\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName"
