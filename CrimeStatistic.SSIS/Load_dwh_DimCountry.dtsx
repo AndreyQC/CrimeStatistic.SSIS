@@ -12,8 +12,8 @@
   DTS:MaxErrorCount="2"
   DTS:ObjectName="Load_dwh_DimCountry"
   DTS:PackageType="5"
-  DTS:VersionBuild="37"
-  DTS:VersionGUID="{AD4356B6-4674-4125-853E-9AC5ABBB57B1}">
+  DTS:VersionBuild="39"
+  DTS:VersionGUID="{E6F866CF-3C10-4842-B048-BA7709434E84}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:LogProviders>
@@ -48,6 +48,16 @@
       DTS:ObjectName="CurrentFile">
       <DTS:VariableValue
         DTS:DataType="8">\\epamssislabstac.file.core.windows.net\rubilabssis\RU.BI.LAB.SSIS\Source files\undoc-changed\csv\burglary.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{499EB515-87D9-4DA9-9002-B51EA99047F6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PakageName">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -151,7 +161,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Log end"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -174,7 +184,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Log pack failure"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -202,12 +212,18 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{CBC4AEEC-68B5-4BB6-90EB-563CE6601509}"
-          SQLTask:SqlStatementSource="    exec [etl].[usp_PackageExecutionHistory_Create] 0, 'start'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          SQLTask:SqlStatementSource="  exec [etl].[usp_PackageExecutionHistory_Create] ?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
-            SQLTask:ParameterName="NewParameterName"
+            SQLTask:ParameterName="1"
             SQLTask:DtsVariableName="$Project::UNDocSourceFileFolder"
             SQLTask:ParameterDirection="Input"
-            SQLTask:DataType="3"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::PakageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
             SQLTask:ParameterSize="-1" />
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
@@ -1715,6 +1731,14 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
+    design-time-name="Package\SEQC main\SEQC load dwh_DimCountry\DFTload from staging CountryRef to dwh_DimCountry\OLESRC dwh_DimGeography">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\SEQC main\SEQC load dwh_DimCountry\DFTload from staging CountryRef to dwh_DimCountry\OLESRC Table CountryRef">
     <Properties>
       <Property>
@@ -1737,14 +1761,6 @@
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\SEQC main\SEQC load dwh_DimCountry\DFTload from staging CountryRef to dwh_DimCountry\OLESRC dwh_DimGeography">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

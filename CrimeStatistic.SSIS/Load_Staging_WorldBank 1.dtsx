@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="9/24/2021 5:01:00 PM"
@@ -12,8 +12,8 @@
   DTS:MaxErrorCount="2"
   DTS:ObjectName="Load_Staging_WorldBank"
   DTS:PackageType="5"
-  DTS:VersionBuild="28"
-  DTS:VersionGUID="{BF59BDDA-8A7E-4ADF-A363-989DAC60287A}">
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{A01F4E7F-B82F-4E8C-821A-F5EEBE232FDB}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -819,24 +819,30 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\lOG start"
+      DTS:refId="Package\lOG start 1"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Задача &quot;Выполнение SQL&quot;"
-      DTS:DTSID="{2F2A9938-1192-475E-89AB-AC5705E092BB}"
+      DTS:DTSID="{b858888d-7ebe-4ee0-b332-7bc6845b53c1}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="lOG start"
+      DTS:ObjectName="lOG start 1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{CBC4AEEC-68B5-4BB6-90EB-563CE6601509}"
-          SQLTask:SqlStatementSource="    exec [etl].[usp_PackageExecutionHistory_Create] 0, 'start'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          SQLTask:SqlStatementSource="  exec [etl].[usp_PackageExecutionHistory_Create] ?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
-            SQLTask:ParameterName="NewParameterName"
+            SQLTask:ParameterName="1"
             SQLTask:DtsVariableName="$Project::UNDocSourceFileFolder"
             SQLTask:ParameterDirection="Input"
-            SQLTask:DataType="3"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="$Project::PakageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
             SQLTask:ParameterSize="-1" />
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
@@ -5687,12 +5693,12 @@
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Ограничение 1]"
+      DTS:refId="Package.PrecedenceConstraints[Ограничение]"
       DTS:CreationName=""
-      DTS:DTSID="{6275666D-6F60-49E6-AF75-2F2843B2D09F}"
-      DTS:From="Package\lOG start"
+      DTS:DTSID="{8C482959-1EB4-481A-996E-C2BF08D9A26A}"
+      DTS:From="Package\lOG start 1"
       DTS:LogicalAnd="True"
-      DTS:ObjectName="Ограничение 1"
+      DTS:ObjectName="Ограничение"
       DTS:To="Package\SEQC main" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Ограничение 2]"
@@ -5732,10 +5738,6 @@
           Size="117,42"
           Id="Package\Log pack failure"
           TopLeft="927,840" />
-        <NodeLayout
-          Size="121,42"
-          Id="Package\lOG start"
-          TopLeft="935,623" />
         <NodeLayout
           Size="252,42"
           Id="Package\SEQC main\SEQC load staging population_untyped\DFTload staging population_untyped"
@@ -5792,40 +5794,6 @@
           Size="736,588"
           Id="Package\SEQC main"
           TopLeft="66,617.333333333333" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Ограничение 1]"
-          TopLeft="935,644">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-133,118.083333333333"
-              Start="0,0"
-              End="-125.5,118.083333333333">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-84.2545031958164,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-84.2545031958164,0"
-                    Point2="-88.2545031958164,0"
-                    Point3="-88.2545031958164,4" />
-                  <mssgle:LineSegment
-                    End="-88.2545031958164,114.083333333333" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-88.2545031958164,114.083333333333"
-                    Point2="-88.2545031958164,118.083333333333"
-                    Point3="-92.2545031958164,118.083333333333" />
-                  <mssgle:LineSegment
-                    End="-125.5,118.083333333333" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Ограничение 2]"
           TopLeft="802,1043.58333333333">
@@ -5896,52 +5864,36 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </Package>
-  <TaskHost
-    design-time-name="Package\SEQC main\SEQC load staging population_untyped\DFTload staging population_untyped">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="249,42"
-          Id="Package\SEQC main\SEQC load staging population_untyped\DFTload staging population_untyped\OLE_DST  staging uncrime_untyped"
-          TopLeft="375,358" />
-        <NodeLayout
-          Size="166,42"
-          Id="Package\SEQC main\SEQC load staging population_untyped\DFTload staging population_untyped\FFS UCDoc csv file"
-          TopLeft="356,194" />
-        <NodeLayout
-          Size="200,42"
-          Id="Package\SEQC main\SEQC load staging population_untyped\DFTload staging population_untyped\Преобразование данных"
-          TopLeft="524,271" />
+          Size="121,42"
+          Id="Package\lOG start 1"
+          TopLeft="893,583.333333333333" />
         <EdgeLayout
-          Id="Package\SEQC main\SEQC load staging population_untyped\DFTload staging population_untyped.Paths[Выход источника &quot;Неструктурированный файл&quot;]"
-          TopLeft="439,236">
+          Id="Package.PrecedenceConstraints[Ограничение]"
+          TopLeft="893,604.333333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="185,35"
+              EndConnector="-91,162"
               Start="0,0"
-              End="185,27.5">
+              End="-83.5,162">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.5" />
+                    End="-56.392776523702,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.5"
-                    Point2="0,17.5"
-                    Point3="4,17.5" />
+                    Point1="-56.392776523702,0"
+                    Point2="-60.392776523702,0"
+                    Point3="-60.392776523702,4" />
                   <mssgle:LineSegment
-                    End="181,17.5" />
+                    End="-60.392776523702,158" />
                   <mssgle:CubicBezierSegment
-                    Point1="181,17.5"
-                    Point2="185,17.5"
-                    Point3="185,21.5" />
+                    Point1="-60.392776523702,158"
+                    Point2="-60.392776523702,162"
+                    Point3="-64.392776523702,162" />
                   <mssgle:LineSegment
-                    End="185,27.5" />
+                    End="-83.5,162" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5950,6 +5902,26 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SEQC main\SEQC load staging population_untyped\DFTload staging population_untyped">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="200,42"
+          Id="Package\SEQC main\SEQC load staging population_untyped\DFTload staging population_untyped\Преобразование данных"
+          TopLeft="524,271" />
+        <NodeLayout
+          Size="249,42"
+          Id="Package\SEQC main\SEQC load staging population_untyped\DFTload staging population_untyped\OLE_DST  staging uncrime_untyped"
+          TopLeft="375,358" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\SEQC main\SEQC load staging population_untyped\DFTload staging population_untyped\FFS UCDoc csv file"
+          TopLeft="356,194" />
         <EdgeLayout
           Id="Package\SEQC main\SEQC load staging population_untyped\DFTload staging population_untyped.Paths[Выходные данные преобразования данных]"
           TopLeft="624,313">
@@ -5981,7 +5953,45 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC main\SEQC load staging population_untyped\DFTload staging population_untyped.Paths[Выход источника &quot;Неструктурированный файл&quot;]"
+          TopLeft="439,236">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="185,35"
+              Start="0,0"
+              End="185,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.5"
+                    Point2="0,17.5"
+                    Point3="4,17.5" />
+                  <mssgle:LineSegment
+                    End="181,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="181,17.5"
+                    Point2="185,17.5"
+                    Point3="185,21.5" />
+                  <mssgle:LineSegment
+                    End="185,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

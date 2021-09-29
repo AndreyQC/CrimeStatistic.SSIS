@@ -12,8 +12,8 @@
   DTS:MaxErrorCount="2"
   DTS:ObjectName="Transform_staging_UNCrime"
   DTS:PackageType="5"
-  DTS:VersionBuild="32"
-  DTS:VersionGUID="{D460F00A-8C4B-47FA-BDE0-9D453768FE97}">
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{CC16F91F-7580-436A-9952-37EC1863B220}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:LogProviders>
@@ -151,7 +151,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Log end"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -174,7 +174,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Log pack failure"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -190,24 +190,30 @@
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\lOG start"
+      DTS:refId="Package\lOG start 1"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Задача &quot;Выполнение SQL&quot;"
-      DTS:DTSID="{EEBCCFDB-A4A7-462C-9ECE-2500002E3DF0}"
+      DTS:DTSID="{409936d5-088a-4ba0-97e7-c7634990c6b7}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="lOG start"
+      DTS:ObjectName="lOG start 1"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{CBC4AEEC-68B5-4BB6-90EB-563CE6601509}"
-          SQLTask:SqlStatementSource="    exec [etl].[usp_PackageExecutionHistory_Create] 0, 'start'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          SQLTask:SqlStatementSource="  exec [etl].[usp_PackageExecutionHistory_Create] ?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
-            SQLTask:ParameterName="NewParameterName"
+            SQLTask:ParameterName="1"
             SQLTask:DtsVariableName="$Project::UNDocSourceFileFolder"
             SQLTask:ParameterDirection="Input"
-            SQLTask:DataType="3"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="$Project::PakageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
             SQLTask:ParameterSize="-1" />
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
@@ -2869,12 +2875,12 @@
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Ограничение 1]"
+      DTS:refId="Package.PrecedenceConstraints[Ограничение]"
       DTS:CreationName=""
-      DTS:DTSID="{136BA4E1-78D8-40FA-86EB-2988D059CD5B}"
-      DTS:From="Package\lOG start"
+      DTS:DTSID="{4874DC59-E95A-493E-B24D-75BBCB55692C}"
+      DTS:From="Package\lOG start 1"
       DTS:LogicalAnd="True"
-      DTS:ObjectName="Ограничение 1"
+      DTS:ObjectName="Ограничение"
       DTS:To="Package\SEQC main" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Ограничение 2]"
@@ -2914,10 +2920,6 @@
           Size="117,42"
           Id="Package\Log pack failure"
           TopLeft="765,789" />
-        <NodeLayout
-          Size="121,42"
-          Id="Package\lOG start"
-          TopLeft="565,23.25" />
         <NodeLayout
           Size="392,42"
           Id="Package\SEQC main\SEQC load staging uncrime_untyped\DFTload from  Staging UNCrime typed to staging UNCrimeUnpivod"
@@ -3024,28 +3026,6 @@
           Id="Package\SEQC main"
           TopLeft="206,136.333333333333" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Ограничение 1]"
-          TopLeft="625.75,65.25">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,71.083333333333"
-              Start="0,0"
-              End="0,63.583333333333">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,63.583333333333" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package.PrecedenceConstraints[Ограничение 2]"
           TopLeft="487.333333333333,731.333333333333">
           <EdgeLayout.Curve>
@@ -3113,6 +3093,44 @@
             <mssgm:EdgeLabel
               BoundingBox="17.6224479166667,28.1324461343474,23.5884375,10.1396484375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="121,42"
+          Id="Package\lOG start 1"
+          TopLeft="57,518" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Ограничение]"
+          TopLeft="178,539">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="28,-105.166666666667"
+              Start="0,0"
+              End="20.5,-105.166666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="10,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10,0"
+                    Point2="14,0"
+                    Point3="14,-4" />
+                  <mssgle:LineSegment
+                    End="14,-101.166666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14,-101.166666666667"
+                    Point2="14,-105.166666666667"
+                    Point3="18,-105.166666666667" />
+                  <mssgle:LineSegment
+                    End="20.5,-105.166666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

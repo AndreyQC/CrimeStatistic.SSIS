@@ -12,8 +12,8 @@
   DTS:MaxErrorCount="2"
   DTS:ObjectName="Load_dwh_DimCrimeType"
   DTS:PackageType="5"
-  DTS:VersionBuild="39"
-  DTS:VersionGUID="{B78E8BC6-7D33-4CFD-8D7B-0283AF3B5DD3}">
+  DTS:VersionBuild="41"
+  DTS:VersionGUID="{3E2132F0-71C3-4BDA-B60A-62AC9F0C89AC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:LogProviders>
@@ -151,7 +151,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Log end"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -174,7 +174,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Log pack failure"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -202,12 +202,18 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{CBC4AEEC-68B5-4BB6-90EB-563CE6601509}"
-          SQLTask:SqlStatementSource="    exec [etl].[usp_PackageExecutionHistory_Create] 0, 'start'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          SQLTask:SqlStatementSource="  exec [etl].[usp_PackageExecutionHistory_Create] ?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
-            SQLTask:ParameterName="NewParameterName"
+            SQLTask:ParameterName="1"
             SQLTask:DtsVariableName="$Project::UNDocSourceFileFolder"
             SQLTask:ParameterDirection="Input"
             SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Project::PakageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
             SQLTask:ParameterSize="-1" />
         </SQLTask:SqlTaskData>
       </DTS:ObjectData>
@@ -1601,15 +1607,7 @@ From [staging].[uncrime_typed]</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\SEQC main\SEQC load dwh_DimCrimeType\DFTload from staging uncrime_typed to dwh_DimCrimeType\OLESRC uncrime_typed">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\SEQC main\SEQC load dwh_DimCrimeType\DFTload from staging uncrime_typed to dwh_DimCrimeType\OLESRC DimCrimeType">
+    design-time-name="Package\SEQC main\SEQC load dwh_DimCrimeType\DFTload from staging uncrime_typed to dwh_DimCrimeType\OLE_DST  dwh_dimCrimeType">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1622,7 +1620,15 @@ From [staging].[uncrime_typed]</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\SEQC main\SEQC load dwh_DimCrimeType\DFTload from staging uncrime_typed to dwh_DimCrimeType\OLE_DST  dwh_dimCrimeType">
+    design-time-name="Package\SEQC main\SEQC load dwh_DimCrimeType\DFTload from staging uncrime_typed to dwh_DimCrimeType\OLESRC uncrime_typed">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC main\SEQC load dwh_DimCrimeType\DFTload from staging uncrime_typed to dwh_DimCrimeType\OLESRC DimCrimeType">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
