@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Load_Staging_UNCrime"
   DTS:PackageType="5"
-  DTS:VersionBuild="48"
-  DTS:VersionGUID="{D01F94E5-55BD-4197-89EB-579CAC86899A}">
+  DTS:VersionBuild="50"
+  DTS:VersionGUID="{7288DD84-4C29-4B6D-9CE9-BC6BCDB80B28}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -22,7 +22,7 @@
       DTS:DTSID="{8B74FF63-D990-42F5-88A9-2D1616F7A5C3}"
       DTS:ObjectName="FFCUndoccsv">
       <DTS:PropertyExpression
-        DTS:Name="ConnectionString">@[User::CurrentFile]</DTS:PropertyExpression>
+        DTS:Name="ConnectionString">@[$Project::UNDocSourceFileFolder] + "\\" + @[User::CurrentFile]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Format="Delimited"
@@ -356,7 +356,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="CurrentFile">
       <DTS:VariableValue
-        DTS:DataType="8">\\epamssislabstac.file.core.windows.net\rubilabssis\RU.BI.LAB.SSIS\Source files\undoc-changed\csv\burglary.csv</DTS:VariableValue>
+        DTS:DataType="8">burglary.csv</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:LoggingOptions
@@ -444,13 +444,13 @@
             DTS:FilterKind="0" />
           <DTS:Executables>
             <DTS:Executable
-              DTS:refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container"
+              DTS:refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files"
               DTS:CreationName="STOCK:FOREACHLOOP"
               DTS:Description="Foreach Loop Container"
               DTS:DTSID="{1A7907BD-27E9-468B-99A7-3C05EF36A4B5}"
               DTS:ExecutableType="STOCK:FOREACHLOOP"
               DTS:LocaleID="-1"
-              DTS:ObjectName="Foreach Loop Container">
+              DTS:ObjectName="FORLC iterate UNdoc source files">
               <DTS:ForEachEnumerator
                 DTS:CreationName="Microsoft.ForEachFileEnumerator"
                 DTS:DTSID="{3A93EFB5-6043-49FA-AD9C-ECA9EFBA6329}"
@@ -464,7 +464,7 @@
                     <FEFEProperty
                       FileSpec="*.csv" />
                     <FEFEProperty
-                      FileNameRetrievalType="0" />
+                      FileNameRetrievalType="1" />
                     <FEFEProperty
                       Recurse="0" />
                   </ForEachFileEnumeratorProperties>
@@ -475,7 +475,7 @@
                 DTS:FilterKind="0" />
               <DTS:Executables>
                 <DTS:Executable
-                  DTS:refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped"
+                  DTS:refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped"
                   DTS:CreationName="Microsoft.Pipeline"
                   DTS:Description="Data Flow Task"
                   DTS:DTSID="{C47163A3-5E0F-4ED3-9CA3-9FFC21B20786}"
@@ -491,7 +491,7 @@
                       version="1">
                       <components>
                         <component
-                          refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\DER FileName"
+                          refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName"
                           componentClassID="Microsoft.DerivedColumn"
                           contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                           description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
@@ -499,7 +499,7 @@
                           usesDispositions="true">
                           <inputs>
                             <input
-                              refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\DER FileName.Inputs[Derived Column Input]"
+                              refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName.Inputs[Derived Column Input]"
                               description="Input to the Derived Column Transformation"
                               name="Derived Column Input">
                               <externalMetadataColumns />
@@ -507,19 +507,19 @@
                           </inputs>
                           <outputs>
                             <output
-                              refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Output]"
+                              refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Output]"
                               description="Default Output of the Derived Column Transformation"
                               exclusionGroup="1"
                               name="Derived Column Output"
-                              synchronousInputId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\DER FileName.Inputs[Derived Column Input]">
+                              synchronousInputId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName.Inputs[Derived Column Input]">
                               <outputColumns>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Output].Columns[FileName]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Output].Columns[FileName]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Computation"
                                   errorRowDisposition="FailComponent"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Output].Columns[FileName]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Output].Columns[FileName]"
                                   name="FileName"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -527,36 +527,36 @@
                                       containsID="true"
                                       dataType="System.String"
                                       description="Derived Column Expression"
-                                      name="Expression">(DT_WSTR,100)"File"</property>
+                                      name="Expression">(DT_WSTR,100)@[User::CurrentFile]</property>
                                     <property
                                       containsID="true"
                                       dataType="System.String"
                                       description="Derived Column Friendly Expression"
                                       expressionType="Notify"
-                                      name="FriendlyExpression">(DT_WSTR,100)"File"</property>
+                                      name="FriendlyExpression">(DT_WSTR,100)@[User::CurrentFile]</property>
                                   </properties>
                                 </outputColumn>
                               </outputColumns>
                               <externalMetadataColumns />
                             </output>
                             <output
-                              refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Error Output]"
+                              refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Error Output]"
                               description="Error Output of the Derived Column Transformation"
                               exclusionGroup="1"
                               isErrorOut="true"
                               name="Derived Column Error Output"
-                              synchronousInputId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\DER FileName.Inputs[Derived Column Input]">
+                              synchronousInputId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName.Inputs[Derived Column Input]">
                               <outputColumns>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                                   dataType="i4"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                                   name="ErrorCode"
                                   specialFlags="1" />
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                                   dataType="i4"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                                   name="ErrorColumn"
                                   specialFlags="2" />
                               </outputColumns>
@@ -565,7 +565,7 @@
                           </outputs>
                         </component>
                         <component
-                          refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv"
+                          refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv"
                           componentClassID="Microsoft.FlatFileSource"
                           contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
                           description="Flat File Source"
@@ -585,24 +585,24 @@
                           </properties>
                           <connections>
                             <connection
-                              refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Connections[FlatFileConnection]"
+                              refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Connections[FlatFileConnection]"
                               connectionManagerID="Package.ConnectionManagers[FFCUndoccsv]"
                               connectionManagerRefId="Package.ConnectionManagers[FFCUndoccsv]"
                               name="FlatFileConnection" />
                           </connections>
                           <outputs>
                             <output
-                              refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output]"
+                              refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output]"
                               name="Flat File Source Output">
                               <outputColumns>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  0]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  0]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[Unnamed  0]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[Unnamed  0]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  0]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  0]"
                                   name="Unnamed  0"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -617,13 +617,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  1]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[Unnamed  1]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[Unnamed  1]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  1]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  1]"
                                   name="Unnamed  1"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -638,13 +638,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  2]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  2]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[Unnamed  2]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[Unnamed  2]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  2]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  2]"
                                   name="Unnamed  2"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -659,13 +659,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2003]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2003]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2003]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2003]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2003]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2003]"
                                   name="2003"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -680,13 +680,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2003 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2003 1]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2003 1]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2003 1]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2003 1]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2003 1]"
                                   name="2003 1"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -701,13 +701,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2004]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2004]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2004]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2004]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2004]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2004]"
                                   name="2004"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -722,13 +722,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2004 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2004 1]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2004 1]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2004 1]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2004 1]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2004 1]"
                                   name="2004 1"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -743,13 +743,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2005]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2005]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2005]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2005]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2005]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2005]"
                                   name="2005"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -764,13 +764,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2005 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2005 1]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2005 1]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2005 1]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2005 1]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2005 1]"
                                   name="2005 1"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -785,13 +785,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2006]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2006]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2006]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2006]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2006]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2006]"
                                   name="2006"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -806,13 +806,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2006 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2006 1]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2006 1]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2006 1]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2006 1]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2006 1]"
                                   name="2006 1"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -827,13 +827,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2007]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2007]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2007]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2007]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2007]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2007]"
                                   name="2007"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -848,13 +848,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2007 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2007 1]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2007 1]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2007 1]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2007 1]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2007 1]"
                                   name="2007 1"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -869,13 +869,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2008]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2008]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2008]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2008]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2008]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2008]"
                                   name="2008"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -890,13 +890,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2008 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2008 1]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2008 1]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2008 1]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2008 1]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2008 1]"
                                   name="2008 1"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -911,13 +911,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2009]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2009]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2009]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2009]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2009]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2009]"
                                   name="2009"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -932,13 +932,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2009 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2009 1]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2009 1]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2009 1]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2009 1]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2009 1]"
                                   name="2009 1"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -953,13 +953,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2010]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2010]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2010]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2010]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2010]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2010]"
                                   name="2010"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -974,13 +974,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2010 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2010 1]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2010 1]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2010 1]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2010 1]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2010 1]"
                                   name="2010 1"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -995,13 +995,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2011]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2011]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2011]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2011]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2011]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2011]"
                                   name="2011"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -1016,13 +1016,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2011 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2011 1]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2011 1]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2011 1]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2011 1]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2011 1]"
                                   name="2011 1"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -1037,13 +1037,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2012]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2012]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2012]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2012]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2012]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2012]"
                                   name="2012"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -1058,13 +1058,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2012 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2012 1]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2012 1]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2012 1]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2012 1]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2012 1]"
                                   name="2012 1"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -1079,13 +1079,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2013]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2013]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2013]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2013]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2013]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2013]"
                                   name="2013"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -1100,13 +1100,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2013 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2013 1]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2013 1]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2013 1]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2013 1]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2013 1]"
                                   name="2013 1"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -1121,13 +1121,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2014]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2014]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2014]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2014]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2014]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2014]"
                                   name="2014"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -1142,13 +1142,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2014 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2014 1]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2014 1]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2014 1]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2014 1]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2014 1]"
                                   name="2014 1"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -1163,13 +1163,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2015]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2015]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2015]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2015]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2015]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2015]"
                                   name="2015"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -1184,13 +1184,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2015 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2015 1]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2015 1]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2015 1]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2015 1]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2015 1]"
                                   name="2015 1"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -1205,13 +1205,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2016]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2016]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2016]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2016]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2016]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2016]"
                                   name="2016"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -1226,13 +1226,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2016 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2016 1]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2016 1]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2016 1]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2016 1]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2016 1]"
                                   name="2016 1"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -1247,13 +1247,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2017]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2017]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2017]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2017]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2017]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2017]"
                                   name="2017"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -1268,13 +1268,13 @@
                                   </properties>
                                 </outputColumn>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2017 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2017 1]"
                                   dataType="wstr"
                                   errorOrTruncationOperation="Conversion"
                                   errorRowDisposition="FailComponent"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2017 1]"
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2017 1]"
                                   length="100"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2017 1]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2017 1]"
                                   name="2017 1"
                                   truncationRowDisposition="FailComponent">
                                   <properties>
@@ -1292,194 +1292,194 @@
                               <externalMetadataColumns
                                 isUsed="True">
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[Unnamed  0]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[Unnamed  0]"
                                   dataType="wstr"
                                   length="100"
                                   name="Unnamed  0" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[Unnamed  1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[Unnamed  1]"
                                   dataType="wstr"
                                   length="100"
                                   name="Unnamed  1" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[Unnamed  2]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[Unnamed  2]"
                                   dataType="wstr"
                                   length="100"
                                   name="Unnamed  2" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2003]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2003]"
                                   dataType="wstr"
                                   length="100"
                                   name="2003" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2003 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2003 1]"
                                   dataType="wstr"
                                   length="100"
                                   name="2003 1" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2004]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2004]"
                                   dataType="wstr"
                                   length="100"
                                   name="2004" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2004 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2004 1]"
                                   dataType="wstr"
                                   length="100"
                                   name="2004 1" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2005]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2005]"
                                   dataType="wstr"
                                   length="100"
                                   name="2005" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2005 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2005 1]"
                                   dataType="wstr"
                                   length="100"
                                   name="2005 1" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2006]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2006]"
                                   dataType="wstr"
                                   length="100"
                                   name="2006" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2006 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2006 1]"
                                   dataType="wstr"
                                   length="100"
                                   name="2006 1" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2007]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2007]"
                                   dataType="wstr"
                                   length="100"
                                   name="2007" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2007 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2007 1]"
                                   dataType="wstr"
                                   length="100"
                                   name="2007 1" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2008]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2008]"
                                   dataType="wstr"
                                   length="100"
                                   name="2008" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2008 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2008 1]"
                                   dataType="wstr"
                                   length="100"
                                   name="2008 1" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2009]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2009]"
                                   dataType="wstr"
                                   length="100"
                                   name="2009" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2009 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2009 1]"
                                   dataType="wstr"
                                   length="100"
                                   name="2009 1" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2010]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2010]"
                                   dataType="wstr"
                                   length="100"
                                   name="2010" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2010 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2010 1]"
                                   dataType="wstr"
                                   length="100"
                                   name="2010 1" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2011]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2011]"
                                   dataType="wstr"
                                   length="100"
                                   name="2011" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2011 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2011 1]"
                                   dataType="wstr"
                                   length="100"
                                   name="2011 1" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2012]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2012]"
                                   dataType="wstr"
                                   length="100"
                                   name="2012" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2012 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2012 1]"
                                   dataType="wstr"
                                   length="100"
                                   name="2012 1" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2013]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2013]"
                                   dataType="wstr"
                                   length="100"
                                   name="2013" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2013 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2013 1]"
                                   dataType="wstr"
                                   length="100"
                                   name="2013 1" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2014]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2014]"
                                   dataType="wstr"
                                   length="100"
                                   name="2014" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2014 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2014 1]"
                                   dataType="wstr"
                                   length="100"
                                   name="2014 1" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2015]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2015]"
                                   dataType="wstr"
                                   length="100"
                                   name="2015" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2015 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2015 1]"
                                   dataType="wstr"
                                   length="100"
                                   name="2015 1" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2016]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2016]"
                                   dataType="wstr"
                                   length="100"
                                   name="2016" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2016 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2016 1]"
                                   dataType="wstr"
                                   length="100"
                                   name="2016 1" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2017]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2017]"
                                   dataType="wstr"
                                   length="100"
                                   name="2017" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2017 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].ExternalColumns[2017 1]"
                                   dataType="wstr"
                                   length="100"
                                   name="2017 1" />
                               </externalMetadataColumns>
                             </output>
                             <output
-                              refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Error Output]"
+                              refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Error Output]"
                               isErrorOut="true"
                               name="Flat File Source Error Output">
                               <outputColumns>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                                   codePage="1252"
                                   dataType="text"
                                   description="Flat File Source Error Output Column"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                                   name="Flat File Source Error Output Column" />
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                                   dataType="i4"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                                   name="ErrorCode"
                                   specialFlags="1" />
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                                   dataType="i4"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                                   name="ErrorColumn"
                                   specialFlags="2" />
                               </outputColumns>
@@ -1488,7 +1488,7 @@
                           </outputs>
                         </component>
                         <component
-                          refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped"
+                          refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped"
                           componentClassID="Microsoft.OLEDBDestination"
                           contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                           description="OLE DB Destination"
@@ -1545,7 +1545,7 @@
                           </properties>
                           <connections>
                             <connection
-                              refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Connections[OleDbConnection]"
+                              refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Connections[OleDbConnection]"
                               connectionManagerID="{D4883E2D-E200-4346-BA4A-D6F9CE3B9199}:external"
                               connectionManagerRefId="Project.ConnectionManagers[CrimeStatistic.DWH]"
                               description="The OLE DB runtime connection used to access the database."
@@ -1553,442 +1553,442 @@
                           </connections>
                           <inputs>
                             <input
-                              refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input]"
+                              refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input]"
                               errorOrTruncationOperation="Insert"
                               errorRowDisposition="FailComponent"
                               hasSideEffects="true"
                               name="OLE DB Destination Input">
                               <inputColumns>
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2017 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2017 1]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2017 1"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2017]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2017 1]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2017]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2017 1]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2017]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2017]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2017"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2017]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2017]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2017]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2017]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2016 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2016 1]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2016 1"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2016]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2016 1]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2016]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2016 1]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2016]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2016]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2016"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2016]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2016]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2016]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2016]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2015 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2015 1]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2015 1"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2015]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2015 1]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2015]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2015 1]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2003]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2003]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2003"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2003]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2003]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2003]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2003]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2003 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2003 1]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2003 1"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2003]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2003 1]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2003]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2003 1]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2004]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2004]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2004"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2004]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2004]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2004]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2004]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2015]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2015]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2015"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2015]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2015]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2015]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2015]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2014 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2014 1]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2014 1"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2014]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2014 1]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2014]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2014 1]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2014]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2014]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2014"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2014]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2014]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2014]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2014]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2013 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2013 1]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2013 1"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2013]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2013 1]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2013]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2013 1]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2013]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2013]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2013"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2013]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2013]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2013]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2013]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2012 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2012 1]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2012 1"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2012]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2012 1]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2012]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2012 1]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2012]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2012]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2012"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2012]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2012]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2012]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2012]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2011 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2011 1]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2011 1"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2011]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2011 1]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2011]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2011 1]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2011]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2011]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2011"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2011]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2011]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2011]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2011]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2010 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2010 1]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2010 1"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2010]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2010 1]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2010]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2010 1]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2010]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2010]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2010"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2010]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2010]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2010]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2010]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2009 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2009 1]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2009 1"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2009]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2009 1]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2009]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2009 1]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2009]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2009]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2009"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2009]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2009]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2009]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2009]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2008 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2008 1]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2008 1"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2008]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2008 1]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2008]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2008 1]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2008]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2008]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2008"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2008]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2008]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2008]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2008]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2007 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2007 1]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2007 1"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2007]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2007 1]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2007]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2007 1]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2007]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2007]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2007"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2007]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2007]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2007]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2007]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2006 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2006 1]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2006 1"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2006]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2006 1]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2006]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2006 1]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2006]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2006]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2006"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2006]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2006]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2006]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2006]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2005 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2005 1]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2005 1"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2005]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2005 1]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2005]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2005 1]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2005]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2005]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2005"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2005]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2005]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2005]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2005]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2004 1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[2004 1]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="2004 1"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2004]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2004 1]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2004]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[2004 1]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[Unnamed  2]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[Unnamed  2]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="Unnamed  2"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[CountryName]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  2]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[CountryName]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  2]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[Unnamed  1]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[Unnamed  1]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="Unnamed  1"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[SubRegionName]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  1]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[SubRegionName]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  1]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[Unnamed  0]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[Unnamed  0]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="Unnamed  0"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[RegionName]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  0]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[RegionName]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output].Columns[Unnamed  0]" />
                                 <inputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[FileName]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].Columns[FileName]"
                                   cachedDataType="wstr"
                                   cachedLength="100"
                                   cachedName="FileName"
-                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[FileName]"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Output].Columns[FileName]" />
+                                  externalMetadataColumnId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[FileName]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Output].Columns[FileName]" />
                               </inputColumns>
                               <externalMetadataColumns
                                 isUsed="True">
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[FileName]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[FileName]"
                                   dataType="wstr"
                                   length="100"
                                   name="FileName" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[SourceItemId]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[SourceItemId]"
                                   dataType="wstr"
                                   length="100"
                                   name="SourceItemId" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[RegionName]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[RegionName]"
                                   dataType="wstr"
                                   length="100"
                                   name="RegionName" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[SubRegionName]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[SubRegionName]"
                                   dataType="wstr"
                                   length="100"
                                   name="SubRegionName" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[CountryName]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[CountryName]"
                                   dataType="wstr"
                                   length="100"
                                   name="CountryName" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2003]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2003]"
                                   dataType="wstr"
                                   length="100"
                                   name="Count_2003" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2003]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2003]"
                                   dataType="wstr"
                                   length="100"
                                   name="Rate_2003" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2004]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2004]"
                                   dataType="wstr"
                                   length="100"
                                   name="Count_2004" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2004]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2004]"
                                   dataType="wstr"
                                   length="100"
                                   name="Rate_2004" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2005]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2005]"
                                   dataType="wstr"
                                   length="100"
                                   name="Count_2005" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2005]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2005]"
                                   dataType="wstr"
                                   length="100"
                                   name="Rate_2005" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2006]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2006]"
                                   dataType="wstr"
                                   length="100"
                                   name="Count_2006" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2006]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2006]"
                                   dataType="wstr"
                                   length="100"
                                   name="Rate_2006" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2007]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2007]"
                                   dataType="wstr"
                                   length="100"
                                   name="Count_2007" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2007]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2007]"
                                   dataType="wstr"
                                   length="100"
                                   name="Rate_2007" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2008]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2008]"
                                   dataType="wstr"
                                   length="100"
                                   name="Count_2008" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2008]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2008]"
                                   dataType="wstr"
                                   length="100"
                                   name="Rate_2008" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2009]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2009]"
                                   dataType="wstr"
                                   length="100"
                                   name="Count_2009" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2009]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2009]"
                                   dataType="wstr"
                                   length="100"
                                   name="Rate_2009" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2010]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2010]"
                                   dataType="wstr"
                                   length="100"
                                   name="Count_2010" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2010]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2010]"
                                   dataType="wstr"
                                   length="100"
                                   name="Rate_2010" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2011]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2011]"
                                   dataType="wstr"
                                   length="100"
                                   name="Count_2011" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2011]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2011]"
                                   dataType="wstr"
                                   length="100"
                                   name="Rate_2011" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2012]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2012]"
                                   dataType="wstr"
                                   length="100"
                                   name="Count_2012" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2012]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2012]"
                                   dataType="wstr"
                                   length="100"
                                   name="Rate_2012" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2013]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2013]"
                                   dataType="wstr"
                                   length="100"
                                   name="Count_2013" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2013]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2013]"
                                   dataType="wstr"
                                   length="100"
                                   name="Rate_2013" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2014]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2014]"
                                   dataType="wstr"
                                   length="100"
                                   name="Count_2014" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2014]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2014]"
                                   dataType="wstr"
                                   length="100"
                                   name="Rate_2014" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2015]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2015]"
                                   dataType="wstr"
                                   length="100"
                                   name="Count_2015" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2015]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2015]"
                                   dataType="wstr"
                                   length="100"
                                   name="Rate_2015" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2016]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2016]"
                                   dataType="wstr"
                                   length="100"
                                   name="Count_2016" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2016]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2016]"
                                   dataType="wstr"
                                   length="100"
                                   name="Rate_2016" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2017]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count_2017]"
                                   dataType="wstr"
                                   length="100"
                                   name="Count_2017" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2017]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Rate_2017]"
                                   dataType="wstr"
                                   length="100"
                                   name="Rate_2017" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sysCreatedAt]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sysCreatedAt]"
                                   dataType="dbTimeStamp"
                                   name="sysCreatedAt" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sysChangedAt]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sysChangedAt]"
                                   dataType="dbTimeStamp"
                                   name="sysChangedAt" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sysChangedBy]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sysChangedBy]"
                                   dataType="i4"
                                   name="sysChangedBy" />
                                 <externalMetadataColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sysCreatedBy]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sysCreatedBy]"
                                   dataType="i4"
                                   name="sysCreatedBy" />
                               </externalMetadataColumns>
@@ -1996,22 +1996,22 @@
                           </inputs>
                           <outputs>
                             <output
-                              refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Outputs[OLE DB Destination Error Output]"
+                              refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Outputs[OLE DB Destination Error Output]"
                               exclusionGroup="1"
                               isErrorOut="true"
                               name="OLE DB Destination Error Output"
-                              synchronousInputId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input]">
+                              synchronousInputId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input]">
                               <outputColumns>
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                                   dataType="i4"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                                   name="ErrorCode"
                                   specialFlags="1" />
                                 <outputColumn
-                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                                  refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                                   dataType="i4"
-                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                                  lineageId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                                   name="ErrorColumn"
                                   specialFlags="2" />
                               </outputColumns>
@@ -2022,15 +2022,15 @@
                       </components>
                       <paths>
                         <path
-                          refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped.Paths[Derived Column Output]"
-                          endId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input]"
+                          refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped.Paths[Derived Column Output]"
+                          endId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped.Inputs[OLE DB Destination Input]"
                           name="Derived Column Output"
-                          startId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Output]" />
+                          startId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName.Outputs[Derived Column Output]" />
                         <path
-                          refId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped.Paths[Flat File Source Output]"
-                          endId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\DER FileName.Inputs[Derived Column Input]"
+                          refId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped.Paths[Flat File Source Output]"
+                          endId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName.Inputs[Derived Column Input]"
                           name="Flat File Source Output"
-                          startId="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output]" />
+                          startId="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv.Outputs[Flat File Source Output]" />
                       </paths>
                     </pipeline>
                   </DTS:ObjectData>
@@ -2039,8 +2039,8 @@
               <DTS:ForEachVariableMappings>
                 <DTS:ForEachVariableMapping
                   DTS:CreationName=""
-                  DTS:DTSID="{C3B07046-3029-4FA2-A604-66DB6FE28F07}"
-                  DTS:ObjectName="{C3B07046-3029-4FA2-A604-66DB6FE28F07}"
+                  DTS:DTSID="{2A770874-B615-4ECB-87B5-F952D31A369A}"
+                  DTS:ObjectName="{2A770874-B615-4ECB-87B5-F952D31A369A}"
                   DTS:ValueIndex="0"
                   DTS:VariableName="User::CurrentFile" />
               </DTS:ForEachVariableMappings>
@@ -2206,14 +2206,14 @@
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="249.333333333334,42.6666666666667"
-          Id="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped"
+          Id="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped"
           TopLeft="5.50000000000001,5.50000000000004" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
           PanelSize="260.666666666667,103.333333333334"
-          Size="260.666666666667,146"
-          Id="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container"
+          Size="262,146"
+          Id="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files"
           TopLeft="5.50000000000003,5.5" />
         <ContainerLayout
           HeaderHeight="43"
@@ -2363,24 +2363,24 @@
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped">
+    design-time-name="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped">
     <LayoutInfo>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="250.666666666667,42.6666666666667"
-          Id="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped"
+          Id="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped"
           TopLeft="303.749995473772,214.842109307028" />
         <NodeLayout
           Size="148,42.6666666666667"
-          Id="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\FFS undoccsv"
+          Id="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS undoccsv"
           TopLeft="220.624996712431,67.7368433802412" />
         <NodeLayout
           Size="150.666666666667,42.6666666666667"
-          Id="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\DER FileName"
+          Id="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName"
           TopLeft="436.249993499369,118.368423280624" />
         <EdgeLayout
-          Id="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped.Paths[Flat File Source Output]"
+          Id="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped.Paths[Flat File Source Output]"
           TopLeft="368.624996712431,89.0701767135745">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -2414,7 +2414,7 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped.Paths[Derived Column Output]"
+          Id="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped.Paths[Derived Column Output]"
           TopLeft="511.583326832702,161.03508994729">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -2451,7 +2451,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\SEQC Main\SQC staging uncrime_untyped\Foreach Loop Container\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped">
+    design-time-name="Package\SEQC Main\SQC staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
