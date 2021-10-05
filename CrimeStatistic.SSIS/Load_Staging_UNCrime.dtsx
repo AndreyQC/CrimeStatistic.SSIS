@@ -11,8 +11,8 @@
   DTS:LocaleID="1049"
   DTS:ObjectName="Load_Staging_UNCrime"
   DTS:PackageType="5"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{F483D238-62B4-4891-9BA3-18149E2E3508}">
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{AA6E3175-6BC3-42DD-974E-0814949735D5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -21,6 +21,8 @@
       DTS:CreationName="FLATFILE"
       DTS:DTSID="{56D1BFC5-2572-43C0-85E9-CD26C585AF3B}"
       DTS:ObjectName="FFCUNDoccsvfile">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::UNDocSourceFileFolder] + "\\" +  @[User::CurrentFile]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Format="Delimited"
@@ -354,7 +356,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="CurrentFile">
       <DTS:VariableValue
-        DTS:DataType="8">\\epamssislabstac.file.core.windows.net\rubilabssis\RU.BI.LAB.SSIS\Source files\undoc-changed\csv\burglary.csv</DTS:VariableValue>
+        DTS:DataType="8">burglary.csv</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:LoggingOptions
@@ -484,7 +486,7 @@
                     <FEFEProperty
                       FileSpec="*.csv" />
                     <FEFEProperty
-                      FileNameRetrievalType="0" />
+                      FileNameRetrievalType="1" />
                     <FEFEProperty
                       Recurse="0" />
                   </ForEachFileEnumeratorProperties>
@@ -547,13 +549,13 @@
                                       containsID="true"
                                       dataType="System.String"
                                       description="Выражение производного столбца"
-                                      name="Expression">(DT_WSTR,100)"File"</property>
+                                      name="Expression">(DT_WSTR,100)@[User::CurrentFile]</property>
                                     <property
                                       containsID="true"
                                       dataType="System.String"
                                       description="Понятное выражение производного столбца"
                                       expressionType="Notify"
-                                      name="FriendlyExpression">(DT_WSTR,100)"File"</property>
+                                      name="FriendlyExpression">(DT_WSTR,100)@[User::CurrentFile]</property>
                                   </properties>
                                 </outputColumn>
                               </outputColumns>
@@ -2097,7 +2099,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL Log Package End"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -2126,7 +2128,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL Log Package Failer"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -2155,7 +2157,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL Log Package Start"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -2217,14 +2219,6 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="194,42"
-          Id="Package\SQL Log Package Start"
-          TopLeft="487,42" />
-        <NodeLayout
-          Size="191,42"
-          Id="Package\SQL Log Package End"
-          TopLeft="320.571428571429,756.857142857143" />
-        <NodeLayout
           Size="254,42"
           Id="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped"
           TopLeft="55,30" />
@@ -2277,8 +2271,16 @@
           TopLeft="291.642857142856,170.071428571429" />
         <NodeLayout
           Size="191,42"
+          Id="Package\SQL Log Package End"
+          TopLeft="320.571428571429,756.857142857143" />
+        <NodeLayout
+          Size="191,42"
           Id="Package\SQL Log Package Failer"
           TopLeft="664,759.571428571428" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\SQL Log Package Start"
+          TopLeft="487,42" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Ограничение 1]"
           TopLeft="584,84">
@@ -2390,7 +2392,7 @@
     design-time-name="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="255,42"
           Id="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped"
@@ -2403,6 +2405,28 @@
           Size="152,42"
           Id="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName"
           TopLeft="194.5,221.5" />
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped.Paths[Выход производного столбца]"
+          TopLeft="269,263.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.5"
+              Start="0,0"
+              End="0,53">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped.Paths[Выход источника &quot;Неструктурированный файл&quot;]"
           TopLeft="288,179">
@@ -2434,33 +2458,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped.Paths[Выход производного столбца]"
-          TopLeft="269,263.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60.5"
-              Start="0,0"
-              End="0,53">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,53" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
