@@ -11,8 +11,8 @@
   DTS:LocaleID="1049"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="28"
-  DTS:VersionGUID="{ACAB5CC8-A456-4D0A-B225-83B2663AA70E}">
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{BAC1B960-B1AB-4003-B75F-09562B44F056}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -187,6 +187,23 @@
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8831D2C3-1CAC-40DF-8AD0-CAE5C805DF7D}"
+      DTS:ObjectName="RU.BI.LAB.SSIS.DB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=epamsqllabsrv.database.windows.net;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAABDXbMbGf2E+MZwHOCeceNwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADWEqpYGEtuJ1Huzb9cgi6t1p+q7n/nBJywwBM6Fel/8gAAAAAOgAAAAAIAACAAAAD72CQSKzD9BpXsIh0jczsoTUbRsCA2ETb6uQyJQ1znEiAAAAD1W5wXGA+piqIhyjcVEDnaYSr3wpc9U3TCbYwApG0p6EAAAAD4groEhZ3buLwanpLMQ/tdUwcFqS7YDDY7RdINpsoemHNWARKV8Ye/FRABePU0BfeGlmVfWbe1GySwQ57NZx83</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
@@ -269,8 +286,8 @@ FROM [rubilab].[Customer]</property>
                   <connections>
                     <connection
                       refId="Package\SEQC Lookup\DFT Cache\OLE_SRC Customer.Connections[OleDbConnection]"
-                      connectionManagerID="{A47683E3-3DCE-4F1E-80FE-E62619130A96}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[SourceCrimeStatisticDB]"
+                      connectionManagerID="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
+                      connectionManagerRefId="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
                       description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                       name="OleDbConnection" />
                   </connections>
@@ -425,6 +442,7 @@ FROM [rubilab].[Customer]</property>
           DTS:refId="Package\SEQC Lookup\DFT Demo 1 Lookup"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Задача потока данных"
+          DTS:Disabled="True"
           DTS:DTSID="{f78e0f7a-f185-4ac3-a484-17cb1525dc4e}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
@@ -648,38 +666,14 @@ FROM [rubilab].[Customer]</property>
                       description="Задает инструкцию SQL, которая формирует таблицу уточняющих запросов."
                       expressionType="Notify"
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT 
-	
- 
-	[CustomerId]
-    	
- 
-	,[Name]
-
-
-	,UPPER([name]) AS LookUpName
-FROM 
-
-	[rubilab].[Customer]</property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [rubilab].[Customer]</property>
                     <property
                       dataType="System.String"
                       description="Задает инструкцию SQL, которая использует параметры для формирования таблицы уточняющих запросов."
                       expressionType="Notify"
                       name="SqlCommandParam"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT 
-	
- 
-	[CustomerId]
-    	
- 
-	,[Name]
-
-
-	,UPPER([name]) AS LookUpName
-FROM 
-
-	[rubilab].[Customer]) [refTable]
-where [refTable].[LookUpName] = ?</property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [rubilab].[Customer]) [refTable]
+where [refTable].[Name] = ?</property>
                     <property
                       dataType="System.Int32"
                       description="Указывает тип соединения, используемого для доступа к эталонному набору данных."
@@ -710,7 +704,7 @@ where [refTable].[LookUpName] = ?</property>
                     <property
                       dataType="System.String"
                       description="Указывает, следует ли ссылаться на метаданные в формате XML."
-                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CustomerId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Name" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LookUpName" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CustomerId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Name" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="City" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sysCreatedAT" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sysChangedAt" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sysCreatedBy" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sysChangedBy" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -728,8 +722,8 @@ where [refTable].[LookUpName] = ?</property>
                   <connections>
                     <connection
                       refId="Package\SEQC Lookup\DFT Demo 1 Lookup\LKP Customer.Connections[OleDbConnection]"
-                      connectionManagerID="{A47683E3-3DCE-4F1E-80FE-E62619130A96}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[SourceCrimeStatisticDB]"
+                      connectionManagerID="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
+                      connectionManagerRefId="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
                       description="Диспетчер соединений, используемый для доступа к данным уточняющих запросов."
                       name="OleDbConnection" />
                   </connections>
@@ -748,7 +742,7 @@ where [refTable].[LookUpName] = ?</property>
                             <property
                               dataType="System.String"
                               description="Указывает в ссылочной таблице столбец, который соединен с данным столбцом."
-                              name="JoinToReferenceColumn">LookUpName</property>
+                              name="JoinToReferenceColumn">Name</property>
                             <property
                               dataType="System.Null"
                               description="Указывает в ссылочной таблице столбец, из которого копируется данный столбец."
@@ -1786,8 +1780,8 @@ ORDER BY [CustomerId]</property>
                   <connections>
                     <connection
                       refId="Package\SEQC Merge\DFT Merge Customer Order\OLE_SRC Customer.Connections[OleDbConnection]"
-                      connectionManagerID="{A47683E3-3DCE-4F1E-80FE-E62619130A96}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[SourceCrimeStatisticDB]"
+                      connectionManagerID="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
+                      connectionManagerRefId="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
                       description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                       name="OleDbConnection" />
                   </connections>
@@ -2652,7 +2646,7 @@ ORDER BY [CustomerId]</property>
                     <property
                       dataType="System.String"
                       description="Указывает имя объекта базы данных, используемого для открытия набора строк."
-                      name="OpenRowset"></property>
+                      name="OpenRowset">[rubilab].[Customer]</property>
                     <property
                       dataType="System.String"
                       description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
@@ -2661,10 +2655,13 @@ ORDER BY [CustomerId]</property>
                       dataType="System.String"
                       description="Команда SQL для выполнения."
                       name="SqlCommand"
-                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [CustomerId]
-      ,[Name]      
-FROM [rubilab].[Customer]
-ORDER BY [CustomerId]</property>
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
+  [CustomerId]
+  , [Name]
+FROM
+  [rubilab].[Customer]
+ORDER BY
+  [CustomerId]</property>
                     <property
                       dataType="System.String"
                       description="Переменная, содержащая команду SQL для выполнения."
@@ -2690,8 +2687,8 @@ ORDER BY [CustomerId]</property>
                   <connections>
                     <connection
                       refId="Package\SEQC Merge 1\DFT Merge Customer Order\OLE_SRC Customer.Connections[OleDbConnection]"
-                      connectionManagerID="{A47683E3-3DCE-4F1E-80FE-E62619130A96}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[SourceCrimeStatisticDB]"
+                      connectionManagerID="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
+                      connectionManagerRefId="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
                       description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                       name="OleDbConnection" />
                   </connections>
@@ -3755,6 +3752,14 @@ ORDER BY [CustomerId]</property>
           Size="135,42"
           Id="Package\SEQC Lookup\DFT Cache"
           TopLeft="205.5,5.5" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\SEQC Lookup\DFT Demo 1 Lookup"
+          TopLeft="311.5,150.5" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\SEQC Lookup\DFT Demo 1 Lookup with Cache"
+          TopLeft="40.5,150.5" />
         <EdgeLayout
           Id="Package\SEQC Lookup.PrecedenceConstraints[Constraint]"
           TopLeft="251.833333333333,47.5">
@@ -3823,14 +3828,6 @@ ORDER BY [CustomerId]</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="181,42"
-          Id="Package\SEQC Lookup\DFT Demo 1 Lookup"
-          TopLeft="311.5,150.5" />
-        <NodeLayout
-          Size="238,42"
-          Id="Package\SEQC Lookup\DFT Demo 1 Lookup with Cache"
-          TopLeft="40.5,150.5" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -3869,13 +3866,13 @@ ORDER BY [CustomerId]</property>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="181,42"
-          Id="Package\SEQC Lookup\DFT Cache\OLE_SRC Customer"
-          TopLeft="149,60" />
-        <NodeLayout
           Size="195,42"
           Id="Package\SEQC Lookup\DFT Cache\Преобразование кэша"
           TopLeft="141,148" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\SEQC Lookup\DFT Cache\OLE_SRC Customer"
+          TopLeft="149,60" />
         <EdgeLayout
           Id="Package\SEQC Lookup\DFT Cache.Paths[Выход источника &quot;OLE DB&quot;]"
           TopLeft="239,102">
@@ -3901,11 +3898,27 @@ ORDER BY [CustomerId]</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Lookup\DFT Cache\OLE_SRC Customer">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\SEQC Lookup\DFT Demo 1 Lookup">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="194,42"
+          Id="Package\SEQC Lookup\DFT Demo 1 Lookup\Производный столбец"
+          TopLeft="185,366" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\SEQC Lookup\DFT Demo 1 Lookup\LKP Customer"
+          TopLeft="209,258" />
         <NodeLayout
           Size="150,42"
           Id="Package\SEQC Lookup\DFT Demo 1 Lookup\FFS Customer"
@@ -3915,13 +3928,55 @@ ORDER BY [CustomerId]</property>
           Id="Package\SEQC Lookup\DFT Demo 1 Lookup\Union All"
           TopLeft="220,473" />
         <NodeLayout
-          Size="194,42"
-          Id="Package\SEQC Lookup\DFT Demo 1 Lookup\Производный столбец"
-          TopLeft="185,366" />
-        <NodeLayout
-          Size="150,42"
-          Id="Package\SEQC Lookup\DFT Demo 1 Lookup\LKP Customer"
-          TopLeft="209,258" />
+          Size="171,42"
+          Id="Package\SEQC Lookup\DFT Demo 1 Lookup\DER LookupName"
+          TopLeft="193,137" />
+        <EdgeLayout
+          Id="Package\SEQC Lookup\DFT Demo 1 Lookup.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
+          TopLeft="283,300">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66"
+              Start="0,0"
+              End="0,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-134.68986328125,23.25,269.3797265625,12"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Lookup\DFT Demo 1 Lookup.Paths[Выход производного столбца1]"
+          TopLeft="281.25,179">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,79"
+              Start="0,0"
+              End="0,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\SEQC Lookup\DFT Demo 1 Lookup.Paths[Выход производного столбца]"
           TopLeft="281.75,408">
@@ -3947,34 +4002,6 @@ ORDER BY [CustomerId]</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\SEQC Lookup\DFT Demo 1 Lookup.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
-          TopLeft="283,300">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,66"
-              Start="0,0"
-              End="0,58.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,58.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-134.68986328125,23.25,269.3797265625,12"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="171,42"
-          Id="Package\SEQC Lookup\DFT Demo 1 Lookup\DER LookupName"
-          TopLeft="193,137" />
-        <EdgeLayout
           Id="Package\SEQC Lookup\DFT Demo 1 Lookup.Paths[Выход источника &quot;Неструктурированный файл&quot;]"
           TopLeft="279.75,78">
           <EdgeLayout.Curve>
@@ -3996,31 +4023,32 @@ ORDER BY [CustomerId]</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\SEQC Lookup\DFT Demo 1 Lookup.Paths[Выход производного столбца1]"
-          TopLeft="281.25,179">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,79"
-              Start="0,0"
-              End="0,71.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,71.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Lookup\DFT Demo 1 Lookup\LKP Customer">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[rubilab].[Customer]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\SEQC Lookup\DFT Demo 1 Lookup with Cache">
     <LayoutInfo>
@@ -4123,43 +4151,29 @@ ORDER BY [CustomerId]</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="131,42"
-          Id="Package\SEQC Merge\DFT Merge Customer Order\FFS Order"
-          TopLeft="101,50" />
-        <NodeLayout
           Size="181,42"
           Id="Package\SEQC Merge\DFT Merge Customer Order\OLE_SRC Customer"
           TopLeft="344,54" />
         <NodeLayout
-          Size="175,42"
-          Id="Package\SEQC Merge\DFT Merge Customer Order\Sort By CustomerId"
-          TopLeft="82,228" />
+          Size="123,42"
+          Id="Package\SEQC Merge\DFT Merge Customer Order\Union All"
+          TopLeft="307,433" />
         <NodeLayout
           Size="207,42"
           Id="Package\SEQC Merge\DFT Merge Customer Order\Преобразование данных"
           TopLeft="69,135" />
-        <EdgeLayout
-          Id="Package\SEQC Merge\DFT Merge Customer Order.Paths[Выход источника &quot;Неструктурированный файл&quot;]"
-          TopLeft="169.5,92">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43"
-              Start="0,0"
-              End="0,35.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="195,42"
+          Id="Package\SEQC Merge\DFT Merge Customer Order\Соединение слиянием"
+          TopLeft="272,336" />
+        <NodeLayout
+          Size="131,42"
+          Id="Package\SEQC Merge\DFT Merge Customer Order\FFS Order"
+          TopLeft="101,50" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\SEQC Merge\DFT Merge Customer Order\Sort By CustomerId"
+          TopLeft="82,228" />
         <EdgeLayout
           Id="Package\SEQC Merge\DFT Merge Customer Order.Paths[Выходные данные преобразования данных]"
           TopLeft="171,177">
@@ -4182,10 +4196,6 @@ ORDER BY [CustomerId]</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="195,42"
-          Id="Package\SEQC Merge\DFT Merge Customer Order\Соединение слиянием"
-          TopLeft="272,336" />
         <EdgeLayout
           Id="Package\SEQC Merge\DFT Merge Customer Order.Paths[Выход сортировки]"
           TopLeft="169.5,270">
@@ -4212,6 +4222,52 @@ ORDER BY [CustomerId]</property>
                     Point3="200,37" />
                   <mssgle:LineSegment
                     End="200,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Merge\DFT Merge Customer Order.Paths[Выход соединения слиянием]"
+          TopLeft="369,378">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55"
+              Start="0,0"
+              End="0,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,15.75,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Merge\DFT Merge Customer Order.Paths[Выход источника &quot;Неструктурированный файл&quot;]"
+          TopLeft="169.5,92">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4254,63 +4310,12 @@ ORDER BY [CustomerId]</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="123,42"
-          Id="Package\SEQC Merge\DFT Merge Customer Order\Union All"
-          TopLeft="307,433" />
-        <EdgeLayout
-          Id="Package\SEQC Merge\DFT Merge Customer Order.Paths[Выход соединения слиянием]"
-          TopLeft="369,378">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,55"
-              Start="0,0"
-              End="0,47.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,47.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,15.75,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\SEQC Merge\DFT Merge Customer Order\OLE_SRC Customer">
     <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\SEQC Lookup\DFT Demo 1 Lookup\LKP Customer">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string"></Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
@@ -4330,6 +4335,30 @@ ORDER BY [CustomerId]</property>
           Id="Package\SEQC Merge 1\DFT Merge Customer Order\OLE_SRC Customer"
           TopLeft="329,14" />
         <NodeLayout
+          Size="211,42"
+          Id="Package\SEQC Merge 1\DFT Merge Customer Order\Многоадресная рассылка"
+          TopLeft="350,300" />
+        <NodeLayout
+          Size="222,42"
+          Id="Package\SEQC Merge 1\DFT Merge Customer Order\Статистическое выражение"
+          TopLeft="59,297" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\SEQC Merge 1\DFT Merge Customer Order\Условное разбиение"
+          TopLeft="650,300" />
+        <NodeLayout
+          Size="123,42"
+          Id="Package\SEQC Merge 1\DFT Merge Customer Order\Union All"
+          TopLeft="552,386" />
+        <NodeLayout
+          Size="132,42"
+          Id="Package\SEQC Merge 1\DFT Merge Customer Order\Union All 1"
+          TopLeft="818,393" />
+        <NodeLayout
+          Size="132,42"
+          Id="Package\SEQC Merge 1\DFT Merge Customer Order\Union All 2"
+          TopLeft="106,378" />
+        <NodeLayout
           Size="131,42"
           Id="Package\SEQC Merge 1\DFT Merge Customer Order\FFS Order"
           TopLeft="86,10" />
@@ -4342,31 +4371,99 @@ ORDER BY [CustomerId]</property>
           Id="Package\SEQC Merge 1\DFT Merge Customer Order\Sort By CustomerId"
           TopLeft="69,149" />
         <EdgeLayout
-          Id="Package\SEQC Merge 1\DFT Merge Customer Order.Paths[Выход источника &quot;OLE DB&quot;]"
-          TopLeft="419.5,56">
+          Id="Package\SEQC Merge 1\DFT Merge Customer Order.Paths[Выход многоадресной рассылки 1]"
+          TopLeft="561,321">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="73.1666666666666,174"
+              EndConnector="89,0"
               Start="0,0"
-              End="73.1666666666666,166.5">
+              End="81.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,99.5503560528992" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,99.5503560528992"
-                    Point2="0,103.550356052899"
-                    Point3="4,103.550356052899" />
+                    End="81.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Merge 1\DFT Merge Customer Order.Paths[Выход источника &quot;Неструктурированный файл&quot;]"
+          TopLeft="154.5,52">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="69.1666666666666,103.550356052899" />
-                  <mssgle:CubicBezierSegment
-                    Point1="69.1666666666666,103.550356052899"
-                    Point2="73.1666666666666,103.550356052899"
-                    Point3="73.1666666666666,107.550356052899" />
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Merge 1\DFT Merge Customer Order.Paths[CustomerIdgt20]"
+          TopLeft="772.666666666667,342">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="111.333333333333,51"
+              Start="0,0"
+              End="111.333333333333,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="73.1666666666666,166.5" />
+                    End="0,16.6609808102345" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.6609808102345"
+                    Point2="0,20.6609808102345"
+                    Point3="4,20.6609808102345" />
+                  <mssgle:LineSegment
+                    End="107.333333333333,20.6609808102345" />
+                  <mssgle:CubicBezierSegment
+                    Point1="107.333333333333,20.6609808102345"
+                    Point2="111.333333333333,20.6609808102345"
+                    Point3="111.333333333333,24.6609808102345" />
+                  <mssgle:LineSegment
+                    End="111.333333333333,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="19.4659440104165,25.6609808102345,72.4014453125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Merge 1\DFT Merge Customer Order.Paths[Многоадресная рассылка Выход 1]"
+          TopLeft="350,319.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-69,0"
+              Start="0,0"
+              End="-61.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-61.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4398,19 +4495,19 @@ ORDER BY [CustomerId]</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\SEQC Merge 1\DFT Merge Customer Order.Paths[Выход источника &quot;Неструктурированный файл&quot;]"
-          TopLeft="154.5,52">
+          Id="Package\SEQC Merge 1\DFT Merge Customer Order.Paths[Выход статистического выражения1]"
+          TopLeft="171,339">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,29"
+              EndConnector="0,39"
               Start="0,0"
-              End="0,21.5">
+              End="0,31.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.5" />
+                    End="0,31.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4453,10 +4550,6 @@ ORDER BY [CustomerId]</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="211,42"
-          Id="Package\SEQC Merge 1\DFT Merge Customer Order\Многоадресная рассылка"
-          TopLeft="350,300" />
         <EdgeLayout
           Id="Package\SEQC Merge 1\DFT Merge Customer Order.Paths[Выход соединения слиянием]"
           TopLeft="458.5,272">
@@ -4479,62 +4572,6 @@ ORDER BY [CustomerId]</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="222,42"
-          Id="Package\SEQC Merge 1\DFT Merge Customer Order\Статистическое выражение"
-          TopLeft="59,297" />
-        <EdgeLayout
-          Id="Package\SEQC Merge 1\DFT Merge Customer Order.Paths[Многоадресная рассылка Выход 1]"
-          TopLeft="350,319.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-69,0"
-              Start="0,0"
-              End="-61.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-61.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="186,42"
-          Id="Package\SEQC Merge 1\DFT Merge Customer Order\Условное разбиение"
-          TopLeft="650,300" />
-        <EdgeLayout
-          Id="Package\SEQC Merge 1\DFT Merge Customer Order.Paths[Выход многоадресной рассылки 1]"
-          TopLeft="561,321">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="89,0"
-              Start="0,0"
-              End="81.5,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="81.5,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="123,42"
-          Id="Package\SEQC Merge 1\DFT Merge Customer Order\Union All"
-          TopLeft="552,386" />
         <EdgeLayout
           Id="Package\SEQC Merge 1\DFT Merge Customer Order.Paths[Выход по умолчанию условного разбиения]"
           TopLeft="743,342">
@@ -4571,64 +4608,32 @@ ORDER BY [CustomerId]</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="132,42"
-          Id="Package\SEQC Merge 1\DFT Merge Customer Order\Union All 1"
-          TopLeft="818,393" />
         <EdgeLayout
-          Id="Package\SEQC Merge 1\DFT Merge Customer Order.Paths[CustomerIdgt20]"
-          TopLeft="772.666666666667,342">
+          Id="Package\SEQC Merge 1\DFT Merge Customer Order.Paths[Выход источника &quot;OLE DB&quot;]"
+          TopLeft="419.5,56">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="111.333333333333,51"
+              EndConnector="73.1666666666666,174"
               Start="0,0"
-              End="111.333333333333,43.5">
+              End="73.1666666666666,166.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.6609808102345" />
+                    End="0,99.5503560528993" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16.6609808102345"
-                    Point2="0,20.6609808102345"
-                    Point3="4,20.6609808102345" />
+                    Point1="0,99.5503560528993"
+                    Point2="0,103.550356052899"
+                    Point3="4,103.550356052899" />
                   <mssgle:LineSegment
-                    End="107.333333333333,20.6609808102345" />
+                    End="69.1666666666666,103.550356052899" />
                   <mssgle:CubicBezierSegment
-                    Point1="107.333333333333,20.6609808102345"
-                    Point2="111.333333333333,20.6609808102345"
-                    Point3="111.333333333333,24.6609808102345" />
+                    Point1="69.1666666666666,103.550356052899"
+                    Point2="73.1666666666666,103.550356052899"
+                    Point3="73.1666666666666,107.550356052899" />
                   <mssgle:LineSegment
-                    End="111.333333333333,43.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="19.4659440104167,25.6609808102345,72.4014453125,11.6630859375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="132,42"
-          Id="Package\SEQC Merge 1\DFT Merge Customer Order\Union All 2"
-          TopLeft="106,378" />
-        <EdgeLayout
-          Id="Package\SEQC Merge 1\DFT Merge Customer Order.Paths[Выход статистического выражения1]"
-          TopLeft="171,339">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,39"
-              Start="0,0"
-              End="0,31.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.5" />
+                    End="73.1666666666666,166.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4640,5 +4645,18 @@ ORDER BY [CustomerId]</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Merge 1\DFT Merge Customer Order\OLE_SRC Customer">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
