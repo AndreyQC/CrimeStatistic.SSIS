@@ -1,0 +1,37 @@
+trigger:
+- main
+
+pool: 
+  name: $(PoolName)
+
+stages:
+- stage: CI
+  displayName: CI Stage
+  jobs:
+  - job: build
+    displayName: Build
+    steps:
+    
+    - task: VSBuild@1
+      displayName: Build Solution
+      inputs:
+        solution: '**\*.sln'
+        vsVersion: '15.0'
+        platform: 'any cpu'
+        configuration: 'release'
+        clean: true
+        msbuildArchitecture: 'x64'
+
+    - task: CopyFiles@2
+      displayName: Copy Dacpac to $(Build.ArtifactStagingDirectory)
+      inputs:
+        SourceFolder: 'src\CrimeStatistic.DWH\bin\Release'
+        Contents: 'CrimeStatistic.DWH.dacpac'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'DWHArtifact'
+        publishLocation: 'Container'
+    
