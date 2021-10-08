@@ -1,0 +1,209 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/7/2021 5:50:15 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="EPRUPETW0D22"
+  DTS:CreatorName="MOSCOW\Arina_Uksusova"
+  DTS:DTSID="{CCC28202-52A2-444A-B350-266B7C85601F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Lecture_05"
+  DTS:PackageType="5"
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{558AB25C-3827-4E82-9BAE-36E62872605A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ECSC00A014AD\MSSQL2019.RU.BI.LAB.SSIS.DB.student_reader]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C9627B55-88C1-47BC-BE5C-157676DAAA17}"
+      DTS:ObjectName="ECSC00A014AD\MSSQL2019.RU.BI.LAB.SSIS.DB.student_reader">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=ECSC00A014AD\MSSQL2019;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11.1;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAASQBzoZBN9Eyu+yMQ2kP0QAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAGTnfMkb0r3ycCKq95mB3L8+vul7tKk1z6TKT8DjY4fAAAAAAOgAAAAAIAACAAAACHGMcxPINjXCD0XSRtUyz2DhTc8XGIa96hR04Yt2iLeiAAAADI5dtFXLJee6w5FqfbznT1URvQ6QfJUtkNv6Fouuz6K0AAAACC8m14k6loL14RESx60kq6CmDA8VWcgP90ukkcs7ih3lDNTBS4R9E1CCt5kKho1KJOKeo5iUIbnHRCZHgeUsYl</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2098947E-1E2F-48E9-8BD7-737ECC924EB1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DataEnd">
+      <DTS:VariableValue
+        DTS:DataType="8">2020-02-01</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7CFC0E9B-0936-4E6E-9CAD-C323D6B2988A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DataStart">
+      <DTS:VariableValue
+        DTS:DataType="8">2020-01-01</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1E47F7B4-5710-4DF0-A5BA-B1C4677A4D18}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="NewID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{424AD88F-F36F-485A-9E1E-D85291AD10F2}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT [OrderId]&#xA;      ,[OrderDateTime]&#xA;      ,[PayedDateTime]&#xA;      ,[ShippedDateTime]&#xA;      ,[Status]&#xA;      ,[CustomerId]&#xA;      ,[sysCreatedAT]&#xA;      ,[sysChangedAt]&#xA;      ,[sysCreatedBy]&#xA;      ,[sysChangedBy]&#xA;  FROM [rubilab].[Order]&#xA;  WHERE OrderDateTime &gt;= '&quot;+ (DT_WSTR, 4)YEAR(@[System::StartTime])  &#xA;+ RIGHT(&quot;0&quot; + (DT_WSTR, 2) MONTH(@[System::StartTime]), 2)  &#xA;+ RIGHT(&quot;0&quot; + (DT_WSTR, 2) DAY(@[System::StartTime]), 2)  +&quot;' AND OrderDateTime &lt; '2020-03-01'&#xA;  ORDER BY [OrderDateTime]&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQLQuery">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT [OrderId]
+      ,[OrderDateTime]
+      ,[PayedDateTime]
+      ,[ShippedDateTime]
+      ,[Status]
+      ,[CustomerId]
+      ,[sysCreatedAT]
+      ,[sysChangedAt]
+      ,[sysCreatedBy]
+      ,[sysChangedBy]
+  FROM [rubilab].[Order]
+  WHERE OrderDateTime &gt;= '20211007' AND OrderDateTime &lt; '2020-03-01'
+  ORDER BY [OrderDateTime]</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Expression Task"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{EECFDBF7-65FB-4ADC-99E5-7C375D19E0F7}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Expression Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::SQLQuery] = &quot;SELECT [OrderId]&#xA;      ,[OrderDateTime]&#xA;      ,[PayedDateTime]&#xA;      ,[ShippedDateTime]&#xA;      ,[Status]&#xA;      ,[CustomerId]&#xA;      ,[sysCreatedAT]&#xA;      ,[sysChangedAt]&#xA;      ,[sysCreatedBy]&#xA;      ,[sysChangedBy]&#xA;  FROM [rubilab].[Order]&#xA;  WHERE OrderDateTime &gt;= '2020-02-01' AND OrderDateTime &lt; '2020-03-01'&#xA;  ORDER BY [OrderDateTime]&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Log Package Start"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{69905A9B-61D5-4A3C-A38C-B255251ED029}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Log Package Start"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A8C4A169-DEC4-4117-AB51-6EA9F3BCEEC0}"
+          SQLTask:SqlStatementSource="EXEC [etl].[usp_PackageExecutionHistory_Create] ?,?,? OUTPUT" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::NewID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{739C8F0C-640F-4EF7-B437-818CC24A7CEF}"
+      DTS:From="Package\SQL Log Package Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Expression Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Expression Task"
+          TopLeft="135,282" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\SQL Log Package Start"
+          TopLeft="86,123" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="179,165">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="33.5,117"
+              Start="0,0"
+              End="33.5,109.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,54.5"
+                    Point2="0,58.5"
+                    Point3="4,58.5" />
+                  <mssgle:LineSegment
+                    End="29.5,58.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29.5,58.5"
+                    Point2="33.5,58.5"
+                    Point3="33.5,62.5" />
+                  <mssgle:LineSegment
+                    End="33.5,109.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
