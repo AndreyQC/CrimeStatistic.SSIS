@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Load_Staging_UNCrime"
   DTS:PackageType="5"
-  DTS:VersionBuild="20"
-  DTS:VersionGUID="{BB71EA3F-536B-4208-B4C4-AA84D134A328}">
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{CEC9E1D5-D0C7-4074-B667-E932861F553B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -22,7 +22,7 @@
       DTS:DTSID="{6455E553-53DA-48E9-A03B-113AC791A55D}"
       DTS:ObjectName="FFCUNDoccsvfile">
       <DTS:PropertyExpression
-        DTS:Name="ConnectionString">@[User::CurrentFile]</DTS:PropertyExpression>
+        DTS:Name="ConnectionString">@[$Project::UNDocSourceFileFolder]+"\\"+ @[User::CurrentFile]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Format="Delimited"
@@ -356,7 +356,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="CurrentFile">
       <DTS:VariableValue
-        DTS:DataType="8">\\epamssislabstac.file.core.windows.net\rubilabssis\RU.BI.LAB.SSIS\Source files\undoc-changed\csv\burglary.csv</DTS:VariableValue>
+        DTS:DataType="8">burglary.csv</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:LoggingOptions
@@ -486,7 +486,7 @@
                     <FEFEProperty
                       FileSpec="*.csv" />
                     <FEFEProperty
-                      FileNameRetrievalType="0" />
+                      FileNameRetrievalType="1" />
                     <FEFEProperty
                       Recurse="0" />
                   </ForEachFileEnumeratorProperties>
@@ -549,13 +549,13 @@
                                       containsID="true"
                                       dataType="System.String"
                                       description="Derived Column Expression"
-                                      name="Expression">(DT_WSTR,100)"File"</property>
+                                      name="Expression">(DT_WSTR,100)@[User::CurrentFile]</property>
                                     <property
                                       containsID="true"
                                       dataType="System.String"
                                       description="Derived Column Friendly Expression"
                                       expressionType="Notify"
-                                      name="FriendlyExpression">(DT_WSTR,100)"File"</property>
+                                      name="FriendlyExpression">(DT_WSTR,100)@[User::CurrentFile]</property>
                                   </properties>
                                 </outputColumn>
                               </outputColumns>
@@ -2061,8 +2061,8 @@
               <DTS:ForEachVariableMappings>
                 <DTS:ForEachVariableMapping
                   DTS:CreationName=""
-                  DTS:DTSID="{6E3C6E97-FAC3-4E8C-B098-FBEFEECB3F9A}"
-                  DTS:ObjectName="{6E3C6E97-FAC3-4E8C-B098-FBEFEECB3F9A}"
+                  DTS:DTSID="{B93B73A2-D69A-4C9F-9092-D875884140FF}"
+                  DTS:ObjectName="{B93B73A2-D69A-4C9F-9092-D875884140FF}"
                   DTS:ValueIndex="0"
                   DTS:VariableName="User::CurrentFile" />
               </DTS:ForEachVariableMappings>
@@ -2233,17 +2233,21 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="257,69"
+          PanelSize="257,70"
           Size="257,113"
           Id="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files"
           TopLeft="5.50000000000003,5.5" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="268,133"
+          PanelSize="268,134"
           Size="268,177"
           Id="Package\SEQC Main\SEQC Load staging uncrime_untyped"
           TopLeft="5.50000000000006,107.5" />
+        <NodeLayout
+          Size="265,42"
+          Id="Package\SEQC Main\SQL Truncate staging uncrime_untyped"
+          TopLeft="7.00000000000003,5.5" />
         <EdgeLayout
           Id="Package\SEQC Main.PrecedenceConstraints[Constraint]"
           TopLeft="139.5,47.5">
@@ -2266,10 +2270,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="265,42"
-          Id="Package\SEQC Main\SQL Truncate staging uncrime_untyped"
-          TopLeft="7.00000000000003,5.5" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -2282,13 +2282,13 @@
           Id="Package\SQL Log Package End"
           TopLeft="109.785714285714,510.642857142857" />
         <NodeLayout
-          Size="186,42"
-          Id="Package\SQL Log Package Start"
-          TopLeft="242.142857142857,12.6428571428571" />
-        <NodeLayout
           Size="181,42"
           Id="Package\SQL Log Package Failure"
           TopLeft="348.928571428572,514.928571428571" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\SQL Log Package Start"
+          TopLeft="242.142857142857,12.6428571428571" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="338,54.6428571428571">
@@ -2390,13 +2390,13 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="169,42"
-          Id="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS UN doc csv file"
-          TopLeft="54,23" />
-        <NodeLayout
           Size="246,42"
           Id="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\OLE_DST staging uncrime_untyped"
           TopLeft="19,181" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\FFS UN doc csv file"
+          TopLeft="54,23" />
         <NodeLayout
           Size="146,42"
           Id="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterate UNdoc source files\DFT Load staging uncrime_untyped\DER FileName"
