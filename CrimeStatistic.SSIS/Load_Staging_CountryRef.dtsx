@@ -9,27 +9,29 @@
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.170"
   DTS:LocaleID="1049"
-  DTS:ObjectName="Package1"
+  DTS:ObjectName="Load_Staging_CountryRef"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{A64DD19C-05FD-4DDE-9DE7-80665A5394D1}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{7EC2C3FE-C882-4DF2-981A-5DFA8E9CB3E7}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+      DTS:refId="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{B150BFC6-68AF-42C9-930A-F7AAD1C0B747}"
-      DTS:ObjectName="SourceConnectionOLEDB">
+      DTS:ObjectName="RU.BI.LAB.SSIS.DB">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::RUBILABSSISDB_ConnectionString]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
           DTS:ConnectionString="Data Source=epamsqllabsrv.database.windows.net;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=false;">
           <DTS:Password
-            DTS:Name="Password"
+            DTS:Name="pwd"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqk7RxltTWkqxrySWMi1Z6gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACtpwsWOuZ59uPXg/sL2ysajmTxJ64qDbgW9Yn2lwiKuwAAAAAOgAAAAAIAACAAAABfIVR4/1HiPEfU715ViGGuxgTIUWS3ItSOlyf0z4SWqCAAAADtAGO10DqX8XnhIfS//U3jrkEyxvUyi06cXoENxSki7kAAAABMnxJZ2CojvWHTIdcPqXf5A7o/PNqZbOglwuvzDm/oqi/Lq8zzUuIzWoW/IQ2p6GhijpE08HP67wEoRplQw0cH</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAqk7RxltTWkqxrySWMi1Z6gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAA0vpLYzRVStkibbfgkPlaZ9mVfAfn3LFi3ylbo4b3G5wAAAAAOgAAAAAIAACAAAAC/j7iC/9LMe2GK177WlD3HFeQGnftgC8DzblJhBKBGQCAAAAC1RQkGmUxDH0es5fAOFOxpdV0Krb42zsR1LreR2Di2F0AAAAANm+Pj1qTOXs7oBJSV0C7tcoNaaBXyTu3FKaSfyMWn+qQQYAB8AkniPMBH1UcUaX3opCOhGS1eScg7d4YLCjG+</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -120,7 +122,7 @@
                     <connection
                       refId="Package\SEQC load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped.Connections[OleDbConnection]"
                       connectionManagerID="{B0CF1D53-3A7E-4132-80A8-C7DD057B3869}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[DestinationConnectionOLEDB]"
+                      connectionManagerRefId="Project.ConnectionManagers[CrimeStatistic.DWH]"
                       description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                       name="OleDbConnection" />
                   </connections>
@@ -363,8 +365,8 @@
                   <connections>
                     <connection
                       refId="Package\SEQC load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SRC CountryRef.Connections[OleDbConnection]"
-                      connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
-                      connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                      connectionManagerID="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
+                      connectionManagerRefId="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
                       description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                       name="OleDbConnection" />
                   </connections>
@@ -675,20 +677,20 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="282.4,41.6"
-          Id="Package\SQL Truncate staging countriesref_untyped"
-          TopLeft="298.57143365607,53.5294125154357" />
-        <NodeLayout
           Size="237.6,41.6"
           Id="Package\SEQC load staging countriesref_untyped\DFT staging countriesref_untyped"
           TopLeft="41.6000057901657,6.22353238250975" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="288.8,103.2"
+          PanelSize="292,103.2"
           Size="292,146.4"
           Id="Package\SEQC load staging countriesref_untyped"
           TopLeft="298.57143365607,162.117649332462" />
+        <NodeLayout
+          Size="282.4,41.6"
+          Id="Package\SQL Truncate staging countriesref_untyped"
+          TopLeft="298.57143365607,53.5294125154357" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="442.17143365607,95.1294125154357">
@@ -765,7 +767,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\SEQC load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SRC CountryRef">
+    design-time-name="Package\SEQC load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -778,7 +780,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\SEQC load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_DST staging countriesref_untyped">
+    design-time-name="Package\SEQC load staging countriesref_untyped\DFT staging countriesref_untyped\OLE_SRC CountryRef">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
