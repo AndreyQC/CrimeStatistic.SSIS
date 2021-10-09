@@ -1,0 +1,1166 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/9/2021 9:18:11 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-KP1TC4B2"
+  DTS:CreatorName="LAPTOP-KP1TC4B2\Asus"
+  DTS:DTSID="{6DF4815C-A34C-4362-BE93-A7F7E0D24370}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1049"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{AD788D3A-E7AF-421C-8162-12B8C553B125}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SEQC Main"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{C724D6C1-5F38-4EF1-91A7-5E9F71C083B9}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC Main">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{DB689BA3-5800-4B62-9DF3-49FC8BB01C3B}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SEQC Load Data to dwh_Dim_Geography">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography"
+              DTS:CreationName="Microsoft.Pipeline"
+              DTS:Description="Задача потока данных"
+              DTS:DTSID="{4D9DA267-F4EB-4D6E-B100-4AEFBCBC7215}"
+              DTS:ExecutableType="Microsoft.Pipeline"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="DFT Load Data from Staging_CountryRef to dwh_Dim_Geography"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Conditional Split"
+                      componentClassID="Microsoft.ConditionalSplit"
+                      contactInfo="Условное разбиение;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;0"
+                      description="Распределяет строки данных по разным выходам в зависимости от содержимого данных. Используйте условие (выражения SSIS), чтобы указать распределяемые строки. Пример: разделение записей, которые необходимо очистить, от подготовленных к загрузке или распределение только подмножества записей."
+                      name="Conditional Split"
+                      usesDispositions="true">
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Conditional Split.Inputs[Вход условного разбиения]"
+                          description="Ввод преобразования &quot;Условное разбиение&quot;"
+                          name="Вход условного разбиения">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Conditional Split.Outputs[Выход по умолчанию условного разбиения]"
+                          description="Выход по умолчанию преобразования &quot;Условное разбиение&quot;"
+                          exclusionGroup="1"
+                          name="Выход по умолчанию условного разбиения"
+                          synchronousInputId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Conditional Split.Inputs[Вход условного разбиения]">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              name="IsDefaultOut">true</property>
+                          </properties>
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Conditional Split.Outputs[Вывод ошибок условного разбиения]"
+                          description="Вывод ошибок преобразования &quot;Условное разбиение&quot;"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Вывод ошибок условного разбиения"
+                          synchronousInputId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Conditional Split.Inputs[Вход условного разбиения]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Conditional Split.Outputs[Вывод ошибок условного разбиения].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Conditional Split.Outputs[Вывод ошибок условного разбиения].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Conditional Split.Outputs[Вывод ошибок условного разбиения].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Conditional Split.Outputs[Вывод ошибок условного разбиения].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\DER Replace NULL values"
+                      componentClassID="Microsoft.DerivedColumn"
+                      contactInfo="Производный столбец;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;0"
+                      description="Создает новые значения столбцов путем применения выражений к входным столбцам преобразования. Создает новые столбцы или перезаписывает существующие. Пример: объединение значений столбцов &quot;first name&quot; и &quot;last name&quot; и создание столбца &quot;full name&quot;."
+                      name="DER Replace NULL values"
+                      usesDispositions="true">
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\DER Replace NULL values.Inputs[Вход производного столбца]"
+                          description="Ввод преобразования &quot;Производный столбец&quot;"
+                          name="Вход производного столбца">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\DER Replace NULL values.Outputs[Выход производного столбца]"
+                          description="Выход по умолчанию преобразования &quot;Производный столбец&quot;"
+                          exclusionGroup="1"
+                          name="Выход производного столбца"
+                          synchronousInputId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\DER Replace NULL values.Inputs[Вход производного столбца]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\DER Replace NULL values.Outputs[Вывод ошибок производного столбца]"
+                          description="Вывод ошибок преобразования &quot;Производный столбец&quot;"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Вывод ошибок производного столбца"
+                          synchronousInputId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\DER Replace NULL values.Inputs[Вход производного столбца]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\DER Replace NULL values.Outputs[Вывод ошибок производного столбца].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\DER Replace NULL values.Outputs[Вывод ошибок производного столбца].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\DER Replace NULL values.Outputs[Вывод ошибок производного столбца].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\DER Replace NULL values.Outputs[Вывод ошибок производного столбца].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Merge Join"
+                      componentClassID="Microsoft.MergeJoin"
+                      contactInfo="Соединение слиянием;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;1"
+                      description="Объедините два отсортированных потока данных в один с помощью соединения FULL, LEFT или INNER. Это преобразование рекомендуется использовать в случаях, когда потоки данных могут быть отсортированы по источникам."
+                      name="Merge Join"
+                      version="1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает тип выполняемого соединения."
+                          name="JoinType"
+                          typeConverter="JoinType">2</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает количество столбцов в ключе упорядочивания."
+                          name="NumKeyColumns">0</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Указывает, считаются ли значения NULL эквивалентными значениями."
+                          name="TreatNullsAsEqual">true</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает запрошенное максимальное число буферов на вход перед блокированием."
+                          name="MaxBuffersPerInput">5</property>
+                      </properties>
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Merge Join.Inputs[Левый вход соединения слиянием]"
+                          hasSideEffects="true"
+                          name="Левый вход соединения слиянием">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Merge Join.Inputs[Левый вход соединения слиянием].Columns[Region]"
+                              cachedDataType="wstr"
+                              cachedLength="50"
+                              cachedName="Region"
+                              cachedSortKeyPosition="1"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Region]" />
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Merge Join.Inputs[Левый вход соединения слиянием].Columns[Sub Region]"
+                              cachedDataType="wstr"
+                              cachedLength="50"
+                              cachedName="Sub Region"
+                              cachedSortKeyPosition="1"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Sub Region]" />
+                          </inputColumns>
+                          <externalMetadataColumns />
+                        </input>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Merge Join.Inputs[Правый вход соединения слиянием]"
+                          hasSideEffects="true"
+                          name="Правый вход соединения слиянием">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Merge Join.Outputs[Выход соединения слиянием]"
+                          name="Выход соединения слиянием">
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLEDST dwh_DimGeography"
+                      componentClassID="Microsoft.OLEDBDestination"
+                      contactInfo="Назначение &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;4"
+                      description="Назначение &quot;OLE DB&quot;"
+                      name="OLEDST dwh_DimGeography"
+                      usesDispositions="true"
+                      version="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                          name="OpenRowset"></property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="Команда SQL для выполнения."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                          name="DefaultCodePage">1251</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает используемый режим доступа к базе данных."
+                          name="AccessMode"
+                          typeConverter="AccessMode">0</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Указывает, должны ли значения в столбцах идентификаторов копироваться в назначение. Если свойство имеет значение false, значения в столбцах идентификаторов будут созданы автоматически в месте назначения. Применяется только в том случае, если включена быстрая загрузка."
+                          name="FastLoadKeepIdentity">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Указывает, будут ли в назначение вставляться значения NULL для столбцов, содержащих их. Значение false показывает, что если столбец имеет значение NULL, то в назначение будет вставлено его значение по умолчанию. Применяется только в случае, если включена быстрая загрузка."
+                          name="FastLoadKeepNulls">false</property>
+                        <property
+                          dataType="System.String"
+                          description="Задает параметры быстрой загрузки. Применяется только в том случае, если включена быстрая загрузка."
+                          name="FastLoadOptions"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает, когда выдаются сообщения о фиксации транзакции в ходе вставки данных. Значение 0 задает, что по окончании вставки данных будет выдано одно сообщение о фиксации транзакции. Применяется только в том случае, если включена быстрая загрузка."
+                          name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLEDST dwh_DimGeography.Connections[OleDbConnection]"
+                          description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLEDST dwh_DimGeography.Inputs[Вход назначения &quot;OLE DB&quot;]"
+                          errorOrTruncationOperation="Вставить"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="Вход назначения &quot;OLE DB&quot;">
+                          <externalMetadataColumns
+                            isUsed="True" />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLEDST dwh_DimGeography.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Вывод ошибок назначения &quot;OLE DB&quot;"
+                          synchronousInputId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLEDST dwh_DimGeography.Inputs[Вход назначения &quot;OLE DB&quot;]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLEDST dwh_DimGeography.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLEDST dwh_DimGeography.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLEDST dwh_DimGeography.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLEDST dwh_DimGeography.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography"
+                      componentClassID="Microsoft.OLEDBSource"
+                      contactInfo="Источник &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;7"
+                      description="Источник &quot;OLE DB&quot;"
+                      name="OLESRC dwh_DimGeography"
+                      usesDispositions="true"
+                      version="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                          name="OpenRowset"></property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="Команда SQL для выполнения."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [DimGeographyKey]
+      ,[Region]
+      ,[SubRegion]
+      ,[Country]
+      ,[CountryCode]
+  FROM [dwh].[DimGeography]
+WHERE [DimGeographyKey] &gt; -1
+ORDER BY [CountryCode]</property>
+                        <property
+                          dataType="System.String"
+                          description="Переменная, содержащая команду SQL для выполнения."
+                          name="SqlCommandVariable"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                          name="DefaultCodePage">1251</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает используемый режим доступа к базе данных."
+                          name="AccessMode"
+                          typeConverter="AccessMode">2</property>
+                        <property
+                          dataType="System.String"
+                          description="Сопоставления между параметрами в команде SQL и переменными."
+                          name="ParameterMapping"></property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Connections[OleDbConnection]"
+                          connectionManagerID="{D82D7A77-B5C7-41CF-B781-3555B7C560E0}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[CrimeStatistic.DWH_Makhinko]"
+                          description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                          name="OleDbConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;]"
+                          isSorted="true"
+                          name="Выход источника &quot;OLE DB&quot;">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].Columns[DimGeographyKey]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Преобразование"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[DimGeographyKey]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].Columns[DimGeographyKey]"
+                              name="DimGeographyKey"
+                              sortKeyPosition="1"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Region]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Преобразование"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Region]"
+                              length="255"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Region]"
+                              name="Region"
+                              sortKeyPosition="1"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].Columns[SubRegion]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Преобразование"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[SubRegion]"
+                              length="255"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].Columns[SubRegion]"
+                              name="SubRegion"
+                              sortKeyPosition="1"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Country]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Преобразование"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Country]"
+                              length="255"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Country]"
+                              name="Country"
+                              sortKeyPosition="1"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CountryCode]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Преобразование"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[CountryCode]"
+                              length="3"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CountryCode]"
+                              name="CountryCode"
+                              sortKeyPosition="1"
+                              truncationRowDisposition="FailComponent" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[DimGeographyKey]"
+                              dataType="i4"
+                              name="DimGeographyKey" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Region]"
+                              dataType="wstr"
+                              length="255"
+                              name="Region" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[SubRegion]"
+                              dataType="wstr"
+                              length="255"
+                              name="SubRegion" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Country]"
+                              dataType="wstr"
+                              length="255"
+                              name="Country" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[CountryCode]"
+                              dataType="wstr"
+                              length="3"
+                              name="CountryCode" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Вывод ошибок источника &quot;OLE DB&quot;]"
+                          isErrorOut="true"
+                          name="Вывод ошибок источника &quot;OLE DB&quot;">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[DimGeographyKey]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[DimGeographyKey]"
+                              name="DimGeographyKey" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Region]"
+                              dataType="wstr"
+                              length="255"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Region]"
+                              name="Region" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[SubRegion]"
+                              dataType="wstr"
+                              length="255"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[SubRegion]"
+                              name="SubRegion" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Country]"
+                              dataType="wstr"
+                              length="255"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Country]"
+                              name="Country" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[CountryCode]"
+                              dataType="wstr"
+                              length="3"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[CountryCode]"
+                              name="CountryCode" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef"
+                      componentClassID="Microsoft.OLEDBSource"
+                      contactInfo="Источник &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;7"
+                      description="Источник &quot;OLE DB&quot;"
+                      name="OLESRC staging_CountryRef"
+                      usesDispositions="true"
+                      version="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                          name="OpenRowset"></property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="Команда SQL для выполнения."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT 
+       [region] as [Region]
+      ,[sub_region] as [Sub Region]
+	  ,[name] as [Country]
+      ,[alpha_3] as [Country Code]
+  FROM [staging].[CountryRef]
+ORDER BY [Country Code]</property>
+                        <property
+                          dataType="System.String"
+                          description="Переменная, содержащая команду SQL для выполнения."
+                          name="SqlCommandVariable"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает используемый режим доступа к базе данных."
+                          name="AccessMode"
+                          typeConverter="AccessMode">2</property>
+                        <property
+                          dataType="System.String"
+                          description="Сопоставления между параметрами в команде SQL и переменными."
+                          name="ParameterMapping"></property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Connections[OleDbConnection]"
+                          connectionManagerID="{D82D7A77-B5C7-41CF-B781-3555B7C560E0}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[CrimeStatistic.DWH_Makhinko]"
+                          description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                          name="OleDbConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;]"
+                          isSorted="true"
+                          name="Выход источника &quot;OLE DB&quot;">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Region]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Преобразование"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Region]"
+                              length="50"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Region]"
+                              name="Region"
+                              sortKeyPosition="1"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Sub Region]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Преобразование"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Sub Region]"
+                              length="50"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Sub Region]"
+                              name="Sub Region"
+                              sortKeyPosition="1"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Country]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Преобразование"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Country]"
+                              length="100"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Country]"
+                              name="Country"
+                              sortKeyPosition="1"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Country Code]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Преобразование"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Country Code]"
+                              length="50"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Country Code]"
+                              name="Country Code"
+                              truncationRowDisposition="FailComponent" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Region]"
+                              dataType="wstr"
+                              length="50"
+                              name="Region" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Sub Region]"
+                              dataType="wstr"
+                              length="50"
+                              name="Sub Region" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Country]"
+                              dataType="wstr"
+                              length="100"
+                              name="Country" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Country Code]"
+                              dataType="wstr"
+                              length="50"
+                              name="Country Code" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;]"
+                          isErrorOut="true"
+                          name="Вывод ошибок источника &quot;OLE DB&quot;">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Region]"
+                              dataType="wstr"
+                              length="50"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Region]"
+                              name="Region" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Sub Region]"
+                              dataType="wstr"
+                              length="50"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Sub Region]"
+                              name="Sub Region" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Country]"
+                              dataType="wstr"
+                              length="100"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Country]"
+                              name="Country" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Country Code]"
+                              dataType="wstr"
+                              length="50"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Country Code]"
+                              name="Country Code" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography.Paths[Выход источника &quot;OLE DB&quot;]"
+                      endId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Merge Join.Inputs[Правый вход соединения слиянием]"
+                      name="Выход источника &quot;OLE DB&quot;"
+                      startId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography.Outputs[Выход источника &quot;OLE DB&quot;]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\SQL Dummy Rows"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{7C9EF5EE-AAC7-47DE-8B60-6EDBCF164D74}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL Dummy Rows"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{D82D7A77-B5C7-41CF-B781-3555B7C560E0}"
+                  SQLTask:SqlStatementSource="IF NOT EXISTS (SELECT 1 FROM [dwh].[DimGeography] WHERE [DimGeographyKey]=-1) &#xA;BEGIN  &#xA;    SET IDENTITY_INSERT [dwh].[DimGeography] ON &#xA;        INSERT INTO [dwh].[DimGeography]&#xA;                   ([DimGeographyKey], &#xA;                   [Country]) &#xA;             VALUES &#xA;                   (-1, &#xA;                   N'Unknown') &#xA;    SET IDENTITY_INSERT [dwh].[DimGeography] OFF &#xA;END  "
+                  SQLTask:CodePage="1252" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{EE7567B0-52FF-4195-BF24-D3981C0195D4}"
+              DTS:From="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\SQL Dummy Rows" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Main\SEQC Preparation"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{B3F13BE0-9ACC-4F66-BC8E-A3ED6E2725C4}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SEQC Preparation">
+          <DTS:Variables />
+          <DTS:Executables />
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC Main.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{7F208253-1F58-4A4B-8D62-8501DDF362F3}"
+          DTS:From="Package\SEQC Main\SEQC Preparation"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Log package end"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{e52749f9-e56e-462c-b097-6e90a7aace26}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Log package end"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D82D7A77-B5C7-41CF-B781-3555B7C560E0}"
+          SQLTask:SqlStatementSource="EXEC [etl].[usp_PackageExecutionHistory_Update] ?,?, 'success', 'test'"
+          SQLTask:CodePage="1252" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Log package end failure"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{c01c5ff4-96b8-4a37-b369-b0e0fc3f9ee3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Log package end failure"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D82D7A77-B5C7-41CF-B781-3555B7C560E0}"
+          SQLTask:SqlStatementSource="EXEC [etl].[usp_PackageExecutionHistory_Update] ?,?, 'failed', 'test'"
+          SQLTask:CodePage="1252" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Log Package Start"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{25D07979-A1E7-49A7-BD9F-935CBF3605AD}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Log Package Start"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D82D7A77-B5C7-41CF-B781-3555B7C560E0}"
+          SQLTask:SqlStatementSource="EXEC [etl].[usp_PackageExecutionHistory_Create] ?,?"
+          SQLTask:CodePage="1252" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{B4A4C4AF-58FC-4F32-9077-1483BB65AF17}"
+      DTS:From="Package\SQL Log Package Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\SEQC Main" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{7E4C633B-34A6-410B-8D78-7BAC07A2EF95}"
+      DTS:From="Package\SEQC Main"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SQL Log package end" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{9B0FA6C3-8797-446C-9F42-FB0E54E4EE6E}"
+      DTS:From="Package\SEQC Main"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SQL Log package end failure"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="388,41.6"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography"
+          TopLeft="42.1428605853295,17.105883961648" />
+        <NodeLayout
+          Size="165.6,41.6"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\SQL Dummy Rows"
+          TopLeft="147.857148099919,99.2941200493942" />
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography.PrecedenceConstraints[Constraint]"
+          TopLeft="233.400004342624,58.705883961648">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.5882360877462"
+              Start="0,0"
+              End="0,33.0882360877462">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.0882360877462" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="466.4,210.4"
+          Size="466.4,253.6"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography"
+          TopLeft="20.8000027247839,139.376471993173" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="385.6,49.6"
+          Size="385.6,92.8"
+          Id="Package\SEQC Main\SEQC Preparation"
+          TopLeft="53.6571461414804,6.83529593012327" />
+        <EdgeLayout
+          Id="Package\SEQC Main.PrecedenceConstraints[Constraint]"
+          TopLeft="250.228574433132,99.6352959301233">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.7411760630493"
+              Start="0,0"
+              End="0,32.2411760630493">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.2411760630493" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="492.8,448"
+          Size="492.8,491.2"
+          Id="Package\SEQC Main"
+          TopLeft="140.000002384186,100.94117788625" />
+        <NodeLayout
+          Size="180.8,41.6"
+          Id="Package\SQL Log package end"
+          TopLeft="113.571430505538,629.717651884944" />
+        <NodeLayout
+          Size="212.8,41.6"
+          Id="Package\SQL Log package end failure"
+          TopLeft="457.142864927954,639.188238457907" />
+        <NodeLayout
+          Size="185.6,41.6"
+          Id="Package\SQL Log Package Start"
+          TopLeft="279.285719041922,1.52941178615531" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="372.085719041922,43.1294117861553">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14.3142833422642,57.8117661000948"
+              Start="0,0"
+              End="14.3142833422642,50.3117661000948">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.9058830500474" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.9058830500474"
+                    Point2="0,28.9058830500474"
+                    Point3="4,28.9058830500474" />
+                  <mssgle:LineSegment
+                    End="10.3142833422642,28.9058830500474" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10.3142833422642,28.9058830500474"
+                    Point2="14.3142833422642,28.9058830500474"
+                    Point3="14.3142833422642,32.9058830500474" />
+                  <mssgle:LineSegment
+                    End="14.3142833422642,50.3117661000948" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="386.400002384186,592.14117788625">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-182.428571878648,37.5764739986934"
+              Start="0,0"
+              End="-182.428571878648,30.0764739986934">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.7882369993467" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.7882369993467"
+                    Point2="0,18.7882369993467"
+                    Point3="-4,18.7882369993467" />
+                  <mssgle:LineSegment
+                    End="-178.428571878648,18.7882369993467" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-178.428571878648,18.7882369993467"
+                    Point2="-182.428571878648,18.7882369993467"
+                    Point3="-182.428571878648,22.7882369993467" />
+                  <mssgle:LineSegment
+                    End="-182.428571878648,30.0764739986934" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="467.200002384186,592.14117788625">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="96.3428625437676,47.0470605716573"
+              Start="0,0"
+              End="96.3428625437676,39.5470605716573">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.910177744336" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.910177744336"
+                    Point2="0,18.910177744336"
+                    Point3="4,18.910177744336" />
+                  <mssgle:LineSegment
+                    End="92.3428625437676,18.910177744336" />
+                  <mssgle:CubicBezierSegment
+                    Point1="92.3428625437676,18.910177744336"
+                    Point2="96.3428625437676,18.910177744336"
+                    Point3="96.3428625437676,22.910177744336" />
+                  <mssgle:LineSegment
+                    End="96.3428625437676,39.5470605716573" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="32.9300836156338,23.910177744336,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Merge Join"
+          TopLeft="317.885718445875,190.411767376336" />
+        <NodeLayout
+          Size="199.2,41.6"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\DER Replace NULL values"
+          TopLeft="308.571433826369,346.411768105616" />
+        <NodeLayout
+          Size="214.4,41.6"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography"
+          TopLeft="455.714293475054,48.9411771569698" />
+        <NodeLayout
+          Size="215.2,41.6"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLEDST dwh_DimGeography"
+          TopLeft="308.571433826369,433.917651337984" />
+        <NodeLayout
+          Size="212,41.6"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef"
+          TopLeft="130.714287940337,46.6470594777368" />
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\Conditional Split"
+          TopLeft="314.285719637968,266.882356684101" />
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography.Paths[Выход источника &quot;OLE DB&quot;]"
+          TopLeft="562.914293475054,90.5411771569698">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-159.961908362512,99.8705902193658"
+              Start="0,0"
+              End="-159.961908362512,92.3705902193658">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.1915937153802" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,55.1915937153802"
+                    Point2="0,59.1915937153802"
+                    Point3="-4,59.1915937153802" />
+                  <mssgle:LineSegment
+                    End="-155.961908362512,59.1915937153802" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-155.961908362512,59.1915937153802"
+                    Point2="-159.961908362512,59.1915937153802"
+                    Point3="-159.961908362512,63.1915937153802" />
+                  <mssgle:LineSegment
+                    End="-159.961908362512,92.3705902193658" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Add case-sensitive defence"
+          ParentId="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography"
+          FontInfo="{assembly:Null}"
+          Size="172,40"
+          Id="08872eb5-38cc-4a72-9a3f-03c0ee986584"
+          TopLeft="786.685726279629,141.470590219366" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC dwh_DimGeography">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Main\SEQC Load Data to dwh_Dim_Geography\DFT Load Data from Staging_CountryRef to dwh_Dim_Geography\OLESRC staging_CountryRef">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
