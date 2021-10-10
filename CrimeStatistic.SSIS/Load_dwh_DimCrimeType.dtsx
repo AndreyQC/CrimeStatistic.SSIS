@@ -1,0 +1,1502 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/10/2021 1:27:56 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="EPRUPETW0D22"
+  DTS:CreatorName="MOSCOW\Arina_Uksusova"
+  DTS:DTSID="{8A90FEAC-5742-4EDE-BE55-3FA0BBB2C490}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{B6ABD9B3-62C0-4F85-8B64-AE1CD2220BC3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SEQC Main"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{d7dadd10-6a64-4612-8e4d-ebc184229dec}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC Main">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{f1a3ba53-1316-4b37-b5e9-7783dfe8f572}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SEQC Load Data to dwh_DimCrimeType">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType"
+              DTS:CreationName="Microsoft.Pipeline"
+              DTS:Description="Data Flow Task"
+              DTS:DTSID="{6b7ef885-52ad-4541-a049-dc9d203dbeb8}"
+              DTS:ExecutableType="Microsoft.Pipeline"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="DFT Load data from staging_crime_typed to dwh_DimCrimeType"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split"
+                      componentClassID="Microsoft.ConditionalSplit"
+                      contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                      description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+                      name="Conditional Split"
+                      usesDispositions="true">
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split.Inputs[Conditional Split Input]"
+                          description="Input to the Conditional Split Transformation"
+                          name="Conditional Split Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split.Inputs[Conditional Split Input].Columns[CrimeTypeNameSRC]"
+                              cachedDataType="wstr"
+                              cachedLength="100"
+                              cachedName="CrimeTypeNameSRC"
+                              cachedSortKeyPosition="1"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Outputs[Merge Join Output].Columns[CrimeTypeNameSRC]" />
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split.Inputs[Conditional Split Input].Columns[CrimeTypeNameDST]"
+                              cachedDataType="wstr"
+                              cachedLength="100"
+                              cachedName="CrimeTypeNameDST"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Outputs[Merge Join Output].Columns[CrimeTypeNameDST]" />
+                          </inputColumns>
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split.Outputs[DeletedFromSource]"
+                          description="Output 1 of the Conditional Split Transformation"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          exclusionGroup="1"
+                          name="DeletedFromSource"
+                          synchronousInputId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split.Inputs[Conditional Split Input]"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                              name="Expression">[ISNULL](#{Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Outputs[Merge Join Output].Columns[CrimeTypeNameSRC]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Specifies the friendly version of the expression. This expression version uses column names."
+                              expressionType="Notify"
+                              name="FriendlyExpression">ISNULL(CrimeTypeNameSRC)</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                              name="EvaluationOrder">0</property>
+                          </properties>
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split.Outputs[NewCrimeType]"
+                          description="Output 2 of the Conditional Split Transformation"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          exclusionGroup="1"
+                          name="NewCrimeType"
+                          synchronousInputId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split.Inputs[Conditional Split Input]"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                              name="Expression">[ISNULL](#{Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Outputs[Merge Join Output].Columns[CrimeTypeNameDST]})</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Specifies the friendly version of the expression. This expression version uses column names."
+                              expressionType="Notify"
+                              name="FriendlyExpression">ISNULL(CrimeTypeNameDST)</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                              name="EvaluationOrder">1</property>
+                          </properties>
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split.Outputs[Conditional Split Default Output]"
+                          description="Default Output of the Conditional Split Transformation"
+                          exclusionGroup="1"
+                          name="Conditional Split Default Output"
+                          synchronousInputId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split.Inputs[Conditional Split Input]">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              name="IsDefaultOut">true</property>
+                          </properties>
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split.Outputs[Conditional Split Error Output]"
+                          description="Error Output of the Conditional Split Transformation"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Conditional Split Error Output"
+                          synchronousInputId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split.Inputs[Conditional Split Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName"
+                      componentClassID="Microsoft.DerivedColumn"
+                      contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                      description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                      name="DER CrimeTypeName"
+                      usesDispositions="true">
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName.Inputs[Derived Column Input]"
+                          description="Input to the Derived Column Transformation"
+                          name="Derived Column Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName.Inputs[Derived Column Input].Columns[FileName]"
+                              cachedDataType="wstr"
+                              cachedLength="100"
+                              cachedName="FileName"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Outputs[OLE DB Source Output].Columns[FileName]" />
+                          </inputColumns>
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName.Outputs[Derived Column Output]"
+                          description="Default Output of the Derived Column Transformation"
+                          exclusionGroup="1"
+                          name="Derived Column Output"
+                          synchronousInputId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName.Inputs[Derived Column Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName.Outputs[Derived Column Output].Columns[CrimeTypeName]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Computation"
+                              errorRowDisposition="FailComponent"
+                              length="100"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName.Outputs[Derived Column Output].Columns[CrimeTypeName]"
+                              name="CrimeTypeName"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Expression"
+                                  name="Expression">[REPLACE]([REPLACE](#{Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Outputs[OLE DB Source Output].Columns[FileName]},".csv",""),"_"," ")</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Friendly Expression"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">REPLACE(REPLACE(FileName,".csv",""),"_"," ")</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName.Outputs[Derived Column Error Output]"
+                          description="Error Output of the Derived Column Transformation"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Derived Column Error Output"
+                          synchronousInputId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName.Inputs[Derived Column Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST"
+                      componentClassID="Microsoft.MergeJoin"
+                      contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                      description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+                      name="Merge CrimeTypeNameSRC and CrimeTypeNameDST"
+                      version="1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of join to perform."
+                          name="JoinType"
+                          typeConverter="JoinType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the number of columns in the ordering key."
+                          name="NumKeyColumns">1</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the null values are treated as equal values."
+                          name="TreatNullsAsEqual">true</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates the requested maximum buffers per input before blocking."
+                          name="MaxBuffersPerInput">5</property>
+                      </properties>
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Inputs[Merge Join Left Input]"
+                          hasSideEffects="true"
+                          name="Merge Join Left Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Inputs[Merge Join Left Input].Columns[CrimeTypeNameSRC]"
+                              cachedDataType="wstr"
+                              cachedLength="100"
+                              cachedName="CrimeTypeNameSRC"
+                              cachedSortKeyPosition="1"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Sort CrimeTypeName.Outputs[Sort Output].Columns[CrimeTypeNameSRC]" />
+                          </inputColumns>
+                          <externalMetadataColumns />
+                        </input>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Inputs[Merge Join Right Input]"
+                          hasSideEffects="true"
+                          name="Merge Join Right Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Inputs[Merge Join Right Input].Columns[CrimeTypeNameDST]"
+                              cachedDataType="wstr"
+                              cachedLength="100"
+                              cachedName="CrimeTypeNameDST"
+                              cachedSortKeyPosition="1"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Output].Columns[CrimeTypeNameDST]" />
+                          </inputColumns>
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Outputs[Merge Join Output]"
+                          isSorted="true"
+                          name="Merge Join Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Outputs[Merge Join Output].Columns[CrimeTypeNameSRC]"
+                              dataType="wstr"
+                              length="100"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Outputs[Merge Join Output].Columns[CrimeTypeNameSRC]"
+                              name="CrimeTypeNameSRC"
+                              sortKeyPosition="1">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="The input column associated with this output column"
+                                  name="InputColumnID">#{Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Inputs[Merge Join Left Input].Columns[CrimeTypeNameSRC]}</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Outputs[Merge Join Output].Columns[CrimeTypeNameDST]"
+                              dataType="wstr"
+                              length="100"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Outputs[Merge Join Output].Columns[CrimeTypeNameDST]"
+                              name="CrimeTypeNameDST">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="The input column associated with this output column"
+                                  name="InputColumnID">#{Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Inputs[Merge Join Right Input].Columns[CrimeTypeNameDST]}</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType"
+                      componentClassID="Microsoft.OLEDBSource"
+                      contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                      description="OLE DB Source"
+                      name="OLE DST DimCrimeType"
+                      usesDispositions="true"
+                      version="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset"></property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [DimCrimeTypeKey]
+      ,[CrimeType] AS CrimeTypeNameDST
+  FROM [dwh].[DimCrimeType]
+  WHERE [DimCrimeTypeKey] &gt; -1
+  ORDER BY [CrimeType]</property>
+                        <property
+                          dataType="System.String"
+                          description="The variable that contains the SQL command to be executed."
+                          name="SqlCommandVariable"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Forces the use of the DefaultCodePage property value when describing character data."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">2</property>
+                        <property
+                          dataType="System.String"
+                          description="The mappings between the parameters in the SQL command and variables."
+                          name="ParameterMapping"></property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Connections[OleDbConnection]"
+                          connectionManagerID="{A8C4A169-DEC4-4117-AB51-6EA9F3BCEEC0}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[CrimeStatisticDWH]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Output]"
+                          isSorted="true"
+                          name="OLE DB Source Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Output].Columns[DimCrimeTypeKey]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Output].ExternalColumns[DimCrimeTypeKey]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Output].Columns[DimCrimeTypeKey]"
+                              name="DimCrimeTypeKey"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Output].Columns[CrimeTypeNameDST]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Output].ExternalColumns[CrimeTypeNameDST]"
+                              length="100"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Output].Columns[CrimeTypeNameDST]"
+                              name="CrimeTypeNameDST"
+                              sortKeyPosition="1"
+                              truncationRowDisposition="FailComponent" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Output].ExternalColumns[DimCrimeTypeKey]"
+                              dataType="i4"
+                              name="DimCrimeTypeKey" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Output].ExternalColumns[CrimeTypeNameDST]"
+                              dataType="wstr"
+                              length="100"
+                              name="CrimeTypeNameDST" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Error Output]"
+                          isErrorOut="true"
+                          name="OLE DB Source Error Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Error Output].Columns[DimCrimeTypeKey]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Error Output].Columns[DimCrimeTypeKey]"
+                              name="DimCrimeTypeKey" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Error Output].Columns[CrimeTypeNameDST]"
+                              dataType="wstr"
+                              length="100"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Error Output].Columns[CrimeTypeNameDST]"
+                              name="CrimeTypeNameDST" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType"
+                      componentClassID="Microsoft.OLEDBDestination"
+                      contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                      description="OLE DB Destination"
+                      name="OLE DST Load dwh DimCrimeType"
+                      usesDispositions="true"
+                      version="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset">[dwh].[DimCrimeType]</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Forces the use of the DefaultCodePage property value when describing character data."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">3</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepIdentity">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepNulls">false</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                          name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                          name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType.Connections[OleDbConnection]"
+                          connectionManagerID="{A8C4A169-DEC4-4117-AB51-6EA9F3BCEEC0}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[CrimeStatisticDWH]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType.Inputs[OLE DB Destination Input]"
+                          errorOrTruncationOperation="Insert"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="OLE DB Destination Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType.Inputs[OLE DB Destination Input].Columns[CrimeTypeNameSRC]"
+                              cachedDataType="wstr"
+                              cachedLength="100"
+                              cachedName="CrimeTypeNameSRC"
+                              cachedSortKeyPosition="1"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType.Inputs[OLE DB Destination Input].ExternalColumns[CrimeType]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Outputs[Merge Join Output].Columns[CrimeTypeNameSRC]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType.Inputs[OLE DB Destination Input].ExternalColumns[DimCrimeTypeKey]"
+                              dataType="i4"
+                              name="DimCrimeTypeKey" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType.Inputs[OLE DB Destination Input].ExternalColumns[CrimeType]"
+                              dataType="wstr"
+                              length="100"
+                              name="CrimeType" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType.Inputs[OLE DB Destination Input].ExternalColumns[sysCreatedAt]"
+                              dataType="dbTimeStamp"
+                              name="sysCreatedAt" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType.Inputs[OLE DB Destination Input].ExternalColumns[sysChangedAt]"
+                              dataType="dbTimeStamp"
+                              name="sysChangedAt" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType.Inputs[OLE DB Destination Input].ExternalColumns[sysChangedBy]"
+                              dataType="i4"
+                              name="sysChangedBy" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType.Inputs[OLE DB Destination Input].ExternalColumns[sysCreatedBy]"
+                              dataType="i4"
+                              name="sysCreatedBy" />
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType.Outputs[OLE DB Destination Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="OLE DB Destination Error Output"
+                          synchronousInputId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType.Inputs[OLE DB Destination Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed"
+                      componentClassID="Microsoft.OLEDBSource"
+                      contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                      description="OLE DB Source"
+                      name="OLE SRC Staging_uncrime_typed"
+                      usesDispositions="true"
+                      version="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset">[staging].[uncrime_typed]</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT DISTINCT [FileName]
+  FROM [staging].[uncrime_typed];</property>
+                        <property
+                          dataType="System.String"
+                          description="The variable that contains the SQL command to be executed."
+                          name="SqlCommandVariable"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Forces the use of the DefaultCodePage property value when describing character data."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">2</property>
+                        <property
+                          dataType="System.String"
+                          description="The mappings between the parameters in the SQL command and variables."
+                          name="ParameterMapping"></property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Connections[OleDbConnection]"
+                          connectionManagerID="{A8C4A169-DEC4-4117-AB51-6EA9F3BCEEC0}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[CrimeStatisticDWH]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Outputs[OLE DB Source Output]"
+                          name="OLE DB Source Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Outputs[OLE DB Source Output].Columns[FileName]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Outputs[OLE DB Source Output].ExternalColumns[FileName]"
+                              length="100"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Outputs[OLE DB Source Output].Columns[FileName]"
+                              name="FileName"
+                              truncationRowDisposition="FailComponent" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Outputs[OLE DB Source Output].ExternalColumns[FileName]"
+                              dataType="wstr"
+                              length="100"
+                              name="FileName" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Outputs[OLE DB Source Error Output]"
+                          isErrorOut="true"
+                          name="OLE DB Source Error Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Outputs[OLE DB Source Error Output].Columns[FileName]"
+                              dataType="wstr"
+                              length="100"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Outputs[OLE DB Source Error Output].Columns[FileName]"
+                              name="FileName" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Sort CrimeTypeName"
+                      componentClassID="Microsoft.Sort"
+                      contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                      description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+                      name="Sort CrimeTypeName"
+                      version="1">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                          name="EliminateDuplicates">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the maximum number of threads to use for sorting."
+                          expressionType="Notify"
+                          name="MaximumThreads">-1</property>
+                      </properties>
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Sort CrimeTypeName.Inputs[Sort Input]"
+                          name="Sort Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Sort CrimeTypeName.Inputs[Sort Input].Columns[FileName]"
+                              cachedDataType="wstr"
+                              cachedLength="100"
+                              cachedName="FileName"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Outputs[OLE DB Source Output].Columns[FileName]">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Specifies the comparison options for character data."
+                                  name="NewComparisonFlags">0</property>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Specifies the sort order of the column."
+                                  name="NewSortKeyPosition">0</property>
+                              </properties>
+                            </inputColumn>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Sort CrimeTypeName.Inputs[Sort Input].Columns[CrimeTypeName]"
+                              cachedDataType="wstr"
+                              cachedLength="100"
+                              cachedName="CrimeTypeName"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName.Outputs[Derived Column Output].Columns[CrimeTypeName]">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Specifies the comparison options for character data."
+                                  name="NewComparisonFlags">0</property>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Specifies the sort order of the column."
+                                  name="NewSortKeyPosition">1</property>
+                              </properties>
+                            </inputColumn>
+                          </inputColumns>
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Sort CrimeTypeName.Outputs[Sort Output]"
+                          isSorted="true"
+                          name="Sort Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Sort CrimeTypeName.Outputs[Sort Output].Columns[FileName]"
+                              dataType="wstr"
+                              length="100"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Sort CrimeTypeName.Outputs[Sort Output].Columns[FileName]"
+                              name="FileName">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="Specifies the lineage identifier of the input column that is associated with this output column."
+                                  name="SortColumnId">#{Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Outputs[OLE DB Source Output].Columns[FileName]}</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Sort CrimeTypeName.Outputs[Sort Output].Columns[CrimeTypeNameSRC]"
+                              dataType="wstr"
+                              length="100"
+                              lineageId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Sort CrimeTypeName.Outputs[Sort Output].Columns[CrimeTypeNameSRC]"
+                              name="CrimeTypeNameSRC"
+                              sortKeyPosition="1">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="Specifies the lineage identifier of the input column that is associated with this output column."
+                                  name="SortColumnId">#{Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName.Outputs[Derived Column Output].Columns[CrimeTypeName]}</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType.Paths[Derived Column Output]"
+                      endId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Sort CrimeTypeName.Inputs[Sort Input]"
+                      name="Derived Column Output"
+                      startId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName.Outputs[Derived Column Output]" />
+                    <path
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType.Paths[Merge Join Output]"
+                      endId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split.Inputs[Conditional Split Input]"
+                      name="Merge Join Output"
+                      startId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Outputs[Merge Join Output]" />
+                    <path
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType.Paths[NewCrimeType]"
+                      endId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType.Inputs[OLE DB Destination Input]"
+                      name="NewCrimeType"
+                      startId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split.Outputs[NewCrimeType]" />
+                    <path
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType.Paths[OLE DB Source Output]"
+                      endId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName.Inputs[Derived Column Input]"
+                      name="OLE DB Source Output"
+                      startId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed.Outputs[OLE DB Source Output]" />
+                    <path
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType.Paths[OLE DB Source Output1]"
+                      endId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Inputs[Merge Join Right Input]"
+                      name="OLE DB Source Output"
+                      startId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType.Outputs[OLE DB Source Output]" />
+                    <path
+                      refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType.Paths[Sort Output]"
+                      endId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST.Inputs[Merge Join Left Input]"
+                      name="Sort Output"
+                      startId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Sort CrimeTypeName.Outputs[Sort Output]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\SQL Dummy Rows"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{ace20282-1520-435c-8429-9ac9cf343aed}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL Dummy Rows"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{A8C4A169-DEC4-4117-AB51-6EA9F3BCEEC0}"
+                  SQLTask:SqlStatementSource="IF NOT EXISTS (SELECT 1 FROM [dwh].[DimCrimeType] WHERE [DimCrimeTypeKey]=-1) &#xA;&#xA;BEGIN  &#xA;&#xA;    SET IDENTITY_INSERT [dwh].[DimCrimeType] ON &#xA;&#xA;        INSERT INTO [dwh].[DimCrimeType] &#xA;&#xA;                   ([DimCrimeTypeKey], &#xA;&#xA;                   [CrimeType]) &#xA;&#xA;             VALUES &#xA;&#xA;                   (-1, &#xA;&#xA;                   N'Unknown') &#xA;&#xA;    SET IDENTITY_INSERT [dwh].[DimCrimeType] OFF &#xA;&#xA;END  " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{dc449c62-4923-405a-8f27-5c59aa696e51}"
+              DTS:From="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\SQL Dummy Rows" />
+          </DTS:PrecedenceConstraints>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Main\SEQC Preparation"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{27986476-2d65-4ed4-a4c1-8ab64795f7ce}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SEQC Preparation">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:Executables />
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC Main.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{405bbc9b-fce2-4063-bd55-bd1ce9cc226a}"
+          DTS:From="Package\SEQC Main\SEQC Preparation"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Log End Package"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{aca53de0-9a71-443d-adb2-92a089d94d6c}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Log End Package"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A8C4A169-DEC4-4117-AB51-6EA9F3BCEEC0}"
+          SQLTask:SqlStatementSource="EXEC [etl].[usp_PackageExecutionHistory_Update] ?,?,'seccess', 'test' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Log End Package Failure"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{d9801560-dc22-46a2-ac85-83090efb52fa}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Log End Package Failure"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A8C4A169-DEC4-4117-AB51-6EA9F3BCEEC0}"
+          SQLTask:SqlStatementSource="EXEC [etl].[usp_PackageExecutionHistory_Update] ?,?,'failed', 'test' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Log Start Package"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{c0a2bfa4-f643-4089-b64c-85b6dc89946d}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Log Start Package"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A8C4A169-DEC4-4117-AB51-6EA9F3BCEEC0}"
+          SQLTask:SqlStatementSource="EXEC [etl].[usp_PackageExecutionHistory_Create] ?,? " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{857af721-401e-4a78-8deb-ab2a6471d514}"
+      DTS:From="Package\SEQC Main"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SQL Log End Package Failure"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{e3d68951-ee72-4899-9a8e-b4e3ee09bc2b}"
+      DTS:From="Package\SQL Log Start Package"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\SEQC Main" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{9447a42c-8262-40e7-a511-1c0d731b2dec}"
+      DTS:From="Package\SEQC Main"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\SQL Log End Package" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="385,42"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType"
+          TopLeft="7.5,12.5" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\SQL Dummy Rows"
+          TopLeft="112.5,107.5" />
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType.PrecedenceConstraints[Constraint]"
+          TopLeft="197.75,54.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="398,205"
+          Size="398,248"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType"
+          TopLeft="271.5,5.49999999999989" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="205,55"
+          Size="205,98"
+          Id="Package\SEQC Main\SEQC Preparation"
+          TopLeft="5.50000000000006,80.4999999999999" />
+        <EdgeLayout
+          Id="Package\SEQC Main.PrecedenceConstraints[Constraint]"
+          TopLeft="210.5,129.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="60.9999999999999,0"
+              Start="0,0"
+              End="53.4999999999999,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="53.4999999999999,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="668,308"
+          Size="668,351"
+          Id="Package\SEQC Main"
+          TopLeft="170,237" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\SQL Log End Package"
+          TopLeft="413.5,648" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\SQL Log End Package Failure"
+          TopLeft="171.5,648" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\SQL Log Start Package"
+          TopLeft="411,135" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="394,588">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-132,60"
+              Start="0,0"
+              End="-132,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.0860215053763" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.0860215053763"
+                    Point2="0,24.0860215053763"
+                    Point3="-4,24.0860215053763" />
+                  <mssgle:LineSegment
+                    End="-128,24.0860215053763" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-128,24.0860215053763"
+                    Point2="-132,24.0860215053763"
+                    Point3="-132,28.0860215053763" />
+                  <mssgle:LineSegment
+                    End="-132,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-81.24134765625,29.0860215053763,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="504,177">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="614,588">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-110,60"
+              Start="0,0"
+              End="-110,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.0860215053763" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.0860215053763"
+                    Point2="0,24.0860215053763"
+                    Point3="-4,24.0860215053763" />
+                  <mssgle:LineSegment
+                    End="-106,24.0860215053763" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-106,24.0860215053763"
+                    Point2="-110,24.0860215053763"
+                    Point3="-110,28.0860215053763" />
+                  <mssgle:LineSegment
+                    End="-110,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="234,42"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed"
+          TopLeft="179,65" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType"
+          TopLeft="540,64" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\DER CrimeTypeName"
+          TopLeft="202,170" />
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType.Paths[OLE DB Source Output]"
+          TopLeft="294,107">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63"
+              Start="0,0"
+              End="0,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="179,42"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Sort CrimeTypeName"
+          TopLeft="215,283" />
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType.Paths[Derived Column Output]"
+          TopLeft="292,212">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12.5,71"
+              Start="0,0"
+              End="12.5,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5"
+                    Point2="0,35.5"
+                    Point3="4,35.5" />
+                  <mssgle:LineSegment
+                    End="8.5,35.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8.5,35.5"
+                    Point2="12.5,35.5"
+                    Point3="12.5,39.5" />
+                  <mssgle:LineSegment
+                    End="12.5,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="329,42"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Merge CrimeTypeNameSRC and CrimeTypeNameDST"
+          TopLeft="380,456" />
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType.Paths[Sort Output]"
+          TopLeft="304.5,325">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="240,131"
+              Start="0,0"
+              End="240,123.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,61.5"
+                    Point2="0,65.5"
+                    Point3="4,65.5" />
+                  <mssgle:LineSegment
+                    End="236,65.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="236,65.5"
+                    Point2="240,65.5"
+                    Point3="240,69.5" />
+                  <mssgle:LineSegment
+                    End="240,123.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType.Paths[OLE DB Source Output1]"
+          TopLeft="636.5,106">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-38.5,350"
+              Start="0,0"
+              End="-38.5,342.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,204.983666061706" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,204.983666061706"
+                    Point2="0,208.983666061706"
+                    Point3="-4,208.983666061706" />
+                  <mssgle:LineSegment
+                    End="-34.5,208.983666061706" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-34.5,208.983666061706"
+                    Point2="-38.5,208.983666061706"
+                    Point3="-38.5,212.983666061706" />
+                  <mssgle:LineSegment
+                    End="-38.5,342.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="155,42"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\Conditional Split"
+          TopLeft="489,566" />
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType.Paths[Merge Join Output]"
+          TopLeft="544.5,498">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22,68"
+              Start="0,0"
+              End="22,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30"
+                    Point2="0,34"
+                    Point3="4,34" />
+                  <mssgle:LineSegment
+                    End="18,34" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18,34"
+                    Point2="22,34"
+                    Point3="22,38" />
+                  <mssgle:LineSegment
+                    End="22,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="242,42"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType"
+          TopLeft="474,688" />
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType.Paths[NewCrimeType]"
+          TopLeft="566.5,608">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="28.5,80"
+              Start="0,0"
+              End="28.5,72.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36"
+                    Point2="0,40"
+                    Point3="4,40" />
+                  <mssgle:LineSegment
+                    End="24.5,40" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.5,40"
+                    Point2="28.5,40"
+                    Point3="28.5,44" />
+                  <mssgle:LineSegment
+                    End="28.5,72.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-19.51134765625,45,67.5226953125,11.4140625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE SRC Staging_uncrime_typed">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST DimCrimeType">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Main\SEQC Load Data to dwh_DimCrimeType\DFT Load data from staging_crime_typed to dwh_DimCrimeType\OLE DST Load dwh DimCrimeType">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,424 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/10/2021 2:03:40 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="EPRUPETW0D22"
+  DTS:CreatorName="MOSCOW\Arina_Uksusova"
+  DTS:DTSID="{47B7CA09-335D-4B6E-9372-18C27A8E0B64}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{34174B71-0529-4A24-948D-0C67BFB812E4}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0BA6ED68-16AA-4022-98A5-C05F1AD9F48A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCountsDimDate">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SEQC Main"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{85ff52e7-0839-4cb0-a2d7-fcd06306e2ec}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC Main">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Main\SEQC Load Data to dwh_DimDate"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{caa8bfb8-8f07-4dc1-ae66-52065a883335}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SEQC Load Data to dwh_DimDate">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\SEQC Main\SEQC Load Data to dwh_DimDate\SQL Seed dwh_DimDate by SP usp_DimSateSeed"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{F2219D09-84D5-4DC3-9E03-224AD7FE7CE1}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL Seed dwh_DimDate by SP usp_DimSateSeed"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{A8C4A169-DEC4-4117-AB51-6EA9F3BCEEC0}"
+                  SQLTask:SqlStatementSource="DECLARE @DateBegin date &#xA;&#xA;DECLARE @DateEnd date &#xA;&#xA; &#xA;&#xA;SET @DateBegin = '19600101' &#xA;&#xA;SET @DateEnd = GETDATE() &#xA;&#xA; &#xA;&#xA;EXECUTE [etl].[usp_DimDateSeed]  &#xA;&#xA;   @DateBegin &#xA;&#xA;  ,@DateEnd &#xA;&#xA;GO " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Main\SEQC Preparation of DimDate Table"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{7A9BED93-F1BC-4838-AE8F-BD35499DE70F}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SEQC Preparation of DimDate Table">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\SEQC Main\SEQC Preparation of DimDate Table\SQL Check the number of rows in table dwh_DimDate"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{BBFC8DE2-F4FD-443C-A0DC-6DF7106A280C}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL Check the number of rows in table dwh_DimDate"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{A8C4A169-DEC4-4117-AB51-6EA9F3BCEEC0}"
+                  SQLTask:SqlStatementSource="SELECT COUNT(1) AS RowCounts&#xA;  FROM [dwh].[DimDate]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC Main.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{182C437A-9172-4FD4-AC2E-27FA83DA7D56}"
+          DTS:EvalOp="3"
+          DTS:Expression="@[User::RowCountsDimDate]==0"
+          DTS:From="Package\SEQC Main\SEQC Preparation of DimDate Table"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SEQC Main\SEQC Load Data to dwh_DimDate" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Log End Package"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{412aa5ac-2399-4cfc-b196-3d656934eed3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Log End Package"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A8C4A169-DEC4-4117-AB51-6EA9F3BCEEC0}"
+          SQLTask:SqlStatementSource="EXEC [etl].[usp_PackageExecutionHistory_Update] ?,?,'seccess', 'test' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Log End Package Failure"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{ff39b4f9-29c4-44d8-9b73-dd2e763d2a96}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Log End Package Failure"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A8C4A169-DEC4-4117-AB51-6EA9F3BCEEC0}"
+          SQLTask:SqlStatementSource="EXEC [etl].[usp_PackageExecutionHistory_Update] ?,?,'failed', 'test' " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Log Start Package"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{8e3bd449-90b9-47a9-8081-f84daa8ca747}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Log Start Package"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A8C4A169-DEC4-4117-AB51-6EA9F3BCEEC0}"
+          SQLTask:SqlStatementSource="EXEC [etl].[usp_PackageExecutionHistory_Create] ?,? " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{451f5255-7539-4cbf-93bc-3252a0719b73}"
+      DTS:From="Package\SEQC Main"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SQL Log End Package Failure"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{a758cb7e-161b-4729-8278-260604627fa4}"
+      DTS:From="Package\SQL Log Start Package"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\SEQC Main" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{b2a120fc-c88b-46ac-83f9-35bd4d3b6422}"
+      DTS:From="Package\SEQC Main"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\SQL Log End Package" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="312,42"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimDate\SQL Seed dwh_DimDate by SP usp_DimSateSeed"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="323,103"
+          Size="323,146"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimDate"
+          TopLeft="415.5,34.4999999999999" />
+        <NodeLayout
+          Size="333,42"
+          Id="Package\SEQC Main\SEQC Preparation of DimDate Table\SQL Check the number of rows in table dwh_DimDate"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="344,103"
+          Size="344,146"
+          Id="Package\SEQC Main\SEQC Preparation of DimDate Table"
+          TopLeft="12,42.4999999999999" />
+        <EdgeLayout
+          Id="Package\SEQC Main.PrecedenceConstraints[Constraint]"
+          TopLeft="356,115.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59.5,-8"
+              Start="0,0"
+              End="52,-8">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="25.75,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.75,0"
+                    Point2="29.75,0"
+                    Point3="29.75,-4" />
+                  <mssgle:LineSegment
+                    End="29.75,-4" />
+                  <mssgle:CubicBezierSegment
+                    Point1="29.75,-4"
+                    Point2="29.75,-8"
+                    Point3="33.75,-8" />
+                  <mssgle:LineSegment
+                    End="52,-8" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="21.75,1,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="750,384"
+          Size="750,427"
+          Id="Package\SEQC Main"
+          TopLeft="5.5,131.5" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\SQL Log End Package"
+          TopLeft="291,703.5" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\SQL Log End Package Failure"
+          TopLeft="49.0000000000001,703.5" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\SQL Log Start Package"
+          TopLeft="261.5,26.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="256.833333333333,558.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-117.333333333333,145"
+              Start="0,0"
+              End="-117.333333333333,137.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.1852048962214" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,54.1852048962214"
+                    Point2="0,58.1852048962214"
+                    Point3="-4,58.1852048962214" />
+                  <mssgle:LineSegment
+                    End="-113.333333333333,58.1852048962214" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-113.333333333333,58.1852048962214"
+                    Point2="-117.333333333333,58.1852048962214"
+                    Point3="-117.333333333333,62.1852048962214" />
+                  <mssgle:LineSegment
+                    End="-117.333333333333,137.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-73.9080143229166,63.1852048962214,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="354.5,68.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26,63"
+              Start="0,0"
+              End="26,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.5"
+                    Point2="0,31.5"
+                    Point3="4,31.5" />
+                  <mssgle:LineSegment
+                    End="22,31.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22,31.5"
+                    Point2="26,31.5"
+                    Point3="26,35.5" />
+                  <mssgle:LineSegment
+                    End="26,55.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="504.166666666667,558.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-122.666666666667,145"
+              Start="0,0"
+              End="-122.666666666667,137.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.1852048962214" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,54.1852048962214"
+                    Point2="0,58.1852048962214"
+                    Point3="-4,58.1852048962214" />
+                  <mssgle:LineSegment
+                    End="-118.666666666667,58.1852048962214" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-118.666666666667,58.1852048962214"
+                    Point2="-122.666666666667,58.1852048962214"
+                    Point3="-122.666666666667,62.1852048962214" />
+                  <mssgle:LineSegment
+                    End="-122.666666666667,137.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
