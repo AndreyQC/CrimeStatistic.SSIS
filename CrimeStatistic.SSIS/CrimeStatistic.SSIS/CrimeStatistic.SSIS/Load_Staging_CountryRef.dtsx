@@ -9,10 +9,10 @@
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.170"
   DTS:LocaleID="1033"
-  DTS:ObjectName="Load_Staging_CountryRef"
+  DTS:ObjectName="Transform_Staging_CountryRef"
   DTS:PackageType="5"
-  DTS:VersionBuild="26"
-  DTS:VersionGUID="{B70328F8-1266-41CA-8E5D-6828490F1554}">
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{60230F67-928C-42A1-B779-FD8A7D579077}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -31,7 +31,7 @@
           <DTS:Password
             DTS:Name="pwd"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA5BEEiV8WAkCPrVYXtEpnQAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACNRZCcp/AH1kYKUfpvxin/qqh7OayyFH63rnwWbNNOWwAAAAAOgAAAAAIAACAAAACPlZowbzUouVOwwbTIafYMHHmca8z9WfR0YpkZDRGN9SAAAAD7xcPsKPdt5ZeH31tnZgcc6lyz6FBkIWI09kLh7Vbyg0AAAAATlWWm+Vpa7P4S26InyhX7GELwBzrAfWHyDuolr0dVPUeU/9LJgl0S+OCCvREZ4BBXD/F6IDg4/fn5cjshmpwa</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA5BEEiV8WAkCPrVYXtEpnQAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAIePhSYLMi7qsG983+kVOD5qeonmrE16ytc/R86Im98QAAAAAOgAAAAAIAACAAAAAhEx67zNup60ODRclif1dmW03d52O80vq3bMHFBWa+syAAAACZexERdK+YKqdJQdRZNAYSDIsf+APNpHiuMYnJq/OAd0AAAABKSOsZ6rEHGqAbuIUOLJykozC9kBdTSjrR+vf7xQX42OCTzQwKP4uon803Gd61iGmcWuLemcoXcy+WmCfUco5x</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -1027,24 +1027,20 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="278,42"
-          Id="Package\SQL Log Package start"
-          TopLeft="199,5.5" />
-        <NodeLayout
-          Size="181,42"
-          Id="Package\SQL Log Package end"
-          TopLeft="5.50000000000006,519.5" />
-        <NodeLayout
           Size="238,42"
           Id="Package\SEQC Main\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped"
           TopLeft="5.5,5.5" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="249,102"
+          PanelSize="249,103"
           Size="249,146"
           Id="Package\SEQC Main\SEQC Load staging countriesref_untyped"
           TopLeft="22.5,107.5" />
+        <NodeLayout
+          Size="283,42"
+          Id="Package\SEQC Main\SQL Truncate staging countriesref_untyped"
+          TopLeft="5.5,5.5" />
         <EdgeLayout
           Id="Package\SEQC Main.PrecedenceConstraints[Constraint]"
           TopLeft="147,47.5">
@@ -1067,39 +1063,25 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="283,42"
-          Id="Package\SEQC Main\SQL Truncate staging countriesref_untyped"
-          TopLeft="5.5,5.5" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="294,308"
+          PanelSize="294,309"
           Size="294,352"
           Id="Package\SEQC Main"
           TopLeft="191,107.5" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="338,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,60"
-              Start="0,0"
-              End="0,52.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,52.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="181,42"
+          Id="Package\SQL Log Package end"
+          TopLeft="5.50000000000006,519.5" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\SQL Log Package Fail"
+          TopLeft="504.5,512.5" />
+        <NodeLayout
+          Size="278,42"
+          Id="Package\SQL Log Package start"
+          TopLeft="199,5.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="290.333333333333,459.5">
@@ -1134,10 +1116,28 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="181,42"
-          Id="Package\SQL Log Package Fail"
-          TopLeft="504.5,512.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="338,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="385.666666666667,459.5">
@@ -1177,6 +1177,46 @@
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnPreExecute]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="163,42"
+          Id="Package.EventHandlers[OnPreExecute]\Execute SQL Task"
+          TopLeft="120,114" />
+        <NodeLayout
+          Size="131,42"
+          Id="Package.EventHandlers[OnPreExecute]\Script Task"
+          TopLeft="138,20" />
+        <EdgeLayout
+          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint]"
+          TopLeft="202.5,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,14.25,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
   <TaskHost
     design-time-name="Package\SEQC Main\SEQC Load staging countriesref_untyped\DFT staging countriesref_untyped">
     <LayoutInfo>
@@ -1255,45 +1295,5 @@
       </Property>
     </Properties>
   </PipelineComponentMetadata>
-  <DtsEventHandler
-    design-time-name="Package.EventHandlers[OnPreExecute]">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="163,42"
-          Id="Package.EventHandlers[OnPreExecute]\Execute SQL Task"
-          TopLeft="120,114" />
-        <NodeLayout
-          Size="131,42"
-          Id="Package.EventHandlers[OnPreExecute]\Script Task"
-          TopLeft="138,20" />
-        <EdgeLayout
-          Id="Package.EventHandlers[OnPreExecute].PrecedenceConstraints[Constraint]"
-          TopLeft="202.5,62">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,52"
-              Start="0,0"
-              End="0,44.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,44.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,14.25,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </DtsEventHandler>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
