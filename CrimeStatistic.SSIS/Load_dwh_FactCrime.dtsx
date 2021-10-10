@@ -1,0 +1,1803 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/26/2021 4:57:11 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-1NH4N0S3"
+  DTS:CreatorName="LAPTOP-1NH4N0S3\chopa"
+  DTS:DTSID="{CDBB0B5D-5E46-4478-8AED-55D1FB771E89}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1049"
+  DTS:ObjectName="Load_dwh_FactCrime"
+  DTS:PackageType="5"
+  DTS:VersionBuild="47"
+  DTS:VersionGUID="{B91C3A0B-3E86-4BF5-BDAA-2CE2370C0C09}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="CrimeStatistic.DWH"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Записывает элементы журнала для событий в базу данных SQL Server"
+      DTS:DTSID="{0FB162F9-3608-439D-9A7E-721A7354E2D2}"
+      DTS:ObjectName="Регистратор служб SSIS для SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{64A39B6D-7E19-4823-9CE7-3A53D3B6901C}"
+      DTS:Expression="@[$Project::WorldBankSourceFileFolder] +&quot;\\1.csv&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentFile">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{385DD653-BD2E-45B0-AE98-2957D4F67479}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCountDimDate">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F348AE2A-825C-4D7A-BECB-A9226DC8D2D5}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Variable">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">4,7,OnError,13,OnPostExecute,12,OnPreExecute,12,OnTaskFailed</DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{0FB162F9-3608-439D-9A7E-721A7354E2D2}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SEQC Main"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Контейнер последовательности"
+      DTS:DTSID="{CEC02F7B-4A44-4D6E-86AA-B99DEDABD7A4}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC Main">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Main\SEQC Load FactCrime"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Контейнер последовательности"
+          DTS:DTSID="{A59310E7-F51D-49F5-8551-20E8D1C54373}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SEQC Load FactCrime">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime"
+              DTS:CreationName="Microsoft.Pipeline"
+              DTS:Description="Задача потока данных"
+              DTS:DTSID="{869A2073-C1CB-40DE-8806-B82C3A477CDD}"
+              DTS:ExecutableType="Microsoft.Pipeline"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="DFT Load Data to dwh_FactCrime"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Der Col File Name"
+                      componentClassID="Microsoft.DerivedColumn"
+                      contactInfo="Производный столбец;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;0"
+                      description="Создает новые значения столбцов путем применения выражений к входным столбцам преобразования. Создает новые столбцы или перезаписывает существующие. Пример: объединение значений столбцов &quot;first name&quot; и &quot;last name&quot; и создание столбца &quot;full name&quot;."
+                      name="Der Col File Name"
+                      usesDispositions="true">
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Der Col File Name.Inputs[Вход производного столбца]"
+                          description="Ввод преобразования &quot;Производный столбец&quot;"
+                          name="Вход производного столбца">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Der Col File Name.Outputs[Выход производного столбца]"
+                          description="Выход по умолчанию преобразования &quot;Производный столбец&quot;"
+                          exclusionGroup="1"
+                          name="Выход производного столбца"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Der Col File Name.Inputs[Вход производного столбца]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Der Col File Name.Outputs[Вывод ошибок производного столбца]"
+                          description="Вывод ошибок преобразования &quot;Производный столбец&quot;"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Вывод ошибок производного столбца"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Der Col File Name.Inputs[Вход производного столбца]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Der Col File Name.Outputs[Вывод ошибок производного столбца].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Der Col File Name.Outputs[Вывод ошибок производного столбца].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Der Col File Name.Outputs[Вывод ошибок производного столбца].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Der Col File Name.Outputs[Вывод ошибок производного столбца].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Fuzzy Lookup"
+                      componentClassID="Microsoft.FuzzyLookup"
+                      contactInfo="Нечеткий уточняющий запрос;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;5"
+                      description="Выполняет задачи по очистке данных, такие как стандартизация данных, исправление данных и предоставление отсутствующих значений.  Использует поиск нечеткого соответствия для получения одного или нескольких точных совпадений из ссылочной таблицы. Пример: поиск данных клиентов по адресу, несмотря на то что входные данные адресов не точно совпадают со ссылочными данными адресов."
+                      name="Fuzzy Lookup"
+                      version="5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает, следует ли повторно использовать существующую таблицу индексов нечеткого соответствия или создавать новую. Новая таблица индексов может быть временной, сохраняемой или сохраняемой и поддерживаемой."
+                          name="MatchIndexOptions"
+                          typeConverter="tcMatchIndexOptions">1</property>
+                        <property
+                          dataType="System.Null"
+                          description="Указывает максимальный объем памяти (МБ), который может использовать этот экземпляр преобразования &quot;Нечеткий уточняющий запрос&quot;. Если указано значение 0, преобразование будет динамически использовать память в соответствии с потребностями и объемом доступной системной памяти."
+                          expressionType="Notify"
+                          name="MaxMemoryUsage" />
+                        <property
+                          dataType="System.Null"
+                          description="Указывает имя таблицы индексов нечеткого соответствия, которую нужно повторно использовать, или имя таблицы, в которую будет записана вновь сформированная таблица индексов нечеткого соответствия."
+                          name="MatchIndexName"
+                          state="escaped" />
+                        <property
+                          dataType="System.Null"
+                          description="Указывает имя ссылочной таблицы или представления, с которым будут сопоставляться входящие записи."
+                          name="ReferenceTableName"
+                          state="escaped" />
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает, следует ли удалить существующую таблицу индексов нечеткого соответствия, если преобразование настроено для формирования новой таблицы и уже существует таблица с тем же именем."
+                          name="DropExistingMatchIndex">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Определяет, должна ли для построения индекса нечеткого соответствия и последующих соответствий создаваться копия ссылочной таблицы. Настоятельно рекомендуется всегда создавать копию. В противном случае можно получить непредвиденные выходные результаты, если содержимое ссылочной таблицы изменится во время выполнения пакета (или между последовательными выполнениями, если повторно используется индекс нечеткого соответствия). Если это свойство имеет значение false, ссылочная таблица должна иметь кластеризованный индекс, построенный на целочисленном столбце идентификаторов."
+                          name="CopyReferenceTable">1</property>
+                        <property
+                          dataType="System.UInt32"
+                          description="Указывает максимальное количество нечетких соответствий, возвращаемых для входной записи."
+                          name="MaxOutputMatchesPerInput">1</property>
+                        <property
+                          dataType="System.Single"
+                          description="Указывает минимальный показатель подобия, необходимый для соответствия результатов, возвращаемых преобразованием."
+                          name="MinSimilarity">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает набор пробельных символов и знаков пунктуации, используемых для разделения полей нечеткого соответствия на слова, используемые для поиска соответствия и оценки подобия в ходе нечеткого уточняющего запроса."
+                          name="Delimiters"
+                          state="escaped">_x0020__x0009__x000D__x000A__x002C_._x003B_:-_x0022__x0027__x0026__x002F__x005C__x0040__x0021__x003F__x0028__x0029__x003C__x003E__x005B__x005D__x007B__x007D__x007C__x0023__x002A__x005E__x0025_</property>
+                        <property
+                          dataType="System.Null"
+                          description="Указывает метаданные ссылочной таблицы в формате XML."
+                          name="ReferenceMetadataXml"
+                          state="escaped" />
+                        <property
+                          dataType="System.Boolean"
+                          description="Значение true означает, что каждая входная запись будет непосредственно сравниваться с КАЖДОЙ записью в ссылочной таблице. Это может несколько повысить качество результатов, но резко снизит скорость обработки, если количество записей в связанной таблице не окажется очень небольшим. Обратите внимание, что если этот параметр включен, связанная таблица будет целиком загружена в основную память. Этот параметр предназначен в основном для отладки. При его использовании следует соблюдать осторожность."
+                          name="Exhaustive">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Значение true означает, что преобразование &quot;Нечеткий уточняющий запрос&quot; перед началом выполнения частично загрузит в основную память нечеткий индекс и ссылочную таблицу. Это может значительно увеличить производительность, если обрабатывается большое количество входных строк."
+                          name="WarmCaches">true</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Fuzzy Lookup.Connections[OleDbConnection]"
+                          description="Соединение Microsoft SQL Server и база данных, в которой расположена ссылочная таблица нечетких уточняющих запросов, а также хранится таблица индексов нечеткого соответствия и осуществляется доступ к ней."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Fuzzy Lookup.Inputs[Ввод преобразования &quot;Нечеткий уточняющий запрос&quot;]"
+                          name="Ввод преобразования &quot;Нечеткий уточняющий запрос&quot;">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Fuzzy Lookup.Outputs[Вывод преобразования &quot;Нечеткий уточняющий запрос&quot;]"
+                          name="Вывод преобразования &quot;Нечеткий уточняющий запрос&quot;">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Fuzzy Lookup.Outputs[Вывод преобразования &quot;Нечеткий уточняющий запрос&quot;].Columns[_Similarity]"
+                              dataType="r4"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Fuzzy Lookup.Outputs[Вывод преобразования &quot;Нечеткий уточняющий запрос&quot;].Columns[_Similarity]"
+                              name="_Similarity">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Указывает, используется ли столбец для указания на точное совпадение или подобие."
+                                  name="ColumnType"
+                                  typeConverter="tcColumnType">1</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Fuzzy Lookup.Outputs[Вывод преобразования &quot;Нечеткий уточняющий запрос&quot;].Columns[_Confidence]"
+                              dataType="r4"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Fuzzy Lookup.Outputs[Вывод преобразования &quot;Нечеткий уточняющий запрос&quot;].Columns[_Confidence]"
+                              name="_Confidence">
+                              <properties>
+                                <property
+                                  dataType="System.Int32"
+                                  description="Указывает, используется ли столбец для указания на точное совпадение или подобие."
+                                  name="ColumnType"
+                                  typeConverter="tcColumnType">2</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimCrimeTypeKey"
+                      componentClassID="Microsoft.Lookup"
+                      contactInfo="Уточняющий запрос;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;6"
+                      description="Присоединяет дополнительные столбцы к потоку данных путем поиска значений в таблице. Пример: соединение со столбцом &quot;employee id&quot; таблицы employees позволяет получить значения &quot;hire date&quot; и &quot;employee name&quot;. Рекомендуется воспользоваться этим преобразованием, если таблица подстановки не помещается в памяти."
+                      name="Lookup DimCrimeTypeKey"
+                      usesDispositions="true"
+                      version="6">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Задает инструкцию SQL, которая формирует таблицу уточняющих запросов."
+                          expressionType="Notify"
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [DimCrimeTypeKey]
+, UPPER ([CrimeType]) AS
+CrimeType from [dwh].[DimCrimeType]</property>
+                        <property
+                          dataType="System.String"
+                          description="Задает инструкцию SQL, которая использует параметры для формирования таблицы уточняющих запросов."
+                          expressionType="Notify"
+                          name="SqlCommandParam"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает тип соединения, используемого для доступа к эталонному набору данных."
+                          name="ConnectionType"
+                          typeConverter="LookupConnectionType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает тип кэша таблицы уточняющих запросов."
+                          name="CacheType"
+                          typeConverter="CacheType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает, как преобразование &quot;Уточняющий запрос&quot; обрабатывает строки без совпадающих элементов в эталонном наборе данных."
+                          name="NoMatchBehavior"
+                          typeConverter="LookupNoMatchBehavior">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает долю кэша (в процентах), выделенную для строк без совпадающих элементов в эталонном наборе данных."
+                          name="NoMatchCachePercentage">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Максимальный объем памяти для кэша ссылок на 32-разрядной платформе."
+                          name="MaxMemoryUsage">25</property>
+                        <property
+                          dataType="System.Int64"
+                          description="Максимальный объем памяти для кэша ссылок на 64-разрядной платформе."
+                          name="MaxMemoryUsage64">25</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает, следует ли ссылаться на метаданные в формате XML."
+                          name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DimCrimeTypeKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CrimeType" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Задает список идентификаторов журнала обращений и преобразований, сопоставляемый с параметрами, которые использует инструкция SQL в свойстве SQLCommand. Элементы списка разделяются точками с запятой."
+                          name="ParameterMap"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                          name="DefaultCodePage">1251</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Определяет, должны ли повторяющиеся ключи в ссылочных данных обрабатываться как ошибки при использовании режима полного кэширования."
+                          name="TreatDuplicateKeysAsError">false</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimCrimeTypeKey.Connections[OleDbConnection]"
+                          connectionManagerID="{221EC58F-AEA7-4113-B5BC-FA4AB494BEEC}:invalid"
+                          connectionManagerRefId="{221EC58F-AEA7-4113-B5BC-FA4AB494BEEC}:invalid"
+                          description="Диспетчер соединений, используемый для доступа к данным уточняющих запросов."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimCrimeTypeKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+                          name="Ввод преобразования &quot;Уточняющий запрос&quot;">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimCrimeTypeKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
+                          errorOrTruncationOperation="Уточняющий запрос"
+                          errorRowDisposition="IgnoreFailure"
+                          exclusionGroup="1"
+                          name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimCrimeTypeKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimCrimeTypeKey.Outputs[Выход несовпадающих строк уточняющего запроса]"
+                          description="Вывод преобразования &quot;Уточняющий запрос&quot;, которое обрабатывает строки без совпадающих элементов в эталонном наборе данных. Используйте этот выход, если свойство NoMatchBehavior имеет значение &quot;Отправить строки без совпадающих элементов в выход несовпадающих строк&quot;."
+                          exclusionGroup="1"
+                          name="Выход несовпадающих строк уточняющего запроса"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimCrimeTypeKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimCrimeTypeKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Вывод ошибок преобразования &quot;Уточняющий запрос&quot;"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimCrimeTypeKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimCrimeTypeKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimCrimeTypeKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimCrimeTypeKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimCrimeTypeKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimDateKey"
+                      componentClassID="Microsoft.Lookup"
+                      contactInfo="Уточняющий запрос;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;6"
+                      description="Присоединяет дополнительные столбцы к потоку данных путем поиска значений в таблице. Пример: соединение со столбцом &quot;employee id&quot; таблицы employees позволяет получить значения &quot;hire date&quot; и &quot;employee name&quot;. Рекомендуется воспользоваться этим преобразованием, если таблица подстановки не помещается в памяти."
+                      name="Lookup DimDateKey"
+                      usesDispositions="true"
+                      version="6">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Задает инструкцию SQL, которая формирует таблицу уточняющих запросов."
+                          expressionType="Notify"
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.String"
+                          description="Задает инструкцию SQL, которая использует параметры для формирования таблицы уточняющих запросов."
+                          expressionType="Notify"
+                          name="SqlCommandParam"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает тип соединения, используемого для доступа к эталонному набору данных."
+                          name="ConnectionType"
+                          typeConverter="LookupConnectionType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает тип кэша таблицы уточняющих запросов."
+                          name="CacheType"
+                          typeConverter="CacheType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает, как преобразование &quot;Уточняющий запрос&quot; обрабатывает строки без совпадающих элементов в эталонном наборе данных."
+                          name="NoMatchBehavior"
+                          typeConverter="LookupNoMatchBehavior">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает долю кэша (в процентах), выделенную для строк без совпадающих элементов в эталонном наборе данных."
+                          name="NoMatchCachePercentage">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Максимальный объем памяти для кэша ссылок на 32-разрядной платформе."
+                          name="MaxMemoryUsage">25</property>
+                        <property
+                          dataType="System.Int64"
+                          description="Максимальный объем памяти для кэша ссылок на 64-разрядной платформе."
+                          name="MaxMemoryUsage64">25</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает, следует ли ссылаться на метаданные в формате XML."
+                          name="ReferenceMetadataXml"></property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Задает список идентификаторов журнала обращений и преобразований, сопоставляемый с параметрами, которые использует инструкция SQL в свойстве SQLCommand. Элементы списка разделяются точками с запятой."
+                          name="ParameterMap"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                          name="DefaultCodePage">1251</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Определяет, должны ли повторяющиеся ключи в ссылочных данных обрабатываться как ошибки при использовании режима полного кэширования."
+                          name="TreatDuplicateKeysAsError">false</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimDateKey.Connections[OleDbConnection]"
+                          description="Диспетчер соединений, используемый для доступа к данным уточняющих запросов."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimDateKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+                          name="Ввод преобразования &quot;Уточняющий запрос&quot;">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimDateKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
+                          errorOrTruncationOperation="Уточняющий запрос"
+                          errorRowDisposition="FailComponent"
+                          exclusionGroup="1"
+                          name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimDateKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimDateKey.Outputs[Выход несовпадающих строк уточняющего запроса]"
+                          description="Вывод преобразования &quot;Уточняющий запрос&quot;, которое обрабатывает строки без совпадающих элементов в эталонном наборе данных. Используйте этот выход, если свойство NoMatchBehavior имеет значение &quot;Отправить строки без совпадающих элементов в выход несовпадающих строк&quot;."
+                          exclusionGroup="1"
+                          name="Выход несовпадающих строк уточняющего запроса"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimDateKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimDateKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Вывод ошибок преобразования &quot;Уточняющий запрос&quot;"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimDateKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimDateKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimDateKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimDateKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimDateKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimGeographyKey"
+                      componentClassID="Microsoft.Lookup"
+                      contactInfo="Уточняющий запрос;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;6"
+                      description="Присоединяет дополнительные столбцы к потоку данных путем поиска значений в таблице. Пример: соединение со столбцом &quot;employee id&quot; таблицы employees позволяет получить значения &quot;hire date&quot; и &quot;employee name&quot;. Рекомендуется воспользоваться этим преобразованием, если таблица подстановки не помещается в памяти."
+                      name="Lookup DimGeographyKey"
+                      usesDispositions="true"
+                      version="6">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Задает инструкцию SQL, которая формирует таблицу уточняющих запросов."
+                          expressionType="Notify"
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.String"
+                          description="Задает инструкцию SQL, которая использует параметры для формирования таблицы уточняющих запросов."
+                          expressionType="Notify"
+                          name="SqlCommandParam"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает тип соединения, используемого для доступа к эталонному набору данных."
+                          name="ConnectionType"
+                          typeConverter="LookupConnectionType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает тип кэша таблицы уточняющих запросов."
+                          name="CacheType"
+                          typeConverter="CacheType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает, как преобразование &quot;Уточняющий запрос&quot; обрабатывает строки без совпадающих элементов в эталонном наборе данных."
+                          name="NoMatchBehavior"
+                          typeConverter="LookupNoMatchBehavior">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает долю кэша (в процентах), выделенную для строк без совпадающих элементов в эталонном наборе данных."
+                          name="NoMatchCachePercentage">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Максимальный объем памяти для кэша ссылок на 32-разрядной платформе."
+                          name="MaxMemoryUsage">25</property>
+                        <property
+                          dataType="System.Int64"
+                          description="Максимальный объем памяти для кэша ссылок на 64-разрядной платформе."
+                          name="MaxMemoryUsage64">25</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает, следует ли ссылаться на метаданные в формате XML."
+                          name="ReferenceMetadataXml"></property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Задает список идентификаторов журнала обращений и преобразований, сопоставляемый с параметрами, которые использует инструкция SQL в свойстве SQLCommand. Элементы списка разделяются точками с запятой."
+                          name="ParameterMap"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                          name="DefaultCodePage">1251</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Определяет, должны ли повторяющиеся ключи в ссылочных данных обрабатываться как ошибки при использовании режима полного кэширования."
+                          name="TreatDuplicateKeysAsError">false</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimGeographyKey.Connections[OleDbConnection]"
+                          description="Диспетчер соединений, используемый для доступа к данным уточняющих запросов."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimGeographyKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+                          name="Ввод преобразования &quot;Уточняющий запрос&quot;">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimGeographyKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
+                          errorOrTruncationOperation="Уточняющий запрос"
+                          errorRowDisposition="FailComponent"
+                          exclusionGroup="1"
+                          name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimGeographyKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimGeographyKey.Outputs[Выход несовпадающих строк уточняющего запроса]"
+                          description="Вывод преобразования &quot;Уточняющий запрос&quot;, которое обрабатывает строки без совпадающих элементов в эталонном наборе данных. Используйте этот выход, если свойство NoMatchBehavior имеет значение &quot;Отправить строки без совпадающих элементов в выход несовпадающих строк&quot;."
+                          exclusionGroup="1"
+                          name="Выход несовпадающих строк уточняющего запроса"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimGeographyKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimGeographyKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Вывод ошибок преобразования &quot;Уточняющий запрос&quot;"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimGeographyKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimGeographyKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimGeographyKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimGeographyKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimGeographyKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLEDST FactPopulation"
+                      componentClassID="Microsoft.OLEDBDestination"
+                      contactInfo="Назначение &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;4"
+                      description="Назначение &quot;OLE DB&quot;"
+                      name="OLEDST FactPopulation"
+                      usesDispositions="true"
+                      version="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                          name="OpenRowset"></property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="Команда SQL для выполнения."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                          name="DefaultCodePage">1251</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает используемый режим доступа к базе данных."
+                          name="AccessMode"
+                          typeConverter="AccessMode">0</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Указывает, должны ли значения в столбцах идентификаторов копироваться в назначение. Если свойство имеет значение false, значения в столбцах идентификаторов будут созданы автоматически в месте назначения. Применяется только в том случае, если включена быстрая загрузка."
+                          name="FastLoadKeepIdentity">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Указывает, будут ли в назначение вставляться значения NULL для столбцов, содержащих их. Значение false показывает, что если столбец имеет значение NULL, то в назначение будет вставлено его значение по умолчанию. Применяется только в случае, если включена быстрая загрузка."
+                          name="FastLoadKeepNulls">false</property>
+                        <property
+                          dataType="System.String"
+                          description="Задает параметры быстрой загрузки. Применяется только в том случае, если включена быстрая загрузка."
+                          name="FastLoadOptions"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает, когда выдаются сообщения о фиксации транзакции в ходе вставки данных. Значение 0 задает, что по окончании вставки данных будет выдано одно сообщение о фиксации транзакции. Применяется только в том случае, если включена быстрая загрузка."
+                          name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLEDST FactPopulation.Connections[OleDbConnection]"
+                          description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;]"
+                          errorOrTruncationOperation="Вставить"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="Вход назначения &quot;OLE DB&quot;">
+                          <externalMetadataColumns
+                            isUsed="True" />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLEDST FactPopulation.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Вывод ошибок назначения &quot;OLE DB&quot;"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLEDST FactPopulation.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLEDST FactPopulation.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLEDST FactPopulation.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLEDST FactPopulation.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted"
+                      componentClassID="Microsoft.OLEDBSource"
+                      contactInfo="Источник &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;7"
+                      description="Источник &quot;OLE DB&quot;"
+                      name="OLESRC staging_uncrime_unpivoted"
+                      usesDispositions="true"
+                      version="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                          name="OpenRowset"></property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="Команда SQL для выполнения."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT 
+      [FileName]
+      ,UPPER([CountryName]) AS [Country]
+      ,CAST([Count] AS INT) AS [NumOfCrime]
+  FROM [staging].[uncrime_unpivoted]</property>
+                        <property
+                          dataType="System.String"
+                          description="Переменная, содержащая команду SQL для выполнения."
+                          name="SqlCommandVariable"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                          name="DefaultCodePage">1251</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает используемый режим доступа к базе данных."
+                          name="AccessMode"
+                          typeConverter="AccessMode">2</property>
+                        <property
+                          dataType="System.String"
+                          description="Сопоставления между параметрами в команде SQL и переменными."
+                          name="ParameterMapping"></property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Connections[OleDbConnection]"
+                          connectionManagerID="{B8E2585F-6E26-4C20-8623-14312421E200}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[CrimeStatistic.DWH]"
+                          description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                          name="OleDbConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;]"
+                          name="Выход источника &quot;OLE DB&quot;">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[FileName]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Преобразование"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[FileName]"
+                              length="100"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[FileName]"
+                              name="FileName"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Country]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Преобразование"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Country]"
+                              length="100"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Country]"
+                              name="Country"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[NumOfCrime]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Преобразование"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[NumOfCrime]"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[NumOfCrime]"
+                              name="NumOfCrime"
+                              truncationRowDisposition="FailComponent" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[FileName]"
+                              dataType="wstr"
+                              length="100"
+                              name="FileName" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Country]"
+                              dataType="wstr"
+                              length="100"
+                              name="Country" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[NumOfCrime]"
+                              dataType="i4"
+                              name="NumOfCrime" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;]"
+                          isErrorOut="true"
+                          name="Вывод ошибок источника &quot;OLE DB&quot;">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[FileName]"
+                              dataType="wstr"
+                              length="100"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[FileName]"
+                              name="FileName" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Country]"
+                              dataType="wstr"
+                              length="100"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Country]"
+                              name="Country" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[NumOfCrime]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[NumOfCrime]"
+                              name="NumOfCrime" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All"
+                      componentClassID="Microsoft.UnionAll"
+                      contactInfo="Union All;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;1"
+                      description="Объединяет строки из нескольких потоков данных без сортировки. Пример: добавление строк назад в поток данных после исправления ошибок. Если сортировка имеет значение, рекомендуется использовать преобразование &quot;Слияние&quot;."
+                      name="Union All"
+                      version="1">
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Inputs[Входные данные 1 Union All]"
+                          hasSideEffects="true"
+                          name="Входные данные 1 Union All">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Inputs[Входные данные 1 Union All].Columns[FileName]"
+                              cachedDataType="wstr"
+                              cachedLength="100"
+                              cachedName="FileName"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[FileName]">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="ID журнала преобразований выходного столбца"
+                                  name="OutputColumnLineageID">#{Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Outputs[Union All Выход 1].Columns[FileName]}</property>
+                              </properties>
+                            </inputColumn>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Inputs[Входные данные 1 Union All].Columns[Country]"
+                              cachedDataType="wstr"
+                              cachedLength="100"
+                              cachedName="Country"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Country]">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="ID журнала преобразований выходного столбца"
+                                  name="OutputColumnLineageID">#{Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Outputs[Union All Выход 1].Columns[Country]}</property>
+                              </properties>
+                            </inputColumn>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Inputs[Входные данные 1 Union All].Columns[NumOfCrime]"
+                              cachedDataType="i4"
+                              cachedName="NumOfCrime"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[NumOfCrime]">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="ID журнала преобразований выходного столбца"
+                                  name="OutputColumnLineageID">#{Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Outputs[Union All Выход 1].Columns[NumOfCrime]}</property>
+                              </properties>
+                            </inputColumn>
+                          </inputColumns>
+                          <externalMetadataColumns />
+                        </input>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Inputs[Входные данные 2 Union All]"
+                          hasSideEffects="true"
+                          name="Входные данные 2 Union All">
+                          <externalMetadataColumns />
+                        </input>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Inputs[Входные данные 3 Union All]"
+                          dangling="true"
+                          hasSideEffects="true"
+                          name="Входные данные 3 Union All">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Outputs[Union All Выход 1]"
+                          name="Union All Выход 1">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Outputs[Union All Выход 1].Columns[FileName]"
+                              dataType="wstr"
+                              length="100"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Outputs[Union All Выход 1].Columns[FileName]"
+                              name="FileName" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Outputs[Union All Выход 1].Columns[Country]"
+                              dataType="wstr"
+                              length="100"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Outputs[Union All Выход 1].Columns[Country]"
+                              name="Country" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Outputs[Union All Выход 1].Columns[NumOfCrime]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Outputs[Union All Выход 1].Columns[NumOfCrime]"
+                              name="NumOfCrime" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime.Paths[Union All Выход 1]"
+                      endId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;]"
+                      name="Union All Выход 1"
+                      startId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Outputs[Union All Выход 1]" />
+                    <path
+                      refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime.Paths[Вывод преобразования &quot;Нечеткий уточняющий запрос&quot;]"
+                      endId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Inputs[Входные данные 2 Union All]"
+                      name="Вывод преобразования &quot;Нечеткий уточняющий запрос&quot;"
+                      startId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Fuzzy Lookup.Outputs[Вывод преобразования &quot;Нечеткий уточняющий запрос&quot;]" />
+                    <path
+                      refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
+                      endId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimDateKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+                      name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+                      startId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimCrimeTypeKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]" />
+                    <path
+                      refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;1]"
+                      endId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimGeographyKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+                      name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+                      startId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimDateKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]" />
+                    <path
+                      refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;2]"
+                      endId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All.Inputs[Входные данные 1 Union All]"
+                      name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+                      startId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimGeographyKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]" />
+                    <path
+                      refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime.Paths[Выход источника &quot;OLE DB&quot;]"
+                      endId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Der Col File Name.Inputs[Вход производного столбца]"
+                      name="Выход источника &quot;OLE DB&quot;"
+                      startId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;]" />
+                    <path
+                      refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime.Paths[Выход несовпадающих строк уточняющего запроса]"
+                      endId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Fuzzy Lookup.Inputs[Ввод преобразования &quot;Нечеткий уточняющий запрос&quot;]"
+                      name="Выход несовпадающих строк уточняющего запроса"
+                      startId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimGeographyKey.Outputs[Выход несовпадающих строк уточняющего запроса]" />
+                    <path
+                      refId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime.Paths[Выход производного столбца]"
+                      endId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimCrimeTypeKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+                      name="Выход производного столбца"
+                      startId="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Der Col File Name.Outputs[Выход производного столбца]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Main\SEQC Preparation FactCrime"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Контейнер последовательности"
+          DTS:DTSID="{D4669247-D686-476B-A979-16A0632FBD63}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SEQC Preparation FactCrime">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:DTSID="{2223F77E-47EB-415A-A4D1-2966703D76EA}"
+              DTS:IncludeInDebugDump="2345"
+              DTS:Namespace="User"
+              DTS:ObjectName="RowCountDimDate">
+              <DTS:VariableValue
+                DTS:DataType="8"
+                xml:space="preserve"></DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\SEQC Main\SEQC Preparation FactCrime\SQL Check truncate dwh_FactCrime"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Задача &quot;Выполнение SQL&quot;"
+              DTS:DTSID="{C50E82A1-AB52-44A2-B2D0-8C1D7F332C7F}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL Check truncate dwh_FactCrime"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{B8E2585F-6E26-4C20-8623-14312421E200}"
+                  SQLTask:SqlStatementSource=" TRUNCATE TABLE [dwh].[FactCrime]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC Main.PrecedenceConstraints[Ограничение]"
+          DTS:CreationName=""
+          DTS:DTSID="{E165559A-6882-494B-9C35-C97114145B62}"
+          DTS:From="Package\SEQC Main\SEQC Preparation FactCrime"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Ограничение"
+          DTS:To="Package\SEQC Main\SEQC Load FactCrime" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Log Package End"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Задача &quot;Выполнение SQL&quot;"
+      DTS:DTSID="{E097FC7A-9D25-490F-803A-3F7CCD745AC7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Log Package End"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B8E2585F-6E26-4C20-8623-14312421E200}"
+          SQLTask:SqlStatementSource="EXEC [etl].[usp_PackageExecutionHistory_Update] ?,?,'success', 'test'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Log Package Failer"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Задача &quot;Выполнение SQL&quot;"
+      DTS:DTSID="{34FA1523-040D-4173-92D5-02D62DFEC6F7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Log Package Failer"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B8E2585F-6E26-4C20-8623-14312421E200}"
+          SQLTask:SqlStatementSource="EXEC [etl].[usp_PackageExecutionHistory_Update] ?,?,'failed', 'test'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Log Package Start"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Задача &quot;Выполнение SQL&quot;"
+      DTS:DTSID="{EBDEA0D5-9FFF-4570-906F-13F94E33CB73}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Log Package Start"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B8E2585F-6E26-4C20-8623-14312421E200}"
+          SQLTask:SqlStatementSource="EXEC [etl].[usp_PackageExecutionHistory_Create] ?,? &#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Ограничение]"
+      DTS:CreationName=""
+      DTS:DTSID="{802CBE21-90E8-4F6F-AB74-77BB3B62D437}"
+      DTS:From="Package\SEQC Main"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Ограничение"
+      DTS:To="Package\SQL Log Package End" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Ограничение 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{033B85E5-B313-4663-96D2-FDA7009BF563}"
+      DTS:From="Package\SQL Log Package Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Ограничение 1"
+      DTS:To="Package\SEQC Main" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Ограничение 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{1E96F212-07DE-4E91-B6E6-7635FE60E162}"
+      DTS:From="Package\SEQC Main"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Ограничение 2"
+      DTS:To="Package\SQL Log Package Failer"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--В данном разделе CDATA содержатся сведения о макете пакета. В данном разделе содержатся сведения о координатах (x,y), ширине и высоте.-->
+<!--В случае возникновения ошибки при редактировании этого раздела вручную его можно удалить. -->
+<!--Пакет можно загрузить обычным образом, но прежние сведения о макете будут утеряны, и конструктор автоматически перераспределит элементы в области конструктора.-->
+<Objects
+  Version="8">
+  <!--Все приведенные ниже узлы будут содержать свойства, не влияющие на поведение среды выполнения.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="246,42"
+          Id="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="257,103"
+          Size="257,146"
+          Id="Package\SEQC Main\SEQC Load FactCrime"
+          TopLeft="5.5,5.5" />
+        <NodeLayout
+          Size="258,42"
+          Id="Package\SEQC Main\SEQC Preparation FactCrime\SQL Check truncate dwh_FactCrime"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="269,103"
+          Size="269,146"
+          Id="Package\SEQC Main\SEQC Preparation FactCrime"
+          TopLeft="323.5,5.5" />
+        <EdgeLayout
+          Id="Package\SEQC Main.PrecedenceConstraints[Ограничение]"
+          TopLeft="323.5,78.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-61,0"
+              Start="0,0"
+              End="-53.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-53.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="598,207"
+          Size="598,250"
+          Id="Package\SEQC Main"
+          TopLeft="54,107.5" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\SQL Log Package End"
+          TopLeft="29.5000000000001,405.5" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\SQL Log Package Failer"
+          TopLeft="404.5,412.5" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\SQL Log Package Start"
+          TopLeft="256,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Ограничение]"
+          TopLeft="254.666666666667,357.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-129.666666666667,48"
+              Start="0,0"
+              End="-129.666666666667,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.2768512341561" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.2768512341561"
+                    Point2="0,19.2768512341561"
+                    Point3="-4,19.2768512341561" />
+                  <mssgle:LineSegment
+                    End="-125.666666666667,19.2768512341561" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-125.666666666667,19.2768512341561"
+                    Point2="-129.666666666667,19.2768512341561"
+                    Point3="-129.666666666667,23.2768512341561" />
+                  <mssgle:LineSegment
+                    End="-129.666666666667,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Ограничение 1]"
+          TopLeft="353,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Ограничение 2]"
+          TopLeft="451.333333333333,357.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="48.6666666666667,55"
+              Start="0,0"
+              End="48.6666666666667,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.0880587058039" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.0880587058039"
+                    Point2="0,22.0880587058039"
+                    Point3="4,22.0880587058039" />
+                  <mssgle:LineSegment
+                    End="44.6666666666667,22.0880587058039" />
+                  <mssgle:CubicBezierSegment
+                    Point1="44.6666666666667,22.0880587058039"
+                    Point2="48.6666666666667,22.0880587058039"
+                    Point3="48.6666666666667,26.0880587058039" />
+                  <mssgle:LineSegment
+                    End="48.6666666666667,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="12.5391145833334,27.0880587058039,23.5884375,10.1396484375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="180,42"
+          Id="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimDateKey"
+          TopLeft="317,287.5" />
+        <NodeLayout
+          Size="123,42"
+          Id="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Union All"
+          TopLeft="364,446" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimCrimeTypeKey"
+          TopLeft="313.5,201.5" />
+        <NodeLayout
+          Size="147,42"
+          Id="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Fuzzy Lookup"
+          TopLeft="728,333" />
+        <NodeLayout
+          Size="262,42"
+          Id="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted"
+          TopLeft="284.5,42.5" />
+        <NodeLayout
+          Size="199,42"
+          Id="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLEDST FactPopulation"
+          TopLeft="713,457" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Der Col File Name"
+          TopLeft="347,118" />
+        <NodeLayout
+          Size="211,42"
+          Id="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimGeographyKey"
+          TopLeft="328,354" />
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime.Paths[Выход производного столбца]"
+          TopLeft="431.5,160">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-13,41.5"
+              Start="0,0"
+              End="-13,34">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.75"
+                    Point2="0,20.75"
+                    Point3="-4,20.75" />
+                  <mssgle:LineSegment
+                    End="-9,20.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-9,20.75"
+                    Point2="-13,20.75"
+                    Point3="-13,24.75" />
+                  <mssgle:LineSegment
+                    End="-13,34" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime.Paths[Выход источника &quot;OLE DB&quot;]"
+          TopLeft="415.5,84.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="16,33.5"
+              Start="0,0"
+              End="16,26">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.75"
+                    Point2="0,16.75"
+                    Point3="4,16.75" />
+                  <mssgle:LineSegment
+                    End="12,16.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="12,16.75"
+                    Point2="16,16.75"
+                    Point3="16,20.75" />
+                  <mssgle:LineSegment
+                    End="16,26" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
+          TopLeft="418.5,243.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.5,44"
+              Start="0,0"
+              End="-11.5,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18"
+                    Point2="0,22"
+                    Point3="-4,22" />
+                  <mssgle:LineSegment
+                    End="-7.5,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.5,22"
+                    Point2="-11.5,22"
+                    Point3="-11.5,26" />
+                  <mssgle:LineSegment
+                    End="-11.5,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-140.43986328125,27,269.3797265625,12"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;1]"
+          TopLeft="407,329.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26.5,24.5"
+              Start="0,0"
+              End="26.5,17">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.25"
+                    Point2="0,12.25"
+                    Point3="4,12.25" />
+                  <mssgle:LineSegment
+                    End="22.5,12.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.5,12.25"
+                    Point2="26.5,12.25"
+                    Point3="26.5,16.25" />
+                  <mssgle:LineSegment
+                    End="26.5,17" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-121.43986328125,17.25,269.3797265625,12"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;2]"
+          TopLeft="433.5,396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8,50"
+              Start="0,0"
+              End="-8,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21"
+                    Point2="0,25"
+                    Point3="-4,25" />
+                  <mssgle:LineSegment
+                    End="-4,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4,25"
+                    Point2="-8,25"
+                    Point3="-8,29" />
+                  <mssgle:LineSegment
+                    End="-8,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-138.68986328125,30,269.3797265625,12"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime.Paths[Выход несовпадающих строк уточняющего запроса]"
+          TopLeft="539,375">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="189,-21"
+              Start="0,0"
+              End="181.5,-21">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="90.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="90.5,0"
+                    Point2="94.5,0"
+                    Point3="94.5,-4" />
+                  <mssgle:LineSegment
+                    End="94.5,-17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="94.5,-17"
+                    Point2="94.5,-21"
+                    Point3="98.5,-21" />
+                  <mssgle:LineSegment
+                    End="181.5,-21" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-25.098359375,1,239.19671875,11.2822265625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime.Paths[Вывод преобразования &quot;Нечеткий уточняющий запрос&quot;]"
+          TopLeft="801.5,375">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-356.833333333333,71"
+              Start="0,0"
+              End="-356.833333333333,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.0529695024077" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.0529695024077"
+                    Point2="0,42.0529695024077"
+                    Point3="-4,42.0529695024077" />
+                  <mssgle:LineSegment
+                    End="-352.833333333333,42.0529695024077" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-352.833333333333,42.0529695024077"
+                    Point2="-356.833333333333,42.0529695024077"
+                    Point3="-356.833333333333,46.0529695024077" />
+                  <mssgle:LineSegment
+                    End="-356.833333333333,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime.Paths[Union All Выход 1]"
+          TopLeft="487,467">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="226,11"
+              Start="0,0"
+              End="218.5,11">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="109,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="109,0"
+                    Point2="113,0"
+                    Point3="113,4" />
+                  <mssgle:LineSegment
+                    End="113,7" />
+                  <mssgle:CubicBezierSegment
+                    Point1="113,7"
+                    Point2="113,11"
+                    Point3="117,11" />
+                  <mssgle:LineSegment
+                    End="218.5,11" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimDateKey">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\Lookup DimCrimeTypeKey">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Main\SEQC Load FactCrime\DFT Load Data to dwh_FactCrime\OLESRC staging_uncrime_unpivoted">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

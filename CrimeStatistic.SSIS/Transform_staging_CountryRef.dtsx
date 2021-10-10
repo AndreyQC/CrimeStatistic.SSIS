@@ -11,24 +11,10 @@
   DTS:LocaleID="1049"
   DTS:ObjectName="Transform_staging_CountryRef"
   DTS:PackageType="5"
-  DTS:VersionBuild="36"
-  DTS:VersionGUID="{1C69BB89-B6E4-417A-B51F-84860D046059}">
+  DTS:VersionBuild="39"
+  DTS:VersionGUID="{13F55783-4345-42AE-ABB4-3E85872FC8E9}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[CrimeStatisticNew.DWH]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{44DB442A-95AD-447C-88CF-BA1ADF144228}"
-      DTS:ObjectName="CrimeStatisticNew.DWH">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=LAPTOP-1NH4N0S3\MSSQL2019;Initial Catalog=CrimeStatistic.DWH;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:LogProviders>
     <DTS:LogProvider
       DTS:ConfigString="CrimeStatistic.DWH"
@@ -236,8 +222,8 @@
                       <connections>
                         <connection
                           refId="Package\SEQC Main\SEQC Load staging_CountryRef\DFT Load data from staging_counrtiesref_untyped to Staging_CountryRef\OLESRC Table Staging_countriesref_untyped.Connections[OleDbConnection]"
-                          connectionManagerID="Package.ConnectionManagers[CrimeStatisticNew.DWH]"
-                          connectionManagerRefId="Package.ConnectionManagers[CrimeStatisticNew.DWH]"
+                          connectionManagerID="{B8E2585F-6E26-4C20-8623-14312421E200}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[CrimeStatistic.DWH]"
                           description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                           name="OleDbConnection" />
                       </connections>
@@ -653,8 +639,8 @@
                       <connections>
                         <connection
                           refId="Package\SEQC Main\SEQC Load staging_CountryRef\DFT Load data from staging_counrtiesref_untyped to Staging_CountryRef\OLESRC Table Staging_CountryRef.Connections[OleDbConnection]"
-                          connectionManagerID="Package.ConnectionManagers[CrimeStatisticNew.DWH]"
-                          connectionManagerRefId="Package.ConnectionManagers[CrimeStatisticNew.DWH]"
+                          connectionManagerID="{B8E2585F-6E26-4C20-8623-14312421E200}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[CrimeStatistic.DWH]"
                           description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                           name="OleDbConnection" />
                       </connections>
@@ -874,7 +860,7 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\SEQC Main.PrecedenceConstraints[Ограничение]"
           DTS:CreationName=""
-          DTS:DTSID="{CBBD419D-18C4-4B70-8A36-FFA6632F403F}"
+          DTS:DTSID="{37C65D05-4279-4914-ADF2-8072D407EE88}"
           DTS:From="Package\SEQC Main\SEQC Preparation table staging_CountryRef"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Ограничение"
@@ -889,7 +875,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL Log Package End"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -918,7 +904,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL Log Package Failer"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -947,7 +933,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL Log Package Start"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -971,6 +957,14 @@
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Ограничение]"
+      DTS:CreationName=""
+      DTS:DTSID="{08863139-2E75-43F5-8EB6-4918BE89A368}"
+      DTS:From="Package\SEQC Main"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Ограничение"
+      DTS:To="Package\SQL Log Package End" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Ограничение 1]"
       DTS:CreationName=""
       DTS:DTSID="{DCA2FD46-BEF2-41B9-B18C-276E28AB57DC}"
@@ -981,19 +975,11 @@
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Ограничение 2]"
       DTS:CreationName=""
-      DTS:DTSID="{DD4D8784-808D-45DC-9804-BCE181DC71A7}"
-      DTS:From="Package\SQL Log Package End"
+      DTS:DTSID="{6A1655CA-DA4D-42CF-A362-CC379711B2C0}"
+      DTS:From="Package\SEQC Main"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Ограничение 2"
-      DTS:To="Package\SEQC Main" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Ограничение 3]"
-      DTS:CreationName=""
-      DTS:DTSID="{DE3808FD-B22C-472F-8F38-D476DC6188FC}"
-      DTS:From="Package\SQL Log Package Failer"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Ограничение 3"
-      DTS:To="Package\SEQC Main"
+      DTS:To="Package\SQL Log Package Failer"
       DTS:Value="1" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
@@ -1011,51 +997,51 @@
         <NodeLayout
           Size="438,42"
           Id="Package\SEQC Main\SEQC Load staging_CountryRef\DFT Load data from staging_counrtiesref_untyped to Staging_CountryRef"
-          TopLeft="53,40" />
+          TopLeft="3.5,27.5" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="496,162"
-          Size="496,205"
+          PanelSize="447,125"
+          Size="447,168"
           Id="Package\SEQC Main\SEQC Load staging_CountryRef"
-          TopLeft="14.3571428571428,211.285714285714" />
+          TopLeft="44.5000000000001,202.5" />
         <NodeLayout
           Size="247,42"
           Id="Package\SEQC Main\SEQC Preparation table staging_CountryRef\SQL Truncate staging_CountryRef"
-          TopLeft="27.571428571429,19" />
+          TopLeft="32.5,26.5" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="320,116"
-          Size="320,159"
+          PanelSize="315,123"
+          Size="315,166"
           Id="Package\SEQC Main\SEQC Preparation table staging_CountryRef"
-          TopLeft="117,27" />
+          TopLeft="101,5.5" />
         <EdgeLayout
           Id="Package\SEQC Main.PrecedenceConstraints[Ограничение]"
-          TopLeft="277,186">
+          TopLeft="258.5,171.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-14.6428571428572,25.285714285714"
+              EndConnector="9.50000000000006,31"
               Start="0,0"
-              End="-14.6428571428572,17.785714285714">
+              End="9.50000000000006,23.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,8.642857142857" />
+                    End="0,11.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,8.642857142857"
-                    Point2="0,12.642857142857"
-                    Point3="-4,12.642857142857" />
+                    Point1="0,11.5"
+                    Point2="0,15.5"
+                    Point3="4,15.5" />
                   <mssgle:LineSegment
-                    End="-10.6428571428572,12.642857142857" />
+                    End="5.50000000000006,15.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-10.6428571428572,12.642857142857"
-                    Point2="-14.6428571428572,12.642857142857"
-                    Point3="-14.6428571428572,16.642857142857" />
+                    Point1="5.50000000000006,15.5"
+                    Point2="9.50000000000006,15.5"
+                    Point3="9.50000000000006,19.5" />
                   <mssgle:LineSegment
-                    End="-14.6428571428572,17.785714285714" />
+                    End="9.50000000000006,23.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1067,48 +1053,82 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="515,471"
-          Size="515,514"
+          PanelSize="529,412"
+          Size="529,455"
           Id="Package\SEQC Main"
-          TopLeft="350.785714285713,170.071428571429" />
+          TopLeft="151,113.5" />
         <NodeLayout
           Size="191,42"
           Id="Package\SQL Log Package End"
-          TopLeft="320.571428571429,756.857142857143" />
+          TopLeft="134.5,599.5" />
         <NodeLayout
-          Size="191,42"
+          Size="199,42"
           Id="Package\SQL Log Package Failer"
-          TopLeft="664,759.571428571428" />
+          TopLeft="414.5,601.5" />
         <NodeLayout
           Size="194,42"
           Id="Package\SQL Log Package Start"
-          TopLeft="487,42" />
+          TopLeft="244,15.5" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Ограничение 1]"
-          TopLeft="584,84">
+          Id="Package.PrecedenceConstraints[Ограничение]"
+          TopLeft="328.666666666667,568.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="24.2857142857131,86.071428571429"
+              EndConnector="-98.6666666666666,31.0000000000001"
               Start="0,0"
-              End="24.2857142857131,78.571428571429">
+              End="-98.6666666666666,23.5000000000001">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,39.0357142857145" />
+                    End="0,8.45608744817192" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,39.0357142857145"
-                    Point2="0,43.0357142857145"
-                    Point3="4,43.0357142857145" />
+                    Point1="0,8.45608744817192"
+                    Point2="0,12.4560874481719"
+                    Point3="-4,12.4560874481719" />
                   <mssgle:LineSegment
-                    End="20.2857142857131,43.0357142857145" />
+                    End="-94.6666666666666,12.4560874481719" />
                   <mssgle:CubicBezierSegment
-                    Point1="20.2857142857131,43.0357142857145"
-                    Point2="24.2857142857131,43.0357142857145"
-                    Point3="24.2857142857131,47.0357142857145" />
+                    Point1="-94.6666666666666,12.4560874481719"
+                    Point2="-98.6666666666666,12.4560874481719"
+                    Point3="-98.6666666666666,16.4560874481719" />
                   <mssgle:LineSegment
-                    End="24.2857142857131,78.571428571429" />
+                    End="-98.6666666666666,23.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Ограничение 1]"
+          TopLeft="341,57.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="74.5,56"
+              Start="0,0"
+              End="74.5,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24"
+                    Point2="0,28"
+                    Point3="4,28" />
+                  <mssgle:LineSegment
+                    End="70.5,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="70.5,28"
+                    Point2="74.5,28"
+                    Point3="74.5,32" />
+                  <mssgle:LineSegment
+                    End="74.5,48.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1119,71 +1139,37 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Ограничение 2]"
-          TopLeft="416.071428571429,756.857142857143">
+          TopLeft="502.333333333333,568.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="107.714285714284,-72.785714285714"
+              EndConnector="11.6666666666667,33"
               Start="0,0"
-              End="107.714285714284,-65.285714285714">
+              End="11.6666666666667,25.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-39.5361705657871" />
+                    End="0,9.25970599321523" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-39.5361705657871"
-                    Point2="0,-43.5361705657871"
-                    Point3="4,-43.5361705657871" />
+                    Point1="0,9.25970599321523"
+                    Point2="0,13.2597059932152"
+                    Point3="4,13.2597059932152" />
                   <mssgle:LineSegment
-                    End="103.714285714284,-43.5361705657871" />
+                    End="7.66666666666669,13.2597059932152" />
                   <mssgle:CubicBezierSegment
-                    Point1="103.714285714284,-43.5361705657871"
-                    Point2="107.714285714284,-43.5361705657871"
-                    Point3="107.714285714284,-47.5361705657871" />
+                    Point1="7.66666666666669,13.2597059932152"
+                    Point2="11.6666666666667,13.2597059932152"
+                    Point3="11.6666666666667,17.2597059932152" />
                   <mssgle:LineSegment
-                    End="107.714285714284,-65.285714285714" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Ограничение 3]"
-          TopLeft="759.5,759.571428571428">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-66.7142857142869,-75.499999999999"
-              Start="0,0"
-              End="-66.7142857142869,-67.999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-41.1596980255511" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,-41.1596980255511"
-                    Point2="0,-45.1596980255511"
-                    Point3="-4,-45.1596980255511" />
-                  <mssgle:LineSegment
-                    End="-62.7142857142869,-45.1596980255511" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-62.7142857142869,-45.1596980255511"
-                    Point2="-66.7142857142869,-45.1596980255511"
-                    Point3="-66.7142857142869,-49.1596980255511" />
-                  <mssgle:LineSegment
-                    End="-66.7142857142869,-67.999999999999" />
+                    End="11.6666666666667,25.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-45.1513616071435,-40.1596980255511,23.5884375,10.1396484375"
+              BoundingBox="-5.96088541666666,18.2597059932152,23.5884375,10.1396484375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1194,7 +1180,7 @@
     design-time-name="Package\SEQC Main\SEQC Load staging_CountryRef\DFT Load data from staging_counrtiesref_untyped to Staging_CountryRef">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="257,42"
           Id="Package\SEQC Main\SEQC Load staging_CountryRef\DFT Load data from staging_counrtiesref_untyped to Staging_CountryRef\OLESRC Table Staging_CountryRef"
@@ -1222,9 +1208,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,21.75,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
