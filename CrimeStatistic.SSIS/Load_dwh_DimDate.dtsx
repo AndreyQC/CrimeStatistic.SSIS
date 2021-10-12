@@ -11,8 +11,8 @@
   DTS:LocaleID="1049"
   DTS:ObjectName="Load_dwh_DimDate"
   DTS:PackageType="5"
-  DTS:VersionBuild="50"
-  DTS:VersionGUID="{3100B119-57B0-4A9C-985B-A331DE26417A}">
+  DTS:VersionBuild="60"
+  DTS:VersionGUID="{17ADCB0E-83C3-41CD-A9B4-AE24B3229F09}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:LogProviders>
@@ -138,7 +138,7 @@
           DTS:Description="Контейнер последовательности"
           DTS:DTSID="{39D50779-5932-40A2-9E10-16E279C20CA0}"
           DTS:ExecutableType="STOCK:SEQUENCE"
-          DTS:LocaleID="-1"
+          DTS:LocaleID="9"
           DTS:ObjectName="SEQC Load Data to dwh_DimDate">
           <DTS:Variables />
           <DTS:LoggingOptions
@@ -148,7 +148,7 @@
               DTS:refId="Package\SEQC Main\SEQC Load Data to dwh_DimDate\SQL Ceed dwh_DimDate by SP usp_DimDateSeed"
               DTS:CreationName="Microsoft.ExecuteSQLTask"
               DTS:Description="Задача &quot;Выполнение SQL&quot;"
-              DTS:DTSID="{45DC57E2-BC6C-4357-92FA-DAD53FF20EB6}"
+              DTS:DTSID="{0564D959-F1D1-4339-9FD4-C91A942ED8AD}"
               DTS:ExecutableType="Microsoft.ExecuteSQLTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="SQL Ceed dwh_DimDate by SP usp_DimDateSeed"
@@ -157,8 +157,7 @@
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
                   SQLTask:Connection="{B8E2585F-6E26-4C20-8623-14312421E200}"
-                  SQLTask:BypassPrepare="False"
-                  SQLTask:SqlStatementSource="DECLARE @DateBegin date &#xA;DECLARE @DateEnd date &#xA;&#xA;SET @DateBegin = '19600101' &#xA;SET @DateEnd = GETDATE()  &#xA;&#xA;EXECUTE [etl].[usp_DimDateSeed]  &#xA;   @DateBegin &#xA;  ,@DateEnd &#xA;&#xA;GO " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  SQLTask:SqlStatementSource="DECLARE @DateBegin date &#xA;&#xA;DECLARE @DateEnd date &#xA;&#xA; &#xA;&#xA;SET @DateBegin = '19600101' &#xA;&#xA;SET @DateEnd = GETDATE() &#xA;&#xA; &#xA;&#xA;EXECUTE [etl].[usp_DimDateSeed]  &#xA;&#xA;   @DateBegin &#xA;&#xA;  ,@DateEnd &#xA;&#xA;GO " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
               </DTS:ObjectData>
             </DTS:Executable>
           </DTS:Executables>
@@ -197,7 +196,12 @@
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
                   SQLTask:Connection="{B8E2585F-6E26-4C20-8623-14312421E200}"
-                  SQLTask:SqlStatementSource="select count (1) as RowCounts from [dwh].[DimDate]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  SQLTask:SqlStatementSource="select count (1) as RowCounts from [dwh].[DimDate]"
+                  SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ResultBinding
+                    SQLTask:ResultName="RowCounts"
+                    SQLTask:DtsVariableName="User::RowCountDimDate" />
+                </SQLTask:SqlTaskData>
               </DTS:ObjectData>
             </DTS:Executable>
           </DTS:Executables>
@@ -224,7 +228,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL Log Package End"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -253,7 +257,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL Log Package Failer"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -346,106 +350,94 @@
         <NodeLayout
           Size="330,42"
           Id="Package\SEQC Main\SEQC Load Data to dwh_DimDate\SQL Ceed dwh_DimDate by SP usp_DimDateSeed"
-          TopLeft="70,27" />
+          TopLeft="45,34" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="474,125"
-          Size="474,168"
+          PanelSize="443,136"
+          Size="443,179"
           Id="Package\SEQC Main\SEQC Load Data to dwh_DimDate"
-          TopLeft="61.3571428571428,243.285714285714" />
+          TopLeft="5.50000000000006,207.5" />
         <NodeLayout
           Size="324,42"
           Id="Package\SEQC Main\SEQC Preparation table dwh_DimDate\SQL Check number of rows in table dwh_DimDate"
-          TopLeft="59,21" />
+          TopLeft="5.5,5.5" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="434,114"
-          Size="434,157"
+          PanelSize="335,102"
+          Size="335,145"
           Id="Package\SEQC Main\SEQC Preparation table dwh_DimDate"
-          TopLeft="37,23" />
+          TopLeft="64.5,14.5" />
         <EdgeLayout
           Id="Package\SEQC Main.PrecedenceConstraints[Ограничение]"
-          TopLeft="254,180">
+          TopLeft="229.5,159.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="44.3571428571428,63.285714285714"
+              EndConnector="0,48"
               Start="0,0"
-              End="44.3571428571428,55.785714285714">
+              End="0,40.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,27.642857142857" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,27.642857142857"
-                    Point2="0,31.642857142857"
-                    Point3="4,31.642857142857" />
-                  <mssgle:LineSegment
-                    End="40.3571428571428,31.642857142857" />
-                  <mssgle:CubicBezierSegment
-                    Point1="40.3571428571428,31.642857142857"
-                    Point2="44.3571428571428,31.642857142857"
-                    Point3="44.3571428571428,35.642857142857" />
-                  <mssgle:LineSegment
-                    End="44.3571428571428,55.785714285714" />
+                    End="0,40.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="14.1785714285714,36.642857142857,16,16"
+              BoundingBox="-8,12.25,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="570,466"
-          Size="570,509"
+          PanelSize="454,442"
+          Size="454,484"
           Id="Package\SEQC Main"
-          TopLeft="350.785714285713,170.071428571429" />
+          TopLeft="177,107.5" />
         <NodeLayout
           Size="191,42"
           Id="Package\SQL Log Package End"
-          TopLeft="330.571428571429,701.857142857143" />
+          TopLeft="118.5,623.5" />
         <NodeLayout
           Size="191,42"
           Id="Package\SQL Log Package Failer"
-          TopLeft="686,708.571428571428" />
+          TopLeft="433.5,627.5" />
         <NodeLayout
           Size="194,42"
           Id="Package\SQL Log Package Start"
-          TopLeft="487,42" />
+          TopLeft="256,5.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Ограничение]"
-          TopLeft="635.785714285713,644.071428571429">
+          TopLeft="329.666666666667,591.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-209.714285714284,57.785714285714"
+              EndConnector="-115.666666666667,32"
               Start="0,0"
-              End="-209.714285714284,50.285714285714">
+              End="-115.666666666667,24.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.892857142857" />
+                    End="0,8.86742756804214" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,24.892857142857"
-                    Point2="0,28.892857142857"
-                    Point3="-4,28.892857142857" />
+                    Point1="0,8.86742756804214"
+                    Point2="0,12.8674275680421"
+                    Point3="-4,12.8674275680421" />
                   <mssgle:LineSegment
-                    End="-205.714285714284,28.892857142857" />
+                    End="-111.666666666667,12.8674275680421" />
                   <mssgle:CubicBezierSegment
-                    Point1="-205.714285714284,28.892857142857"
-                    Point2="-209.714285714284,28.892857142857"
-                    Point3="-209.714285714284,32.892857142857" />
+                    Point1="-111.666666666667,12.8674275680421"
+                    Point2="-115.666666666667,12.8674275680421"
+                    Point3="-115.666666666667,16.8674275680421" />
                   <mssgle:LineSegment
-                    End="-209.714285714284,50.285714285714" />
+                    End="-115.666666666667,24.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -456,30 +448,30 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Ограничение 1]"
-          TopLeft="584,84">
+          TopLeft="353,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="51.7857142857131,86.071428571429"
+              EndConnector="51,60"
               Start="0,0"
-              End="51.7857142857131,78.571428571429">
+              End="51,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,39.0357142857145" />
+                    End="0,26" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,39.0357142857145"
-                    Point2="0,43.0357142857145"
-                    Point3="4,43.0357142857145" />
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
                   <mssgle:LineSegment
-                    End="47.7857142857131,43.0357142857145" />
+                    End="47,30" />
                   <mssgle:CubicBezierSegment
-                    Point1="47.7857142857131,43.0357142857145"
-                    Point2="51.7857142857131,43.0357142857145"
-                    Point3="51.7857142857131,47.0357142857145" />
+                    Point1="47,30"
+                    Point2="51,30"
+                    Point3="51,34" />
                   <mssgle:LineSegment
-                    End="51.7857142857131,78.571428571429" />
+                    End="51,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -490,37 +482,37 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Ограничение 2]"
-          TopLeft="729.45238095238,644.071428571429">
+          TopLeft="478.333333333333,591.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="52.0476190476203,64.499999999999"
+              EndConnector="50.6666666666667,36"
               Start="0,0"
-              End="52.0476190476203,56.999999999999">
+              End="50.6666666666667,28.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.9083275017491" />
+                    End="0,10.4758560140474" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,21.9083275017491"
-                    Point2="0,25.9083275017491"
-                    Point3="4,25.9083275017491" />
+                    Point1="0,10.4758560140474"
+                    Point2="0,14.4758560140474"
+                    Point3="4,14.4758560140474" />
                   <mssgle:LineSegment
-                    End="48.0476190476203,25.9083275017491" />
+                    End="46.6666666666667,14.4758560140474" />
                   <mssgle:CubicBezierSegment
-                    Point1="48.0476190476203,25.9083275017491"
-                    Point2="52.0476190476203,25.9083275017491"
-                    Point3="52.0476190476203,29.9083275017491" />
+                    Point1="46.6666666666667,14.4758560140474"
+                    Point2="50.6666666666667,14.4758560140474"
+                    Point3="50.6666666666667,18.4758560140474" />
                   <mssgle:LineSegment
-                    End="52.0476190476203,56.999999999999" />
+                    End="50.6666666666667,28.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="14.2295907738101,30.9083275017491,23.5884375,10.1396484375"
+              BoundingBox="13.5391145833333,19.4758560140474,23.5884375,10.1396484375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>

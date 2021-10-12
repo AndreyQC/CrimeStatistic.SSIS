@@ -11,8 +11,8 @@
   DTS:LocaleID="1049"
   DTS:ObjectName="Load_dwh_DimGeography"
   DTS:PackageType="5"
-  DTS:VersionBuild="60"
-  DTS:VersionGUID="{2817AFE8-29E2-4761-A8CC-71DD3007BF76}">
+  DTS:VersionBuild="62"
+  DTS:VersionGUID="{623E7C33-4FFD-4732-A3D2-4DF0647C45CA}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:LogProviders>
@@ -28,17 +28,6 @@
     </DTS:LogProvider>
   </DTS:LogProviders>
   <DTS:Variables>
-    <DTS:Variable
-      DTS:CreationName=""
-      DTS:DTSID="{00665E23-1928-47B7-8150-F210D9885F50}"
-      DTS:Expression="@[$Project::WorldBankSourceFileFolder] +&quot;\\1.csv&quot;"
-      DTS:IncludeInDebugDump="2345"
-      DTS:Namespace="User"
-      DTS:ObjectName="CurrentFile">
-      <DTS:VariableValue
-        DTS:DataType="8"
-        xml:space="preserve"></DTS:VariableValue>
-    </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
       DTS:DTSID="{FC7C05ED-ED1B-4EFE-8B0C-5DDB74C7A807}"
@@ -1132,7 +1121,7 @@
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
                   SQLTask:Connection="{B8E2585F-6E26-4C20-8623-14312421E200}"
-                  SQLTask:SqlStatementSource=" IF NOT EXISTS (SELECT 1 FROM [dwh].[DimGeography] WHERE [DimGeographyKey]=-1) &#xA;BEGIN  &#xA;    SET IDENTITY_INSERT [dwh].[DimGeography] ON &#xA;        INSERT INTO [dwh].[DimGeography]&#xA;                   ([DimGeographyKey], &#xA;                   [Region]&#xA;&#x9;&#x9;&#x9;&#x9;   ,[SubRegion]&#xA;      ,[Country]&#xA;      ,[CountryCode]) &#xA;             VALUES &#xA;                   (-1, &#xA;                   N'Unknown',N'Unknown',N'Unknown',N'Unk') &#xA;    SET IDENTITY_INSERT [dwh].[DimGeography] OFF&#xA;END  " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  SQLTask:SqlStatementSource=" IF NOT EXISTS (SELECT 1 FROM [dwh].[DimGeography] WHERE [DimGeographyKey]=-1) &#xA;BEGIN  &#xA;    SET IDENTITY_INSERT [dwh].[DimGeography] ON &#xA;        INSERT INTO [dwh].[DimGeography]&#xA;                   ([DimGeographyKey], &#xA;                   [Region]&#xA;&#x9;&#x9;&#x9;&#x9;   ,[SubRegion]&#xA;      ,[Country]&#xA;      ,[CountryCode]) &#xA;             VALUES &#xA;                   (-1, &#xA;                   N'Unknown',N'Unknown',N'Unknown',N'Unknown') &#xA;    SET IDENTITY_INSERT [dwh].[DimGeography] OFF&#xA;END  " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
               </DTS:ObjectData>
             </DTS:Executable>
           </DTS:Executables>
@@ -1178,7 +1167,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL Log Package End"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -1207,7 +1196,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL Log Package Failer"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
