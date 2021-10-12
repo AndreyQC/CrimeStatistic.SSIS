@@ -12,8 +12,8 @@
   DTS:MaxErrorCount="2"
   DTS:ObjectName="Transform_staging_UNCrime"
   DTS:PackageType="5"
-  DTS:VersionBuild="29"
-  DTS:VersionGUID="{903A1692-5F50-443C-B2CB-79CE0AF77931}">
+  DTS:VersionBuild="46"
+  DTS:VersionGUID="{10A94D07-A4C2-46EE-8022-ACA628FD35D7}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -32,7 +32,7 @@
           <DTS:Password
             DTS:Name="pwd"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAFCTRLKBm7UWZ19ARDaahPQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAB1xytKFVIqH9e+I2g/BeAtExod0mlhD+G1qTsCKITifgAAAAAOgAAAAAIAACAAAABYLEv5k0kxekrJNLijdRZUi9PWg0jlmQfmLHqmAjwXkiAAAADMxnoe4LiO4wLDpoIx7bUqe/uZwwuL7d35vZyBA6Itf0AAAAAOEQ3dOPGquuk5Ou3iqtHeHG7g0pOm5MK4SS2cPtNJb5hp/E4ty+NzY7ODAaOlGY1OZlUzQotPU6Asby/9xUhE</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAFCTRLKBm7UWZ19ARDaahPQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAn7w0QFu5Ms8tjINV5kAsTSa63Rr0x7bn0zie0apmS0QAAAAAOgAAAAAIAACAAAABKK3XjZ6/Pty6XOmosrF3Mj8ZwC+Ye2a483q5eLzN1AiAAAABLhbB8xQaMvgiesWrtlU8uJqKKwGQykP9qqfen+uaUXUAAAABE5sjfNJt18LClwE15OIkb+qjtiekCGg3yia7HJjV6iV7MVLYa9zKeUVsrD2Y5aQQCAl5yCmZO4KY5Fw3aVsEH</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -200,7 +200,7 @@
                         <property
                           dataType="System.String"
                           description="Задает параметры быстрой загрузки. Применяется только в том случае, если включена быстрая загрузка."
-                          name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                          name="FastLoadOptions">TABLOCK</property>
                         <property
                           dataType="System.Int32"
                           description="Задает, когда выдаются сообщения о фиксации транзакции в ходе вставки данных. Значение 0 задает, что по окончании вставки данных будет выдано одно сообщение о фиксации транзакции. Применяется только в том случае, если включена быстрая загрузка."
@@ -225,7 +225,7 @@
                             <inputColumn
                               refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLEDST Table Staging_UNCrime_unpivoted.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[Year]"
                               cachedDataType="wstr"
-                              cachedLength="255"
+                              cachedLength="4"
                               cachedName="Year"
                               externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLEDST Table Staging_UNCrime_unpivoted.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Year]"
                               lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Outputs[Выход отмены сведения].Columns[Year]" />
@@ -344,11 +344,11 @@
                       </outputs>
                     </component>
                     <component
-                      refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed"
+                      refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed"
                       componentClassID="Microsoft.OLEDBSource"
                       contactInfo="Источник &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;7"
                       description="Источник &quot;OLE DB&quot;"
-                      name="OLESRC Table Staging_Population_typed"
+                      name="OLESRC Table Staging_UNCrime_typed"
                       usesDispositions="true"
                       version="7">
                       <properties>
@@ -393,7 +393,7 @@
                       </properties>
                       <connections>
                         <connection
-                          refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Connections[OleDbConnection]"
+                          refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Connections[OleDbConnection]"
                           connectionManagerID="{D82D7A77-B5C7-41CF-B781-3555B7C560E0}:external"
                           connectionManagerRefId="Project.ConnectionManagers[CrimeStatistic.DWH_Makhinko]"
                           description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
@@ -401,405 +401,419 @@
                       </connections>
                       <outputs>
                         <output
-                          refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;]"
+                          refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;]"
                           name="Выход источника &quot;OLE DB&quot;">
                           <outputColumns>
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[FileName]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[FileName]"
                               dataType="wstr"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[FileName]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[FileName]"
                               length="100"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[FileName]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[FileName]"
                               name="FileName"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[RegionName]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[RegionName]"
                               dataType="wstr"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[RegionName]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[RegionName]"
                               length="100"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[RegionName]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[RegionName]"
                               name="RegionName"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[SubRegionName]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[SubRegionName]"
                               dataType="wstr"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[SubRegionName]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[SubRegionName]"
                               length="100"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[SubRegionName]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[SubRegionName]"
                               name="SubRegionName"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CountryName]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CountryName]"
                               dataType="wstr"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[CountryName]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[CountryName]"
                               length="100"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CountryName]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CountryName]"
                               name="CountryName"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2003]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2003]"
                               dataType="i8"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2003]"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2003]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2003]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2003]"
                               name="Count_2003"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2004]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2004]"
                               dataType="i8"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2004]"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2004]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2004]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2004]"
                               name="Count_2004"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2005]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2005]"
                               dataType="i8"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2005]"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2005]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2005]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2005]"
                               name="Count_2005"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2006]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2006]"
                               dataType="i8"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2006]"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2006]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2006]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2006]"
                               name="Count_2006"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2007]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2007]"
                               dataType="i8"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2007]"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2007]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2007]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2007]"
                               name="Count_2007"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2008]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2008]"
                               dataType="i8"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2008]"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2008]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2008]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2008]"
                               name="Count_2008"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2009]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2009]"
                               dataType="i8"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2009]"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2009]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2009]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2009]"
                               name="Count_2009"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2010]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2010]"
                               dataType="i8"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2010]"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2010]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2010]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2010]"
                               name="Count_2010"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2011]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2011]"
                               dataType="i8"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2011]"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2011]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2011]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2011]"
                               name="Count_2011"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2012]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2012]"
                               dataType="i8"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2012]"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2012]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2012]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2012]"
                               name="Count_2012"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2013]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2013]"
                               dataType="i8"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2013]"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2013]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2013]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2013]"
                               name="Count_2013"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2014]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2014]"
                               dataType="i8"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2014]"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2014]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2014]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2014]"
                               name="Count_2014"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2015]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2015]"
                               dataType="i8"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2015]"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2015]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2015]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2015]"
                               name="Count_2015"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2016]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2016]"
                               dataType="i8"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2016]"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2016]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2016]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2016]"
                               name="Count_2016"
                               truncationRowDisposition="FailComponent" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2017]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2017]"
                               dataType="i8"
                               errorOrTruncationOperation="Преобразование"
                               errorRowDisposition="FailComponent"
-                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2017]"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2017]"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2017]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2017]"
                               name="Count_2017"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[SourceItemId]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Преобразование"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[SourceItemId]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[SourceItemId]"
+                              name="SourceItemId"
                               truncationRowDisposition="FailComponent" />
                           </outputColumns>
                           <externalMetadataColumns
                             isUsed="True">
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[FileName]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[FileName]"
                               dataType="wstr"
                               length="100"
                               name="FileName" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[SourceItemId]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[SourceItemId]"
                               dataType="i4"
                               name="SourceItemId" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[RegionName]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[RegionName]"
                               dataType="wstr"
                               length="100"
                               name="RegionName" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[SubRegionName]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[SubRegionName]"
                               dataType="wstr"
                               length="100"
                               name="SubRegionName" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[CountryName]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[CountryName]"
                               dataType="wstr"
                               length="100"
                               name="CountryName" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2003]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2003]"
                               dataType="i8"
                               name="Count_2003" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2004]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2004]"
                               dataType="i8"
                               name="Count_2004" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2005]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2005]"
                               dataType="i8"
                               name="Count_2005" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2006]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2006]"
                               dataType="i8"
                               name="Count_2006" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2007]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2007]"
                               dataType="i8"
                               name="Count_2007" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2008]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2008]"
                               dataType="i8"
                               name="Count_2008" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2009]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2009]"
                               dataType="i8"
                               name="Count_2009" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2010]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2010]"
                               dataType="i8"
                               name="Count_2010" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2011]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2011]"
                               dataType="i8"
                               name="Count_2011" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2012]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2012]"
                               dataType="i8"
                               name="Count_2012" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2013]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2013]"
                               dataType="i8"
                               name="Count_2013" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2014]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2014]"
                               dataType="i8"
                               name="Count_2014" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2015]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2015]"
                               dataType="i8"
                               name="Count_2015" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2016]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2016]"
                               dataType="i8"
                               name="Count_2016" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2017]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Count_2017]"
                               dataType="i8"
                               name="Count_2017" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sysCreatedAt]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sysCreatedAt]"
                               dataType="dbTimeStamp"
                               name="sysCreatedAt" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sysChangedAt]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sysChangedAt]"
                               dataType="dbTimeStamp"
                               name="sysChangedAt" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sysChangedBy]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sysChangedBy]"
                               dataType="i4"
                               name="sysChangedBy" />
                             <externalMetadataColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sysCreatedBy]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sysCreatedBy]"
                               dataType="i4"
                               name="sysCreatedBy" />
                           </externalMetadataColumns>
                         </output>
                         <output
-                          refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;]"
+                          refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;]"
                           isErrorOut="true"
                           name="Вывод ошибок источника &quot;OLE DB&quot;">
                           <outputColumns>
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[FileName]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[FileName]"
                               dataType="wstr"
                               length="100"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[FileName]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[FileName]"
                               name="FileName" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[RegionName]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[RegionName]"
                               dataType="wstr"
                               length="100"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[RegionName]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[RegionName]"
                               name="RegionName" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[SubRegionName]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[SubRegionName]"
                               dataType="wstr"
                               length="100"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[SubRegionName]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[SubRegionName]"
                               name="SubRegionName" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[CountryName]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[CountryName]"
                               dataType="wstr"
                               length="100"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[CountryName]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[CountryName]"
                               name="CountryName" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2003]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2003]"
                               dataType="i8"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2003]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2003]"
                               name="Count_2003" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2004]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2004]"
                               dataType="i8"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2004]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2004]"
                               name="Count_2004" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2005]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2005]"
                               dataType="i8"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2005]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2005]"
                               name="Count_2005" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2006]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2006]"
                               dataType="i8"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2006]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2006]"
                               name="Count_2006" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2007]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2007]"
                               dataType="i8"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2007]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2007]"
                               name="Count_2007" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2008]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2008]"
                               dataType="i8"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2008]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2008]"
                               name="Count_2008" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2009]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2009]"
                               dataType="i8"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2009]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2009]"
                               name="Count_2009" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2010]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2010]"
                               dataType="i8"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2010]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2010]"
                               name="Count_2010" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2011]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2011]"
                               dataType="i8"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2011]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2011]"
                               name="Count_2011" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2012]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2012]"
                               dataType="i8"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2012]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2012]"
                               name="Count_2012" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2013]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2013]"
                               dataType="i8"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2013]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2013]"
                               name="Count_2013" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2014]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2014]"
                               dataType="i8"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2014]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2014]"
                               name="Count_2014" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2015]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2015]"
                               dataType="i8"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2015]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2015]"
                               name="Count_2015" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2016]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2016]"
                               dataType="i8"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2016]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2016]"
                               name="Count_2016" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2017]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2017]"
                               dataType="i8"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2017]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Count_2017]"
                               name="Count_2017" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
                               dataType="i4"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
                               name="ErrorCode"
                               specialFlags="1" />
                             <outputColumn
-                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
                               dataType="i4"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
                               name="ErrorColumn"
                               specialFlags="2" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[SourceItemId]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[SourceItemId]"
+                              name="SourceItemId" />
                           </outputColumns>
                           <externalMetadataColumns />
                         </output>
@@ -821,7 +835,7 @@
                               refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Inputs[Вход отмены сведения].Columns[Count_2003]"
                               cachedDataType="i8"
                               cachedName="Count_2003"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2003]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2003]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -839,7 +853,7 @@
                               refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Inputs[Вход отмены сведения].Columns[Count_2004]"
                               cachedDataType="i8"
                               cachedName="Count_2004"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2004]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2004]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -857,7 +871,7 @@
                               refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Inputs[Вход отмены сведения].Columns[Count_2005]"
                               cachedDataType="i8"
                               cachedName="Count_2005"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2005]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2005]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -875,7 +889,7 @@
                               refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Inputs[Вход отмены сведения].Columns[Count_2006]"
                               cachedDataType="i8"
                               cachedName="Count_2006"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2006]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2006]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -893,7 +907,7 @@
                               refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Inputs[Вход отмены сведения].Columns[Count_2007]"
                               cachedDataType="i8"
                               cachedName="Count_2007"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2007]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2007]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -911,7 +925,7 @@
                               refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Inputs[Вход отмены сведения].Columns[Count_2008]"
                               cachedDataType="i8"
                               cachedName="Count_2008"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2008]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2008]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -929,7 +943,7 @@
                               refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Inputs[Вход отмены сведения].Columns[Count_2009]"
                               cachedDataType="i8"
                               cachedName="Count_2009"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2009]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2009]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -947,7 +961,7 @@
                               refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Inputs[Вход отмены сведения].Columns[Count_2010]"
                               cachedDataType="i8"
                               cachedName="Count_2010"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2010]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2010]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -965,7 +979,7 @@
                               refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Inputs[Вход отмены сведения].Columns[Count_2011]"
                               cachedDataType="i8"
                               cachedName="Count_2011"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2011]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2011]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -983,7 +997,7 @@
                               refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Inputs[Вход отмены сведения].Columns[Count_2012]"
                               cachedDataType="i8"
                               cachedName="Count_2012"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2012]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2012]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -1001,7 +1015,7 @@
                               refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Inputs[Вход отмены сведения].Columns[Count_2013]"
                               cachedDataType="i8"
                               cachedName="Count_2013"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2013]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2013]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -1019,7 +1033,7 @@
                               refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Inputs[Вход отмены сведения].Columns[Count_2014]"
                               cachedDataType="i8"
                               cachedName="Count_2014"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2014]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2014]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -1037,7 +1051,7 @@
                               refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Inputs[Вход отмены сведения].Columns[Count_2015]"
                               cachedDataType="i8"
                               cachedName="Count_2015"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2015]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2015]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -1055,7 +1069,7 @@
                               refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Inputs[Вход отмены сведения].Columns[Count_2016]"
                               cachedDataType="i8"
                               cachedName="Count_2016"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2016]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2016]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -1073,7 +1087,7 @@
                               refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Inputs[Вход отмены сведения].Columns[Count_2017]"
                               cachedDataType="i8"
                               cachedName="Count_2017"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2017]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Count_2017]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -1092,7 +1106,7 @@
                               cachedDataType="wstr"
                               cachedLength="100"
                               cachedName="FileName"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[FileName]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[FileName]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -1111,7 +1125,7 @@
                               cachedDataType="wstr"
                               cachedLength="100"
                               cachedName="RegionName"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[RegionName]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[RegionName]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -1130,7 +1144,7 @@
                               cachedDataType="wstr"
                               cachedLength="100"
                               cachedName="SubRegionName"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[SubRegionName]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[SubRegionName]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -1149,7 +1163,7 @@
                               cachedDataType="wstr"
                               cachedLength="100"
                               cachedName="CountryName"
-                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CountryName]">
+                              lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CountryName]">
                               <properties>
                                 <property
                                   containsID="true"
@@ -1175,7 +1189,7 @@
                             <outputColumn
                               refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Outputs[Выход отмены сведения].Columns[Year]"
                               dataType="wstr"
-                              length="255"
+                              length="4"
                               lineageId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Outputs[Выход отмены сведения].Columns[Year]"
                               name="Year">
                               <properties>
@@ -1260,7 +1274,7 @@
                       refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted.Paths[Выход источника &quot;OLE DB&quot;]"
                       endId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot.Inputs[Вход отмены сведения]"
                       name="Выход источника &quot;OLE DB&quot;"
-                      startId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed.Outputs[Выход источника &quot;OLE DB&quot;]" />
+                      startId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed.Outputs[Выход источника &quot;OLE DB&quot;]" />
                     <path
                       refId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted.Paths[Выход отмены сведения]"
                       endId="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLEDST Table Staging_UNCrime_unpivoted.Inputs[Вход назначения &quot;OLE DB&quot;]"
@@ -3072,43 +3086,43 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="114.4,41.6"
-          Id="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot"
-          TopLeft="375.285710271524,120.764705893078" />
+          Size="263.2,41.6"
+          Id="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed"
+          TopLeft="71.4285726449928,53.682353402339" />
         <NodeLayout
           Size="284,41.6"
           Id="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLEDST Table Staging_UNCrime_unpivoted"
-          TopLeft="318.285709505178,205.882353037699" />
+          TopLeft="64.2857153804935,195.152943621705" />
         <NodeLayout
-          Size="271.2,41.6"
-          Id="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed"
-          TopLeft="277.42856642908,35.4117646415341" />
+          Size="114.4,41.6"
+          Id="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot"
+          TopLeft="67.8571440127431,118.68235431394" />
         <EdgeLayout
-          Id="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted.Paths[Выход отмены сведения]"
-          TopLeft="432.485710271524,162.364705893078">
+          Id="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted.Paths[Выход источника &quot;OLE DB&quot;]"
+          TopLeft="203.028572644993,95.282353402339">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="27.7999992336547,43.5176471446212"
+              EndConnector="-77.9714286322496,23.4000009116005"
               Start="0,0"
-              End="27.7999992336547,36.0176471446212">
+              End="-77.9714286322496,15.9000009116005">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.7588235723106" />
+                    End="0,7.70000045580026" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,17.7588235723106"
-                    Point2="0,21.7588235723106"
-                    Point3="4,21.7588235723106" />
+                    Point1="0,7.70000045580026"
+                    Point2="0,11.7000004558003"
+                    Point3="-4,11.7000004558003" />
                   <mssgle:LineSegment
-                    End="23.7999992336547,21.7588235723106" />
+                    End="-73.9714286322496,11.7000004558003" />
                   <mssgle:CubicBezierSegment
-                    Point1="23.7999992336547,21.7588235723106"
-                    Point2="27.7999992336547,21.7588235723106"
-                    Point3="27.7999992336547,25.7588235723106" />
+                    Point1="-73.9714286322496,11.7000004558003"
+                    Point2="-77.9714286322496,11.7000004558003"
+                    Point3="-77.9714286322496,15.7000004558003" />
                   <mssgle:LineSegment
-                    End="27.7999992336547,36.0176471446212" />
+                    End="-77.9714286322496,15.9000009116005" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3118,31 +3132,31 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted.Paths[Выход источника &quot;OLE DB&quot;]"
-          TopLeft="413.02856642908,77.0117646415341">
+          Id="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted.Paths[Выход отмены сведения]"
+          TopLeft="125.057144012743,160.28235431394">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="19.4571438424439,43.7529412515436"
+              EndConnector="81.2285713677504,34.8705893077652"
               Start="0,0"
-              End="19.4571438424439,36.2529412515436">
+              End="81.2285713677504,27.3705893077652">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.8764706257718" />
+                    End="0,13.4352946538826" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,17.8764706257718"
-                    Point2="0,21.8764706257718"
-                    Point3="4,21.8764706257718" />
+                    Point1="0,13.4352946538826"
+                    Point2="0,17.4352946538826"
+                    Point3="4,17.4352946538826" />
                   <mssgle:LineSegment
-                    End="15.4571438424439,21.8764706257718" />
+                    End="77.2285713677504,17.4352946538826" />
                   <mssgle:CubicBezierSegment
-                    Point1="15.4571438424439,21.8764706257718"
-                    Point2="19.4571438424439,21.8764706257718"
-                    Point3="19.4571438424439,25.8764706257718" />
+                    Point1="77.2285713677504,17.4352946538826"
+                    Point2="81.2285713677504,17.4352946538826"
+                    Point3="81.2285713677504,21.4352946538826" />
                   <mssgle:LineSegment
-                    End="19.4571438424439,36.2529412515436" />
+                    End="81.2285713677504,27.3705893077652" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3154,32 +3168,6 @@
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLEDST Table Staging_UNCrime_unpivoted">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_Population_typed">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_untyped to Staging_UNCrime_typed">
     <LayoutInfo>
@@ -3275,6 +3263,32 @@
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_untyped to Staging_UNCrime_typed\OLEDST Table Staging_UNCrime_typed">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLEDST Table Staging_UNCrime_unpivoted">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
