@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">EPRUSARW1710</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA1jSM4e0nAUS8TDHeJnvCdAAAAAACAAAAAAAQZgAAAAEAACAAAACGBAJiKPcVDDtrMcDxu2C4tAO9dG9t67b4SSm7zlanmwAAAAAOgAAAAAIAACAAAAAI1ygbdfnI8CEn7XYTfCqlqkOnqvXWecu0+VZb6HjMBZAAAABc8Z6k46S1XWFFOpRvUHI2RO3WmFaw1qM5H6M2dXu11vRIPCQH2NfwErdscGOsJlFV7KpfdJlIaPtKYjt5MCoUcKwYvWfo1wc5RIYWINzLI+thdr3CJ4/+eSk9ZCeZLOMVUwF1tbxpgLPDrWnILwMwC7UGK2aB/YlxcbPNenjomq0X5yILAabcte9t0+yC+jJAAAAAmeCAa+1Wn7VsD3P8ZRnUlWjBcQKYiRP8E2ASnbc8hGxYhMkTTqkdiEYhaWhNPXZocfQtaRNZuj/T6E/lmj434Q==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA1jSM4e0nAUS8TDHeJnvCdAAAAAACAAAAAAAQZgAAAAEAACAAAAAAlX9GWoGoVAS/jm+qRLQQTd90I6SV8+84h3XAcLuSRgAAAAAOgAAAAAIAACAAAABQx1NfDXTp7mN8/a29OX/q6dJrtZjmpFdEgkomiD39m5AAAABvO+TogUZJ5YPhz4+g/eomxbsC6AHNNAr0FTT1MhdKhiC5JQbbGZEvqfiP9dndCR+VWDvtwCN2129JMGx4SP+/Hw4kmqSG07ysEKOvhgTupvOuluB1HdHkcbn4Q6pkHXIW+xBQBm1Aplrh23Fb/PDWJwYXr7AToHVHOFYvIRb0tYXtODozyg2pSPaMTFy4akxAAAAALloAOwFAr+b2ffYjU+R22BbHlqmGGyVvValk16bC7UHybJj8GtdHv0o6xTOCdEz7rfBr6xNLMXODkJEUerT+DQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -39,6 +39,15 @@
           <SSIS:Package SSIS:Name="Package Template.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Load_Staging_WorldBank.dtsx" SSIS:EntryPoint="1" />
           <SSIS:Package SSIS:Name="Main_Staging.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Transform_staging_CountryRef.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Transform_staging_Population.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Transform_staging_UNCrime.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Load_dwh_DimCountry.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Load_dwh_DimCrimeType.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Load_dwh_DimDate.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Load_dwh_FactPopulation.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Load_dwh_FactCrime.dtsx" SSIS:EntryPoint="1" />
+          <SSIS:Package SSIS:Name="Main_DWH.dtsx" SSIS:EntryPoint="1" />
         </SSIS:Packages>
         <SSIS:ConnectionManagers>
           <SSIS:ConnectionManager SSIS:Name="CrimeStatisticDWH.conmgr" />
@@ -1449,10 +1458,10 @@
                 <SSIS:Property SSIS:Name="Name">Load_Staging_UNCrime</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">30</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">32</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{4F976C89-E41A-4B3D-B74E-E9413AAD5DEA}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{18B9FEB6-C433-417A-8FE7-033F51C9968A}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -1606,8 +1615,6 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">
-                    </SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -1973,8 +1980,6 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">
-                    </SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -2016,10 +2021,10 @@
                 <SSIS:Property SSIS:Name="Name">Load_Staging_WorldBank</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">41</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">42</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{ED274CF3-74FC-4C5F-BCDC-F486AD0EB62E}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{74F928D2-5064-4940-91AA-BCD532D8AB68}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -2173,8 +2178,6 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">
-                    </SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -2189,7 +2192,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">&lt;none&gt;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">"</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -2373,8 +2376,6 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">
-                    </SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -2409,6 +2410,159 @@
                   </SSIS:Properties>
                 </SSIS:Parameter>
               </SSIS:Parameters>
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Transform_staging_CountryRef.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{8CDFA8E9-86EC-4DD4-AAE7-6E4B050F2EDF}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{920EE0E9-64A8-4362-B9C6-29CC6503ED31}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Transform_staging_Population.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{2CA211E7-E4D7-47DB-BE5F-7E2EA0FAE0E8}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">4</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{E6B156A3-4004-4417-8DA0-58300CCD770D}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Transform_staging_UNCrime.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{A022201C-93F2-4843-923C-71785D742892}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">6</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{FDD471CA-DDFE-40B8-B789-9F53F50DD3A7}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Load_dwh_DimCountry.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{1A47FA3D-BE25-436C-8513-C494FC2D68D7}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">4</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{798EF030-0ADA-4629-85D5-D5F780F98B51}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Load_dwh_DimCrimeType.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{07E566BD-8587-4362-9DE1-BC2B853B2AA9}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">6</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{C7DCAE9D-1606-4737-BC0A-366897D3FFA2}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Load_dwh_DimDate.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{A1956919-B9D2-4B99-B396-64A88E158024}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{E0FED3A3-770C-4B94-B927-A0F65A316D21}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Load_dwh_FactPopulation.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{1FD26806-7AD1-4A29-B571-5E0B2C5A786D}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">12</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{DF1B4D70-FC85-41AD-A561-04CBF37AB63F}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Load_dwh_FactCrime.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{0B1BB867-879A-4FF7-908D-9055BDCF73F2}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">11</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{2E84694F-A50A-46E6-A224-8FEDC62CF9FD}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
+            </SSIS:PackageMetaData>
+            <SSIS:PackageMetaData SSIS:Name="Main_DWH.dtsx">
+              <SSIS:Properties>
+                <SSIS:Property SSIS:Name="ID">{A422A2FD-EB66-4EAC-B88C-2597CF3A1D5E}</SSIS:Property>
+                <SSIS:Property SSIS:Name="Name">Package2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">1</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionComments">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{E7FB3B51-3376-45B3-B7CC-414FE88165A9}</SSIS:Property>
+                <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
+                <SSIS:Property SSIS:Name="Description">
+                </SSIS:Property>
+                <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
+              </SSIS:Properties>
+              <SSIS:Parameters />
             </SSIS:PackageMetaData>
           </SSIS:PackageInfo>
         </SSIS:DeploymentInfo>
