@@ -12,23 +12,11 @@
   DTS:LocaleID="1049"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="Task 01"
-  DTS:VersionBuild="1"
-  DTS:VersionGUID="{AF15D449-6038-421D-964D-D272484E6281}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{8F64F935-7870-4E6C-81D0-CAA5B66491B6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{F554EF82-E5D8-46FC-9C81-5A9EB7AF5ACF}"
-      DTS:ObjectName="DestinationConnectionOLEDB">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=CrimeStatistic.DWH;Provider=SQLNCLI11;Integrated Security=SSPI;Auto Translate=false;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[SourceConnectionOLEDB]"
       DTS:CreationName="OLEDB"
@@ -38,578 +26,895 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=epamsqllabsrv.database.windows.net;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11;Auto Translate=false;" />
+          DTS:ConnectionString="Data Source=epamsqllabsrv.database.windows.net;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11.1;Auto Translate=false;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA2eXKMzZajUiZv8CJiTckowAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACe5v/aUR6lSviPP+/W1lxRpdz9/hN3WJL4/ZWYpDPhAQAAAAAOgAAAAAIAACAAAABsHqnEJ4aRGFMeoJs9Vn9I+o+KU8P5rRsT2W1B6LwU5iAAAABiI0CYJ8WDx5spviM5i21FFgvjvJ2mLHNsTziesFp70EAAAABSPxCs87pA+r55JghLhfBV11t9V0A6M+dcxD1YguZKnegIpfEa5Gy0YOqN1eAXXyRPZfJHTBCvpRoNfDmUSd5Y</DTS:Password>
+        </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{43522CB2-F107-4EC9-84F2-85E55A975183}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Counter">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9CBD0034-1FAF-4F6C-9A1A-4301C51ECA01}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentFile">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F62640E5-8891-4F8E-ABDE-4D774CDC32EF}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="Flag">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Задача потока данных 1"
-      DTS:CreationName="Microsoft.Pipeline"
-      DTS:DTSID="{89004EED-3A5A-45EF-A908-CAB2F88AABCB}"
-      DTS:ExecutableType="Microsoft.Pipeline"
-      DTS:FailPackageOnFailure="True"
+      DTS:refId="Package\Execute SQL Task 1"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{33c1161e-147e-4d35-a628-93b8997ad73c}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Задача потока данных 1"
-      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      DTS:ObjectName="Execute SQL Task 1"
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
-        <pipeline
-          defaultBufferSize="3145728"
-          version="1">
-          <components>
-            <component
-              refId="Package\Задача потока данных 1\Источник - CountryRef"
-              componentClassID="Microsoft.OLEDBSource"
-              contactInfo="Источник &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;7"
-              description="Источник &quot;OLE DB&quot;"
-              name="Источник - CountryRef"
-              usesDispositions="true"
-              version="7">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
-                  name="OpenRowset">[dbo].[CountryRef]</property>
-                <property
-                  dataType="System.String"
-                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="Команда SQL для выполнения."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
-                <property
-                  dataType="System.String"
-                  description="Переменная, содержащая команду SQL для выполнения."
-                  name="SqlCommandVariable"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
-                  name="DefaultCodePage">1251</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Указывает используемый режим доступа к базе данных."
-                  name="AccessMode"
-                  typeConverter="AccessMode">0</property>
-                <property
-                  dataType="System.String"
-                  description="Сопоставления между параметрами в команде SQL и переменными."
-                  name="ParameterMapping"></property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Задача потока данных 1\Источник - CountryRef.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
-                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
-                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
-                  name="OleDbConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;]"
-                  name="Выход источника &quot;OLE DB&quot;">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[name]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Преобразование"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[name]"
-                      length="100"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[name]"
-                      name="name"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_2]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Преобразование"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[alpha_2]"
-                      length="50"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_2]"
-                      name="alpha_2"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_3]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Преобразование"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[alpha_3]"
-                      length="50"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_3]"
-                      name="alpha_3"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[country_code]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Преобразование"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[country_code]"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[country_code]"
-                      name="country_code"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[iso_3166_2]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Преобразование"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[iso_3166_2]"
-                      length="50"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[iso_3166_2]"
-                      name="iso_3166_2"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Преобразование"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[region]"
-                      length="50"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region]"
-                      name="region"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Преобразование"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sub_region]"
-                      length="50"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region]"
-                      name="sub_region"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Преобразование"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[intermediate_region]"
-                      length="50"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region]"
-                      name="intermediate_region"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region_code]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Преобразование"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[region_code]"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region_code]"
-                      name="region_code"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region_code]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Преобразование"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sub_region_code]"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region_code]"
-                      name="sub_region_code"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region_code]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Преобразование"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[intermediate_region_code]"
-                      length="50"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region_code]"
-                      name="intermediate_region_code"
-                      truncationRowDisposition="FailComponent" />
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[name]"
-                      dataType="wstr"
-                      length="100"
-                      name="name" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[alpha_2]"
-                      dataType="wstr"
-                      length="50"
-                      name="alpha_2" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[alpha_3]"
-                      dataType="wstr"
-                      length="50"
-                      name="alpha_3" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[country_code]"
-                      dataType="i4"
-                      name="country_code" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[iso_3166_2]"
-                      dataType="wstr"
-                      length="50"
-                      name="iso_3166_2" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[region]"
-                      dataType="wstr"
-                      length="50"
-                      name="region" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sub_region]"
-                      dataType="wstr"
-                      length="50"
-                      name="sub_region" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[intermediate_region]"
-                      dataType="wstr"
-                      length="50"
-                      name="intermediate_region" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[region_code]"
-                      dataType="i4"
-                      name="region_code" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sub_region_code]"
-                      dataType="i4"
-                      name="sub_region_code" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[intermediate_region_code]"
-                      dataType="wstr"
-                      length="50"
-                      name="intermediate_region_code" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;]"
-                  isErrorOut="true"
-                  name="Вывод ошибок источника &quot;OLE DB&quot;">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[name]"
-                      dataType="wstr"
-                      length="100"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[name]"
-                      name="name" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[alpha_2]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[alpha_2]"
-                      name="alpha_2" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[alpha_3]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[alpha_3]"
-                      name="alpha_3" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[country_code]"
-                      dataType="i4"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[country_code]"
-                      name="country_code" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[iso_3166_2]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[iso_3166_2]"
-                      name="iso_3166_2" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[region]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[region]"
-                      name="region" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[sub_region]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[sub_region]"
-                      name="sub_region" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[intermediate_region]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[intermediate_region]"
-                      name="intermediate_region" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[region_code]"
-                      dataType="i4"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[region_code]"
-                      name="region_code" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[sub_region_code]"
-                      dataType="i4"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[sub_region_code]"
-                      name="sub_region_code" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[intermediate_region_code]"
-                      dataType="wstr"
-                      length="50"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[intermediate_region_code]"
-                      name="intermediate_region_code" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Задача потока данных 1\Назначение - CountryRef"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="Назначение &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;4"
-              description="Назначение &quot;OLE DB&quot;"
-              name="Назначение - CountryRef"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
-                  name="OpenRowset">[dbo].[CountryRef]</property>
-                <property
-                  dataType="System.String"
-                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="Команда SQL для выполнения."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
-                  name="DefaultCodePage">1251</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Указывает используемый режим доступа к базе данных."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Указывает, должны ли значения в столбцах идентификаторов копироваться в назначение. Если свойство имеет значение false, значения в столбцах идентификаторов будут созданы автоматически в месте назначения. Применяется только в том случае, если включена быстрая загрузка."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Указывает, будут ли в назначение вставляться значения NULL для столбцов, содержащих их. Значение false показывает, что если столбец имеет значение NULL, то в назначение будет вставлено его значение по умолчанию. Применяется только в случае, если включена быстрая загрузка."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Задает параметры быстрой загрузки. Применяется только в том случае, если включена быстрая загрузка."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Задает, когда выдаются сообщения о фиксации транзакции в ходе вставки данных. Значение 0 задает, что по окончании вставки данных будет выдано одно сообщение о фиксации транзакции. Применяется только в том случае, если включена быстрая загрузка."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Задача потока данных 1\Назначение - CountryRef.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input]"
-                  errorOrTruncationOperation="Вставить"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[name]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="name"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[name]"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[name]" />
-                    <inputColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[alpha_2]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="alpha_2"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[alpha_2]"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_2]" />
-                    <inputColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[alpha_3]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="alpha_3"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[alpha_3]"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_3]" />
-                    <inputColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[country_code]"
-                      cachedDataType="i4"
-                      cachedName="country_code"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[country_code]"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[country_code]" />
-                    <inputColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[iso_3166_2]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="iso_3166_2"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[iso_3166_2]"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[iso_3166_2]" />
-                    <inputColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[region]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="region"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[region]"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region]" />
-                    <inputColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[sub_region]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="sub_region"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[sub_region]"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region]" />
-                    <inputColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[intermediate_region]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="intermediate_region"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[intermediate_region]"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region]" />
-                    <inputColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[region_code]"
-                      cachedDataType="i4"
-                      cachedName="region_code"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[region_code]"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region_code]" />
-                    <inputColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[sub_region_code]"
-                      cachedDataType="i4"
-                      cachedName="sub_region_code"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[sub_region_code]"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region_code]" />
-                    <inputColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[intermediate_region_code]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="intermediate_region_code"
-                      externalMetadataColumnId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[intermediate_region_code]"
-                      lineageId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region_code]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[name]"
-                      dataType="wstr"
-                      length="100"
-                      name="name" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[alpha_2]"
-                      dataType="wstr"
-                      length="50"
-                      name="alpha_2" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[alpha_3]"
-                      dataType="wstr"
-                      length="50"
-                      name="alpha_3" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[country_code]"
-                      dataType="i4"
-                      name="country_code" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[iso_3166_2]"
-                      dataType="wstr"
-                      length="50"
-                      name="iso_3166_2" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[region]"
-                      dataType="wstr"
-                      length="50"
-                      name="region" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[sub_region]"
-                      dataType="wstr"
-                      length="50"
-                      name="sub_region" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[intermediate_region]"
-                      dataType="wstr"
-                      length="50"
-                      name="intermediate_region" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[region_code]"
-                      dataType="i4"
-                      name="region_code" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[sub_region_code]"
-                      dataType="i4"
-                      name="sub_region_code" />
-                    <externalMetadataColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[intermediate_region_code]"
-                      dataType="wstr"
-                      length="50"
-                      name="intermediate_region_code" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Задача потока данных 1\Назначение - CountryRef.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Вывод ошибок назначения &quot;OLE DB&quot;"
-                  synchronousInputId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Задача потока данных 1\Назначение - CountryRef.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Задача потока данных 1\Назначение - CountryRef.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Задача потока данных 1\Назначение - CountryRef.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-          </components>
-          <paths>
-            <path
-              refId="Package\Задача потока данных 1.Paths[Выход источника &quot;OLE DB&quot;]"
-              endId="Package\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input]"
-              name="Выход источника &quot;OLE DB&quot;"
-              startId="Package\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;]" />
-          </paths>
-        </pipeline>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3BEC9BE3-BF6C-4252-B1B6-85248A27B1FA}"
+          SQLTask:SqlStatementSource="Select 1 ;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task 2"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2fc411ce-3f57-4f69-aed0-c49eccf3425d}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task 2"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3BEC9BE3-BF6C-4252-B1B6-85248A27B1FA}"
+          SQLTask:SqlStatementSource="Select 2 ;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task 3"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{c427fae2-0609-4427-95b9-7927a86eee8e}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task 3"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3BEC9BE3-BF6C-4252-B1B6-85248A27B1FA}"
+          SQLTask:SqlStatementSource="Select 1/0 ;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task 4"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0172fd47-28e5-4278-ab34-3b811e805cac}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task 4"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3BEC9BE3-BF6C-4252-B1B6-85248A27B1FA}"
+          SQLTask:SqlStatementSource="Select 4 ;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task 5"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{bc4708b1-5be7-4a8f-9941-7f28a12ed12b}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task 5"
+      DTS:ThreadHint="3">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3BEC9BE3-BF6C-4252-B1B6-85248A27B1FA}"
+          SQLTask:SqlStatementSource="Select 5 ;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task 6"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{a4ca06fd-2e7c-4156-9b81-bd468dab4c09}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task 6"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3BEC9BE3-BF6C-4252-B1B6-85248A27B1FA}"
+          SQLTask:SqlStatementSource="Select 6 ;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task 7"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{dd1fb833-258e-42a5-a235-e150c128d035}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task 7"
+      DTS:ThreadHint="6">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3BEC9BE3-BF6C-4252-B1B6-85248A27B1FA}"
+          SQLTask:SqlStatementSource="Select 7 ;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\For Loop Container"
+      DTS:AssignExpression="@Counter = @Counter + 1"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For Loop Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{45313182-6ABC-4890-9CCC-4F365150C1E6}"
+      DTS:EvalExpression="@Counter &lt; 4"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:InitExpression="@Counter = 0"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="For Loop Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\For Loop Container\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{80120DA4-F6E7-429A-A1A4-DEA89DB76A6A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:ThreadHint="4">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3BEC9BE3-BF6C-4252-B1B6-85248A27B1FA}"
+              SQLTask:SqlStatementSource="Select 1 ;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{737D94F7-3DD3-4556-B578-3AA9AEB8785B}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachFileEnumerator"
+        DTS:DTSID="{B9476ED1-274B-42C4-A82C-DA2FA6F2C73A}"
+        DTS:ObjectName="{B9476ED1-274B-42C4-A82C-DA2FA6F2C73A}">
+        <DTS:ObjectData>
+          <ForEachFileEnumeratorProperties>
+            <FEFEProperty
+              Folder="Z:\RU.BI.LAB.SSIS\Source Files\undoc-changed\csv" />
+            <FEFEProperty
+              FileSpec="*.*" />
+            <FEFEProperty
+              FileNameRetrievalType="0" />
+            <FEFEProperty
+              Recurse="0" />
+          </ForEachFileEnumeratorProperties>
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{ed8985cc-9c5a-48b8-8ba3-60d3f2d6581b}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:ThreadHint="5">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"SELECT '" + (DT_WSTR, 100) @[User::CurrentFile] + "';"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{3BEC9BE3-BF6C-4252-B1B6-85248A27B1FA}"
+              SQLTask:SqlStatementSource="SELECT '';" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{E00FDEA9-FE73-4A8A-9E4C-160787FFC482}"
+          DTS:ObjectName="{E00FDEA9-FE73-4A8A-9E4C-160787FFC482}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::CurrentFile" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:Disabled="True"
+      DTS:DTSID="{841E5436-60D7-4293-9D4B-281C1A8F2579}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Задача потока данных 1"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:DTSID="{89004EED-3A5A-45EF-A908-CAB2F88AABCB}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:FailPackageOnFailure="True"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Задача потока данных 1"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              defaultBufferSize="3145728"
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Источник &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;7"
+                  description="Источник &quot;OLE DB&quot;"
+                  name="Источник - CountryRef"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                      name="OpenRowset">[dbo].[CountryRef]</property>
+                    <property
+                      dataType="System.String"
+                      description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Команда SQL для выполнения."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.String"
+                      description="Переменная, содержащая команду SQL для выполнения."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                      name="DefaultCodePage">1251</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Указывает используемый режим доступа к базе данных."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Сопоставления между параметрами в команде SQL и переменными."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                      connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                      description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;]"
+                      name="Выход источника &quot;OLE DB&quot;">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[name]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Преобразование"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[name]"
+                          length="100"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[name]"
+                          name="name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Преобразование"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[alpha_2]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_2]"
+                          name="alpha_2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_3]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Преобразование"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[alpha_3]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_3]"
+                          name="alpha_3"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[country_code]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Преобразование"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[country_code]"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[country_code]"
+                          name="country_code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[iso_3166_2]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Преобразование"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[iso_3166_2]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[iso_3166_2]"
+                          name="iso_3166_2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Преобразование"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[region]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region]"
+                          name="region"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Преобразование"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sub_region]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region]"
+                          name="sub_region"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Преобразование"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[intermediate_region]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region]"
+                          name="intermediate_region"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region_code]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Преобразование"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[region_code]"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region_code]"
+                          name="region_code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region_code]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Преобразование"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sub_region_code]"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region_code]"
+                          name="sub_region_code"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region_code]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Преобразование"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[intermediate_region_code]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region_code]"
+                          name="intermediate_region_code"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[name]"
+                          dataType="wstr"
+                          length="100"
+                          name="name" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[alpha_2]"
+                          dataType="wstr"
+                          length="50"
+                          name="alpha_2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[alpha_3]"
+                          dataType="wstr"
+                          length="50"
+                          name="alpha_3" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[country_code]"
+                          dataType="i4"
+                          name="country_code" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[iso_3166_2]"
+                          dataType="wstr"
+                          length="50"
+                          name="iso_3166_2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[region]"
+                          dataType="wstr"
+                          length="50"
+                          name="region" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sub_region]"
+                          dataType="wstr"
+                          length="50"
+                          name="sub_region" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[intermediate_region]"
+                          dataType="wstr"
+                          length="50"
+                          name="intermediate_region" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[region_code]"
+                          dataType="i4"
+                          name="region_code" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[sub_region_code]"
+                          dataType="i4"
+                          name="sub_region_code" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[intermediate_region_code]"
+                          dataType="wstr"
+                          length="50"
+                          name="intermediate_region_code" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;]"
+                      isErrorOut="true"
+                      name="Вывод ошибок источника &quot;OLE DB&quot;">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[name]"
+                          dataType="wstr"
+                          length="100"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[name]"
+                          name="name" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[alpha_2]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[alpha_2]"
+                          name="alpha_2" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[alpha_3]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[alpha_3]"
+                          name="alpha_3" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[country_code]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[country_code]"
+                          name="country_code" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[iso_3166_2]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[iso_3166_2]"
+                          name="iso_3166_2" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[region]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[region]"
+                          name="region" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[sub_region]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[sub_region]"
+                          name="sub_region" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[intermediate_region]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[intermediate_region]"
+                          name="intermediate_region" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[region_code]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[region_code]"
+                          name="region_code" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[sub_region_code]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[sub_region_code]"
+                          name="sub_region_code" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[intermediate_region_code]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[intermediate_region_code]"
+                          name="intermediate_region_code" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Назначение &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;4"
+                  description="Назначение &quot;OLE DB&quot;"
+                  name="Назначение - CountryRef"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                      name="OpenRowset">[dbo].[CountryRef]</property>
+                    <property
+                      dataType="System.String"
+                      description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="Команда SQL для выполнения."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                      name="DefaultCodePage">1251</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Указывает используемый режим доступа к базе данных."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Указывает, должны ли значения в столбцах идентификаторов копироваться в назначение. Если свойство имеет значение false, значения в столбцах идентификаторов будут созданы автоматически в месте назначения. Применяется только в том случае, если включена быстрая загрузка."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Указывает, будут ли в назначение вставляться значения NULL для столбцов, содержащих их. Значение false показывает, что если столбец имеет значение NULL, то в назначение будет вставлено его значение по умолчанию. Применяется только в случае, если включена быстрая загрузка."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Задает параметры быстрой загрузки. Применяется только в том случае, если включена быстрая загрузка."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Задает, когда выдаются сообщения о фиксации транзакции в ходе вставки данных. Значение 0 задает, что по окончании вставки данных будет выдано одно сообщение о фиксации транзакции. Применяется только в том случае, если включена быстрая загрузка."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Connections[OleDbConnection]"
+                      connectionManagerID="{F554EF82-E5D8-46FC-9C81-5A9EB7AF5ACF}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CrimeStatisticDWH]"
+                      description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input]"
+                      errorOrTruncationOperation="Вставить"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[name]"
+                          cachedDataType="wstr"
+                          cachedLength="100"
+                          cachedName="name"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[name]"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[name]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[alpha_2]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="alpha_2"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[alpha_2]"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_2]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[alpha_3]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="alpha_3"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[alpha_3]"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[alpha_3]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[country_code]"
+                          cachedDataType="i4"
+                          cachedName="country_code"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[country_code]"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[country_code]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[iso_3166_2]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="iso_3166_2"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[iso_3166_2]"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[iso_3166_2]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[region]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="region"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[region]"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[sub_region]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="sub_region"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[sub_region]"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[intermediate_region]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="intermediate_region"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[intermediate_region]"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[region_code]"
+                          cachedDataType="i4"
+                          cachedName="region_code"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[region_code]"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[region_code]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[sub_region_code]"
+                          cachedDataType="i4"
+                          cachedName="sub_region_code"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[sub_region_code]"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[sub_region_code]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].Columns[intermediate_region_code]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="intermediate_region_code"
+                          externalMetadataColumnId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[intermediate_region_code]"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;].Columns[intermediate_region_code]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[name]"
+                          dataType="wstr"
+                          length="100"
+                          name="name" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[alpha_2]"
+                          dataType="wstr"
+                          length="50"
+                          name="alpha_2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[alpha_3]"
+                          dataType="wstr"
+                          length="50"
+                          name="alpha_3" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[country_code]"
+                          dataType="i4"
+                          name="country_code" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[iso_3166_2]"
+                          dataType="wstr"
+                          length="50"
+                          name="iso_3166_2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[region]"
+                          dataType="wstr"
+                          length="50"
+                          name="region" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[sub_region]"
+                          dataType="wstr"
+                          length="50"
+                          name="sub_region" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[intermediate_region]"
+                          dataType="wstr"
+                          length="50"
+                          name="intermediate_region" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[region_code]"
+                          dataType="i4"
+                          name="region_code" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[sub_region_code]"
+                          dataType="i4"
+                          name="sub_region_code" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input].ExternalColumns[intermediate_region_code]"
+                          dataType="wstr"
+                          length="50"
+                          name="intermediate_region_code" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Вывод ошибок назначения &quot;OLE DB&quot;"
+                      synchronousInputId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container\Задача потока данных 1.Paths[Выход источника &quot;OLE DB&quot;]"
+                  endId="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef.Inputs[Destination Input]"
+                  name="Выход источника &quot;OLE DB&quot;"
+                  startId="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef.Outputs[Выход источника &quot;OLE DB&quot;]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
   </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{FAAF5C88-CBC5-40A1-9B8D-81442C284CF3}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[User::Flag] == 0"
+      DTS:From="Package\Execute SQL Task 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Execute SQL Task 2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C8AE6313-C501-4FB0-B7F3-AD1E30047989}"
+      DTS:EvalOp="4"
+      DTS:Expression="@[User::Flag] == 1"
+      DTS:From="Package\Execute SQL Task 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Execute SQL Task 3" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{24F61AE0-454F-4AD5-ABE1-022110726735}"
+      DTS:From="Package\Execute SQL Task 3"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Execute SQL Task 4" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{C512D4B1-A68E-4657-941D-AF87E295FCD7}"
+      DTS:From="Package\Execute SQL Task 3"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Execute SQL Task 5"
+      DTS:Value="1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{40B24EE6-F7EB-418A-96A8-A0F257A47FF3}"
+      DTS:From="Package\Execute SQL Task 4"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Execute SQL Task 7" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{ED3A3B14-195D-4CEE-B81E-E6341F02D9DA}"
+      DTS:From="Package\Execute SQL Task 3"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Execute SQL Task 6"
+      DTS:Value="2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{9B3F82EE-FD30-4F57-B38D-6BE52B6729C1}"
+      DTS:From="Package\Execute SQL Task 6"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Execute SQL Task 7" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{D967E209-0D9E-4A3A-90CB-A3CB0810547B}"
+      DTS:From="Package\Execute SQL Task 5"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Execute SQL Task 7" />
+  </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
 <!--If you manually edit this section and make a mistake, you can delete it. -->
@@ -621,13 +926,378 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="199,42"
-          Id="Package\Задача потока данных 1"
-          TopLeft="NaN,NaN" />
+          Id="Package\Sequence Container\Задача потока данных 1"
+          TopLeft="50,35" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="254,87"
+          Size="254,131"
+          Id="Package\Sequence Container"
+          TopLeft="550,53.5" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\For Loop Container\Execute SQL Task"
+          TopLeft="27,18" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="217,80"
+          Size="217,123"
+          Id="Package\For Loop Container"
+          TopLeft="312.5,60" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Foreach Loop Container\Execute SQL Task"
+          TopLeft="29,14" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="215,111"
+          Size="215,154"
+          Id="Package\Foreach Loop Container"
+          TopLeft="93,33" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Execute SQL Task 3"
+          TopLeft="309,298" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="368,255">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="27,43"
+              Start="0,0"
+              End="27,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="23,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23,0"
+                    Point2="27,0"
+                    Point3="27,4" />
+                  <mssgle:LineSegment
+                    End="27,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="19,-22,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Execute SQL Task 2"
+          TopLeft="89,296" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="196,255">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-21,41"
+              Start="0,0"
+              End="-21,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-17,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-17,0"
+                    Point2="-21,0"
+                    Point3="-21,4" />
+                  <mssgle:LineSegment
+                    End="-21,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-29,-22,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Execute SQL Task 1"
+          TopLeft="196,234" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Execute SQL Task 4"
+          TopLeft="153,374" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Execute SQL Task 5"
+          TopLeft="487,370" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="395,340">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-151,34"
+              Start="0,0"
+              End="-151,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13"
+                    Point2="0,17"
+                    Point3="-4,17" />
+                  <mssgle:LineSegment
+                    End="-147,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-147,17"
+                    Point2="-151,17"
+                    Point3="-151,21" />
+                  <mssgle:LineSegment
+                    End="-151,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="422.333333333333,340">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="155.666666666667,30"
+              Start="0,0"
+              End="155.666666666667,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.16589861751152" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.16589861751152"
+                    Point2="0,12.1658986175115"
+                    Point3="4,12.1658986175115" />
+                  <mssgle:LineSegment
+                    End="151.666666666667,12.1658986175115" />
+                  <mssgle:CubicBezierSegment
+                    Point1="151.666666666667,12.1658986175115"
+                    Point2="155.666666666667,12.1658986175115"
+                    Point3="155.666666666667,16.1658986175115" />
+                  <mssgle:LineSegment
+                    End="155.666666666667,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="62.5919856770833,17.1658986175115,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Execute SQL Task 6"
+          TopLeft="307,460" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="395,340">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="25.3333333333333,120"
+              Start="0,0"
+              End="25.3333333333333,112.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.3364055299539" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,67.3364055299539"
+                    Point2="0,71.3364055299539"
+                    Point3="4,71.3364055299539" />
+                  <mssgle:LineSegment
+                    End="21.3333333333333,71.3364055299539" />
+                  <mssgle:CubicBezierSegment
+                    Point1="21.3333333333333,71.3364055299539"
+                    Point2="25.3333333333333,71.3364055299539"
+                    Point3="25.3333333333333,75.3364055299539" />
+                  <mssgle:LineSegment
+                    End="25.3333333333333,112.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-12.6377864583333,76.3364055299539,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Execute SQL Task 7"
+          TopLeft="319,575" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="244,416">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="120,159"
+              Start="0,0"
+              End="120,151.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,100.381679389313" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,100.381679389313"
+                    Point2="0,104.381679389313"
+                    Point3="4,104.381679389313" />
+                  <mssgle:LineSegment
+                    End="116,104.381679389313" />
+                  <mssgle:CubicBezierSegment
+                    Point1="116,104.381679389313"
+                    Point2="120,104.381679389313"
+                    Point3="120,108.381679389313" />
+                  <mssgle:LineSegment
+                    End="120,151.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="393,502">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12,73"
+              Start="0,0"
+              End="12,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.5"
+                    Point2="0,36.5"
+                    Point3="4,36.5" />
+                  <mssgle:LineSegment
+                    End="8,36.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8,36.5"
+                    Point2="12,36.5"
+                    Point3="12,40.5" />
+                  <mssgle:LineSegment
+                    End="12,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="578,412">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-132,163"
+              Start="0,0"
+              End="-132,155.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,103.007633587786" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,103.007633587786"
+                    Point2="0,107.007633587786"
+                    Point3="-4,107.007633587786" />
+                  <mssgle:LineSegment
+                    End="-128,107.007633587786" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-128,107.007633587786"
+                    Point2="-132,107.007633587786"
+                    Point3="-132,111.007633587786" />
+                  <mssgle:LineSegment
+                    End="-132,155.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <TaskHost
+    design-time-name="Package\Sequence Container\Задача потока данных 1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="188,42"
+          Id="Package\Sequence Container\Задача потока данных 1\Источник - CountryRef"
+          TopLeft="11.5,5.5" />
+        <NodeLayout
+          Size="200,42"
+          Id="Package\Sequence Container\Задача потока данных 1\Назначение - CountryRef"
+          TopLeft="5.50000000000001,107.5" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Задача потока данных 1.Paths[Выход источника &quot;OLE DB&quot;]"
+          TopLeft="105.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
