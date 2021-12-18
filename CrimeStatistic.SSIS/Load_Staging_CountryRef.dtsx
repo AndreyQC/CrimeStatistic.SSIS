@@ -5,32 +5,29 @@
   DTS:CreationName="Microsoft.Package"
   DTS:CreatorComputerName="DESKTOP-TCT0GRT"
   DTS:CreatorName="DESKTOP-TCT0GRT\Евгения"
-  DTS:DTSID="{244E2AE8-4DBC-45B0-94C3-B915EC4FB9A3}"
+  DTS:DTSID="{6C19E214-2166-46E0-AA73-23D49BB8AABF}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.2000.170"
   DTS:LocaleID="1049"
-  DTS:ObjectName="Package2"
+  DTS:ObjectName="Load_Staging_CountryRef"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{2827CF4A-EBDB-4A8F-B46E-3C7B9DF6538B}">
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{D5EEF18E-6AB9-4CB2-A014-2F434EAC2565}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+      DTS:refId="Package.ConnectionManagers[DESKTOP-TCT0GRT\MSSQL2019.CrimeStatistic.DWH]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{CCC2865C-DB53-4674-AEB1-DC58147F210C}"
-      DTS:ObjectName="SourceConnectionOLEDB">
+      DTS:DTSID="{D47D7A71-78E6-4329-9E1D-B0F2E5635396}"
+      DTS:ObjectName="DESKTOP-TCT0GRT\MSSQL2019.CrimeStatistic.DWH">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::DESKTOPTCT0GRTMSSQL2019CrimeStatisticDWH_ConnectionString]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=epamsqllabsrv.database.windows.net;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11.1;Auto Translate=false;">
-          <DTS:Password
-            DTS:Name="Password"
-            Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA4g8fp+g5GEiNnQrTjAP1KwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACMZRi2K+D3PbfU0m836Iu8iHzSb6d3cDm+UcJkJSb8sgAAAAAOgAAAAAIAACAAAAArn5S0XbINB1Ys8zIhPRYy5J+mC950hMBk/xDNzwAPjyAAAAA0U8OiqQiHMN95ECAwpTaT//N6P61QzdO7/wv9cuYtrEAAAADjpaFBVO6Sm6lUZePehmnDzZojG7HeQF6m6Nc8ZH31gbmsztUkTFOr6ug18TfIMfS+SsAWPJFBQCE/6KmmjMDm</DTS:Password>
-        </DTS:ConnectionManager>
+          DTS:ConnectionString="Data Source=DESKTOP-TCT0GRT\MSSQL2019;Initial Catalog=CrimeStatistic.DWH;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -98,7 +95,7 @@
                       dataType="System.Int32"
                       description="Указывает используемый режим доступа к базе данных."
                       name="AccessMode"
-                      typeConverter="AccessMode">0</property>
+                      typeConverter="AccessMode">3</property>
                     <property
                       dataType="System.Boolean"
                       description="Указывает, должны ли значения в столбцах идентификаторов копироваться в назначение. Если свойство имеет значение false, значения в столбцах идентификаторов будут созданы автоматически в месте назначения. Применяется только в том случае, если включена быстрая загрузка."
@@ -119,8 +116,8 @@
                   <connections>
                     <connection
                       refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesred_untyped\OLE_DST staging countriesref_untyped.Connections[OleDbConnection]"
-                      connectionManagerID="{272BD629-393C-423F-AF13-CBED974A5E47}:external"
-                      connectionManagerRefId="Project.ConnectionManagers[DestinationConnectionOLEDB]"
+                      connectionManagerID="Package.ConnectionManagers[DESKTOP-TCT0GRT\MSSQL2019.CrimeStatistic.DWH]"
+                      connectionManagerRefId="Package.ConnectionManagers[DESKTOP-TCT0GRT\MSSQL2019.CrimeStatistic.DWH]"
                       description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                       name="OleDbConnection" />
                   </connections>
@@ -363,8 +360,8 @@
                   <connections>
                     <connection
                       refId="Package\SEQC Load staging countriesref_untyped\DFT staging countriesred_untyped\OLE_SCR CountryRef.Connections[OleDbConnection]"
-                      connectionManagerID="Package.ConnectionManagers[SourceConnectionOLEDB]"
-                      connectionManagerRefId="Package.ConnectionManagers[SourceConnectionOLEDB]"
+                      connectionManagerID="{CCC2865C-DB53-4674-AEB1-DC58147F210C}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[SourceConnectionOLEDB]"
                       description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
                       name="OleDbConnection" />
                   </connections>
@@ -636,18 +633,18 @@
       </DTS:Executables>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\SQL Truncate staging countriesred_untyped"
+      DTS:refId="Package\SQL Truncate staging countriesref_untyped"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Задача &quot;Выполнение SQL&quot;"
       DTS:DTSID="{B0215620-1F9D-4323-8D03-1204ABDB2FEC}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
-      DTS:ObjectName="SQL Truncate staging countriesred_untyped"
+      DTS:ObjectName="SQL Truncate staging countriesref_untyped"
       DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{272BD629-393C-423F-AF13-CBED974A5E47}"
+          SQLTask:Connection="{D47D7A71-78E6-4329-9E1D-B0F2E5635396}"
           SQLTask:SqlStatementSource="TRUNCATE TABLE [staging].[countriesref_untyped];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -657,7 +654,7 @@
       DTS:refId="Package.PrecedenceConstraints[Ограничение]"
       DTS:CreationName=""
       DTS:DTSID="{F0383C7A-A286-4D47-B976-63B6247A48CC}"
-      DTS:From="Package\SQL Truncate staging countriesred_untyped"
+      DTS:From="Package\SQL Truncate staging countriesref_untyped"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Ограничение"
       DTS:To="Package\SEQC Load staging countriesref_untyped" />
@@ -675,10 +672,6 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="286,42"
-          Id="Package\SQL Truncate staging countriesred_untyped"
-          TopLeft="140,36" />
-        <NodeLayout
           Size="241,42"
           Id="Package\SEQC Load staging countriesref_untyped\DFT staging countriesred_untyped"
           TopLeft="11,8" />
@@ -689,6 +682,10 @@
           Size="257,148"
           Id="Package\SEQC Load staging countriesref_untyped"
           TopLeft="187,187" />
+        <NodeLayout
+          Size="286,42"
+          Id="Package\SQL Truncate staging countriesref_untyped"
+          TopLeft="140,36" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Ограничение]"
           TopLeft="283,78">
@@ -777,7 +774,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\SEQC Load staging countriesref_untyped\DFT staging countriesred_untyped\OLE_SCR CountryRef">
+    design-time-name="Package\SEQC Load staging countriesref_untyped\DFT staging countriesred_untyped\OLE_DST staging countriesref_untyped">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -790,7 +787,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\SEQC Load staging countriesref_untyped\DFT staging countriesred_untyped\OLE_DST staging countriesref_untyped">
+    design-time-name="Package\SEQC Load staging countriesref_untyped\DFT staging countriesred_untyped\OLE_SCR CountryRef">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
