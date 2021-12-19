@@ -1,0 +1,529 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/19/2021 1:06:45 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WSAMZN-IKI745TQ"
+  DTS:CreatorName="EPAM\Konstantin_Kuts"
+  DTS:DTSID="{9B6615C8-C6BC-444C-95D6-39BA193DA329}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{69453828-1C75-4298-8FCA-5023A914EADD}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{90399EC6-B664-44A3-A465-AC91E2A36275}"
+      DTS:ObjectName="RU.BI.LAB.SSIS.DB">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::RUBILABSSISDB_ConnectionString]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=epamsqllabsrv.database.windows.net;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=false;">
+          <DTS:Password
+            DTS:Name="pwd"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAoXsY/zgy6UWNd5nhoj47YgAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABcsM68GvxDSNv9I5bSnnpVAAAAAASAAACgAAAAEAAAAAgjJSl2iOTYa2GygY/raKggAAAAnkLqYxS1ohcuiQFqQYq4hfW55uW1BpGUo9kPGVzmLHcUAAAAU/LNxC488IG7Lz6/chw3j35HkLg</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7ECD09FC-1836-4FC6-8951-1C0D70D0CE32}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DateEnd">
+      <DTS:VariableValue
+        DTS:DataType="8">2020-02-01</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F29EEB8C-A96F-4C82-B4D9-DDE24B0B1C17}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="DateStart">
+      <DTS:VariableValue
+        DTS:DataType="8">2020-01-01</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7D878053-A6DA-4C24-A529-D113FCF00528}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="NewID">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{56C55771-B131-4902-AB09-8EA76C6BAE88}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SELECT TOP (1000) [OrderId]&#xA;      ,[OrderDateTime]&#xA;      ,[PayedDateTime]&#xA;      ,[ShippedDateTime]&#xA;      ,[Status]&#xA;      ,[CustomerId]&#xA;      ,[sysCreatedAT]&#xA;      ,[sysChangedAt]&#xA;      ,[sysCreatedBy]&#xA;      ,[sysChangedBy]&#xA;  FROM [rubilab].[Order]&#xA;  WHERE OrderDateTime &gt;= '&quot;+(DT_WSTR, 4)YEAR(@[System::StartTime]) &#xA;+ RIGHT(&quot;0&quot; + (DT_WSTR, 2) MONTH(@[System::StartTime]), 2) &#xA;+ RIGHT(&quot;0&quot; + (DT_WSTR, 2) DAY(@[System::StartTime]), 2)&#xA;+&quot;'&#xA;&#x9;AND OrderDateTime &lt; '2020-03-01'&#xA;&#xA;&#x9;Order by [OrderDateTime]&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SQLQuery">
+      <DTS:VariableValue
+        DTS:DataType="8">SELECT TOP (1000) [OrderId]
+      ,[OrderDateTime]
+      ,[PayedDateTime]
+      ,[ShippedDateTime]
+      ,[Status]
+      ,[CustomerId]
+      ,[sysCreatedAT]
+      ,[sysChangedAt]
+      ,[sysCreatedBy]
+      ,[sysChangedBy]
+  FROM [rubilab].[Order]
+  WHERE OrderDateTime &gt;= '20211219'
+	AND OrderDateTime &lt; '2020-03-01'
+
+	Order by [OrderDateTime]</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT Incremental loading"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{EB89C729-BEFA-4430-A287-116FB1BF8748}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT Incremental loading"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT Incremental loading\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable">User::SQLQuery</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT TOP (1000) [OrderId]
+      ,[OrderDateTime]
+      ,[PayedDateTime]
+      ,[ShippedDateTime]
+      ,[Status]
+  FROM [rubilab].[Order]
+  WHERE OrderDateTime &gt;= ?
+	AND OrderDateTime &lt; ?</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable">User::SQLQuery</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{F29EEB8C-A96F-4C82-B4D9-DDE24B0B1C17};"Parameter1:Input",{7ECD09FC-1836-4FC6-8951-1C0D70D0CE32};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT Incremental loading\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
+                  connectionManagerRefId="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrderId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OrderId]"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrderId]"
+                      name="OrderId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrderDateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OrderDateTime]"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[OrderDateTime]"
+                      name="OrderDateTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[PayedDateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PayedDateTime]"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[PayedDateTime]"
+                      name="PayedDateTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShippedDateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ShippedDateTime]"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[ShippedDateTime]"
+                      name="ShippedDateTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                      length="255"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]"
+                      name="Status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerId]"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerId]"
+                      name="CustomerId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[sysCreatedAT]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sysCreatedAT]"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[sysCreatedAT]"
+                      name="sysCreatedAT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[sysChangedAt]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sysChangedAt]"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[sysChangedAt]"
+                      name="sysChangedAt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[sysCreatedBy]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sysCreatedBy]"
+                      length="100"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[sysCreatedBy]"
+                      name="sysCreatedBy"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[sysChangedBy]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sysChangedBy]"
+                      length="100"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].Columns[sysChangedBy]"
+                      name="sysChangedBy"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OrderId]"
+                      dataType="i8"
+                      name="OrderId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OrderDateTime]"
+                      dataType="dbTimeStamp"
+                      name="OrderDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PayedDateTime]"
+                      dataType="dbTimeStamp"
+                      name="PayedDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ShippedDateTime]"
+                      dataType="dbTimeStamp"
+                      name="ShippedDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                      dataType="wstr"
+                      length="255"
+                      name="Status" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerId]"
+                      dataType="i4"
+                      name="CustomerId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sysCreatedAT]"
+                      dataType="dbTimeStamp"
+                      name="sysCreatedAT" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sysChangedAt]"
+                      dataType="dbTimeStamp"
+                      name="sysChangedAt" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sysCreatedBy]"
+                      dataType="wstr"
+                      length="100"
+                      name="sysCreatedBy" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sysChangedBy]"
+                      dataType="wstr"
+                      length="100"
+                      name="sysChangedBy" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OrderId]"
+                      dataType="i8"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OrderId]"
+                      name="OrderId" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OrderDateTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[OrderDateTime]"
+                      name="OrderDateTime" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PayedDateTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PayedDateTime]"
+                      name="PayedDateTime" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ShippedDateTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ShippedDateTime]"
+                      name="ShippedDateTime" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Status]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Status]"
+                      name="Status" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerId]"
+                      dataType="i4"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerId]"
+                      name="CustomerId" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sysCreatedAT]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sysCreatedAT]"
+                      name="sysCreatedAT" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sysChangedAt]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sysChangedAt]"
+                      name="sysChangedAt" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sysCreatedBy]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sysCreatedBy]"
+                      name="sysCreatedBy" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sysChangedBy]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sysChangedBy]"
+                      name="sysChangedBy" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT Incremental loading\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Expression Task"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{264A5B08-9810-4AE4-B149-4A0745216CE4}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Expression Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::SQLQuery] = &quot;SELECT TOP (1000) [OrderId]&#xA;      ,[OrderDateTime]&#xA;      ,[PayedDateTime]&#xA;      ,[ShippedDateTime]&#xA;      ,[Status]&#xA;      ,[CustomerId]&#xA;      ,[sysCreatedAT]&#xA;      ,[sysChangedAt]&#xA;      ,[sysCreatedBy]&#xA;      ,[sysChangedBy]&#xA;  FROM [rubilab].[Order]&#xA;  WHERE OrderDateTime &gt;= '2020-02-01'&#xA;&#x9;AND OrderDateTime &lt; '2021-03-01'&#xA;&#xA;&#x9;Order by [OrderDateTime]&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Log Package start"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E54D5A21-4316-4A87-B3E9-D7548F77B74A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Log Package start"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9BFB500B-3A4D-401E-914C-1D688EC524E0}"
+          SQLTask:SqlStatementSource="EXEC [etl].[usp_PackageExecutionHistory_Create] ?,?,? OUTPUT" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::NewID"
+            SQLTask:ParameterDirection="Output"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{55CBC723-2C70-46E3-8C1E-80AE6AA3B077}"
+      DTS:From="Package\SQL Log Package start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Expression Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="195,42"
+          Id="Package\DFT Incremental loading"
+          TopLeft="695,235" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Expression Task"
+          TopLeft="262,232" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\SQL Log Package start"
+          TopLeft="246,140" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="339,182">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,50"
+              Start="0,0"
+              End="0,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT Incremental loading">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\DFT Incremental loading\OLE DB Source"
+          TopLeft="288,154" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT Incremental loading\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
