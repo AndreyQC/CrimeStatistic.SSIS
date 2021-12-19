@@ -11,8 +11,8 @@
   DTS:LocaleID="1049"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="19"
-  DTS:VersionGUID="{44E0FE7D-3D95-442D-B4C0-39849DC2DB36}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{46F5C739-4F3C-4447-A422-AD1F214576FD}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -199,7 +199,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA2eXKMzZajUiZv8CJiTckowAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABPzqu/IBCWSd5Vz5xMsvckCXAab9VaJP7hSiZvXWbFlAAAAAAOgAAAAAIAACAAAACAHGA4p2R4gUbCzd9ZVbs4oOMhiIM9d3RTXjXepFtkkyAAAABeCwQYUrOjPWH1dw/t4gmscsZ9t9OedZwqUOxslNiQPEAAAADz/OsRuRpIdtD1Jr75pXJ1HR2W54+ovIKeFptuEoHu+q2mymfjbD4WyrcVnsZvO3E4A6wVP8bFxWgDFJkToCDn</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA2eXKMzZajUiZv8CJiTckowAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABNEnP7FJnNKmsMlrPEGwmj8YULC/+URE12cM8GXgf4PAAAAAAOgAAAAAIAACAAAADbwHRl3NalumfoWMW9qmgsmZniiiHNCgSViPOXF+ZR6yAAAADg9jfmSPwdW588HHYTAM/rSH7zhhWYBaG9zduhS+YOkkAAAADF3YcPw2TkrHZWL3u0Ei2ifSOsfMOq6j30SGkf5hy3Wy/O1bs0e/cqtlpeeCdQnhetzfGUI+XunZUZGZPOFjUV</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -237,7 +237,8 @@
                   componentClassID="Microsoft.Cache"
                   contactInfo="Преобразование кэша;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;1"
                   description="Записывает данные в кэш (файл CAW) с помощью диспетчера соединений с кэшем. Повторно используйте кэш в нескольких преобразованиях &quot;Уточняющий запрос&quot;, чтобы снизить нагрузку на базу данных. Предоставьте общий доступ к кэшу, чтобы уменьшить потребление ресурсов памяти. Примечание. Данные кэша хранятся в незашифрованном тексте. Не рекомендуется его использовать для конфиденциальных данных."
-                  name="Cache Transform">
+                  name="Cache Transform"
+                  version="1">
                   <properties>
                     <property
                       dataType="System.Boolean"
@@ -1275,7 +1276,7 @@ where [refTable].[Name] = ?</property>
                       dataType="System.Int32"
                       description="Указывает тип соединения, используемого для доступа к эталонному набору данных."
                       name="ConnectionType"
-                      typeConverter="LookupConnectionType">0</property>
+                      typeConverter="LookupConnectionType">1</property>
                     <property
                       dataType="System.Int32"
                       description="Указывает тип кэша таблицы уточняющих запросов."
@@ -1318,11 +1319,11 @@ where [refTable].[Name] = ?</property>
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\SEQC Lookup\DFT Demo 1 Lookup with Cache\LKP Customer.Connections[OleDbConnection]"
-                      connectionManagerID="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
-                      connectionManagerRefId="Package.ConnectionManagers[RU.BI.LAB.SSIS.DB]"
+                      refId="Package\SEQC Lookup\DFT Demo 1 Lookup with Cache\LKP Customer.Connections[CacheConnection]"
+                      connectionManagerID="Package.ConnectionManagers[CacheCustomer]"
+                      connectionManagerRefId="Package.ConnectionManagers[CacheCustomer]"
                       description="Диспетчер соединений, используемый для доступа к данным уточняющих запросов."
-                      name="OleDbConnection" />
+                      name="CacheConnection" />
                   </connections>
                   <inputs>
                     <input
@@ -3500,47 +3501,17 @@ ORDER BY [CustomerId]</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="175,42"
-          Id="Package\SEQC Lookup\DFT Demo 1 Lookup"
-          TopLeft="313.5,87.5" />
-        <EdgeLayout
-          Id="Package\SEQC Lookup.PrecedenceConstraints[Constraint 1]"
-          TopLeft="281.833333333333,47.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="119.166666666667,40"
-              Start="0,0"
-              End="119.166666666667,32.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,12.2917933130699" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,12.2917933130699"
-                    Point2="0,16.2917933130699"
-                    Point3="4,16.2917933130699" />
-                  <mssgle:LineSegment
-                    End="115.166666666667,16.2917933130699" />
-                  <mssgle:CubicBezierSegment
-                    Point1="115.166666666667,16.2917933130699"
-                    Point2="119.166666666667,16.2917933130699"
-                    Point3="119.166666666667,20.2917933130699" />
-                  <mssgle:LineSegment
-                    End="119.166666666667,32.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
           Size="130,42"
           Id="Package\SEQC Lookup\DFT Cache"
           TopLeft="196.5,5.5" />
+        <NodeLayout
+          Size="175,42"
+          Id="Package\SEQC Lookup\DFT Demo 1 Lookup"
+          TopLeft="313.5,87.5" />
+        <NodeLayout
+          Size="231,42"
+          Id="Package\SEQC Lookup\DFT Demo 1 Lookup with Cache"
+          TopLeft="5.5,81.5" />
         <EdgeLayout
           Id="Package\SEQC Lookup.PrecedenceConstraints[Constraint]"
           TopLeft="241.166666666667,47.5">
@@ -3575,10 +3546,40 @@ ORDER BY [CustomerId]</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="231,42"
-          Id="Package\SEQC Lookup\DFT Demo 1 Lookup with Cache"
-          TopLeft="5.5,81.5" />
+        <EdgeLayout
+          Id="Package\SEQC Lookup.PrecedenceConstraints[Constraint 1]"
+          TopLeft="281.833333333333,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="119.166666666667,40"
+              Start="0,0"
+              End="119.166666666667,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.2917933130699" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.2917933130699"
+                    Point2="0,16.2917933130699"
+                    Point3="4,16.2917933130699" />
+                  <mssgle:LineSegment
+                    End="115.166666666667,16.2917933130699" />
+                  <mssgle:CubicBezierSegment
+                    Point1="115.166666666667,16.2917933130699"
+                    Point2="119.166666666667,16.2917933130699"
+                    Point3="119.166666666667,20.2917933130699" />
+                  <mssgle:LineSegment
+                    End="119.166666666667,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -3611,6 +3612,52 @@ ORDER BY [CustomerId]</property>
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <TaskHost
+    design-time-name="Package\SEQC Lookup\DFT Cache">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171,42"
+          Id="Package\SEQC Lookup\DFT Cache\OLE_SRC Customer"
+          TopLeft="57,58" />
+        <NodeLayout
+          Size="159,42"
+          Id="Package\SEQC Lookup\DFT Cache\Cache Transform"
+          TopLeft="58,158" />
+        <EdgeLayout
+          Id="Package\SEQC Lookup\DFT Cache.Paths[Выход источника &quot;OLE DB&quot;]"
+          TopLeft="140,100">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Lookup\DFT Cache\OLE_SRC Customer">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\SEQC Lookup\DFT Demo 1 Lookup">
     <LayoutInfo>
@@ -3737,7 +3784,7 @@ ORDER BY [CustomerId]</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3747,54 +3794,8 @@ ORDER BY [CustomerId]</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\SEQC Lookup\DFT Cache">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="171,42"
-          Id="Package\SEQC Lookup\DFT Cache\OLE_SRC Customer"
-          TopLeft="57,58" />
-        <NodeLayout
-          Size="159,42"
-          Id="Package\SEQC Lookup\DFT Cache\Cache Transform"
-          TopLeft="58,158" />
-        <EdgeLayout
-          Id="Package\SEQC Lookup\DFT Cache.Paths[Выход источника &quot;OLE DB&quot;]"
-          TopLeft="140,100">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,58"
-              Start="0,0"
-              End="0,50.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,50.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\SEQC Lookup\DFT Cache\OLE_SRC Customer">
-    <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
@@ -3806,14 +3807,6 @@ ORDER BY [CustomerId]</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="154,42"
-          Id="Package\SEQC Lookup\DFT Demo 1 Lookup with Cache\Derived Column"
-          TopLeft="48,216" />
-        <NodeLayout
-          Size="145,42"
-          Id="Package\SEQC Lookup\DFT Demo 1 Lookup with Cache\LKP Customer"
-          TopLeft="54,127" />
-        <NodeLayout
           Size="121,42"
           Id="Package\SEQC Lookup\DFT Demo 1 Lookup with Cache\Union All"
           TopLeft="72,304" />
@@ -3821,6 +3814,14 @@ ORDER BY [CustomerId]</property>
           Size="144,42"
           Id="Package\SEQC Lookup\DFT Demo 1 Lookup with Cache\FFS Customer"
           TopLeft="55,37" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\SEQC Lookup\DFT Demo 1 Lookup with Cache\Derived Column"
+          TopLeft="48,216" />
+        <NodeLayout
+          Size="145,42"
+          Id="Package\SEQC Lookup\DFT Demo 1 Lookup with Cache\LKP Customer"
+          TopLeft="54,127" />
         <EdgeLayout
           Id="Package\SEQC Lookup\DFT Demo 1 Lookup with Cache.Paths[Выход производного столбца]"
           TopLeft="128.75,258">
@@ -3846,6 +3847,28 @@ ORDER BY [CustomerId]</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
+          Id="Package\SEQC Lookup\DFT Demo 1 Lookup with Cache.Paths[Выход источника &quot;Неструктурированный файл&quot;]"
+          TopLeft="126.75,79">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
           Id="Package\SEQC Lookup\DFT Demo 1 Lookup with Cache.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
           TopLeft="125.75,169">
           <EdgeLayout.Curve>
@@ -3867,28 +3890,6 @@ ORDER BY [CustomerId]</property>
             <mssgm:EdgeLabel
               BoundingBox="-134.68986328125,13.75,269.3797265625,12"
               RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\SEQC Lookup\DFT Demo 1 Lookup with Cache.Paths[Выход источника &quot;Неструктурированный файл&quot;]"
-          TopLeft="126.75,79">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,48"
-              Start="0,0"
-              End="0,40.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
