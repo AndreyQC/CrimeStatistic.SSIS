@@ -11,8 +11,8 @@
   DTS:LocaleID="1049"
   DTS:ObjectName="Transform_staging_UNCrime"
   DTS:PackageType="5"
-  DTS:VersionBuild="22"
-  DTS:VersionGUID="{35FC978A-754F-4B5C-9FD0-CDD0DD0AFA52}">
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{FADE666B-D0DE-4C39-AB39-E929FB929D9E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:LogProviders>
@@ -41,7 +41,7 @@
       DTS:CreationName=""
       DTS:DTSID="{E12EF5E8-DC4E-47D0-BDDC-20461318E939}"
       DTS:EvaluateAsExpression="True"
-      DTS:Expression="@[$Project::pSourceFolderPath]"
+      DTS:Expression="@[$Project::UNDocSourceFileFolder]"
       DTS:IncludeInDebugDump="2345"
       DTS:Namespace="User"
       DTS:ObjectName="SourceFolderPath">
@@ -2773,7 +2773,7 @@
               DTS:ExecutableType="Microsoft.ExecuteSQLTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="SQL Truncate Staging_UNCrime_typed"
-              DTS:ThreadHint="1">
+              DTS:ThreadHint="0">
               <DTS:Variables />
               <DTS:LoggingOptions
                 DTS:FilterKind="0" />
@@ -2791,7 +2791,7 @@
               DTS:ExecutableType="Microsoft.ExecuteSQLTask"
               DTS:LocaleID="-1"
               DTS:ObjectName="SQL Truncate Staging_UNCrime_unpivoted"
-              DTS:ThreadHint="0">
+              DTS:ThreadHint="1">
               <DTS:Variables />
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
@@ -3138,15 +3138,19 @@
     design-time-name="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="264,42"
-          Id="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed"
-          TopLeft="293,81" />
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="115,42"
           Id="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\Unpivot"
           TopLeft="377,213" />
+        <NodeLayout
+          Size="284,42"
+          Id="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLEDST Table Staging_UNCrime_unpivoted"
+          TopLeft="260,340" />
+        <NodeLayout
+          Size="264,42"
+          Id="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed"
+          TopLeft="293,81" />
         <EdgeLayout
           Id="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted.Paths[Выход источника &quot;OLE DB&quot;]"
           TopLeft="425,123">
@@ -3178,13 +3182,11 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="284,42"
-          Id="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLEDST Table Staging_UNCrime_unpivoted"
-          TopLeft="260,340" />
         <EdgeLayout
           Id="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted.Paths[Выход отмены сведения]"
           TopLeft="434.5,255">
@@ -3216,12 +3218,40 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLEDST Table Staging_UNCrime_unpivoted">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_untyped to Staging_UNCrime_typed">
     <LayoutInfo>
@@ -3258,7 +3288,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3315,32 +3347,6 @@
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_untyped to Staging_UNCrime_typed\OLEDST Table Staging_UNCrime_typed">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLESRC Table Staging_UNCrime_typed">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\SEQC Main\SEQC Load Data to Staging_UNCrime_typed\DFT Load data from Staging_UNCrime_typed to Staging_UNCrime_unpivoted\OLEDST Table Staging_UNCrime_unpivoted">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
