@@ -1,0 +1,1579 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/9/2021 11:03:37 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-AM75BMIL"
+  DTS:CreatorName="LAPTOP-AM75BMIL\annak"
+  DTS:DTSID="{F2D5FEB6-E5F0-45F9-9A1F-3B5B896D98FA}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.170"
+  DTS:LocaleID="1049"
+  DTS:ObjectName="Load_dwh_FactPopulation"
+  DTS:PackageType="5"
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{DCE30D3D-843C-4BF0-8D04-799BCF056A14}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="CrimeStatistic.DWH"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Записывает элементы журнала для событий в базу данных SQL Server"
+      DTS:DTSID="{456E1540-7180-46CC-A800-7D3EE88CB8D2}"
+      DTS:ObjectName="Регистратор служб SSIS для SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{41FE9774-C674-4D6B-ACBE-254F1777A8B5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentFile">
+      <DTS:VariableValue
+        DTS:DataType="8">\\epamssislabstac.file.core.windows.net\rubilabssis\RU.BI.LAB.SSIS\Source files\undoc-changed\csv\burglary.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{78D5CE1E-CAB4-4548-B973-8A23D38E7290}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::pSourceFolderPath]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceFolderPath">
+      <DTS:VariableValue
+        DTS:DataType="8">\\epamssislabstac.file.core.windows.net\rubilabssis\RU.BI.LAB.SSIS\Source files\undoc-changed\csv</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">4,7,OnError,13,OnPostExecute,13,OnPreValidate,12,OnTaskFailed</DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{456E1540-7180-46CC-A800-7D3EE88CB8D2}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SEQC Main"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{4ADBC49C-3B0D-446A-8740-192D8CABFF0E}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC Main">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Main\SEQC Load FactPopulation"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{D5D4C2A9-299E-46D9-A852-00C64CE2FCD0}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SEQC Load FactPopulation">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation"
+              DTS:CreationName="Microsoft.Pipeline"
+              DTS:Description="Задача потока данных"
+              DTS:DTSID="{AF7102B3-65C2-490F-B819-8AB0817AA386}"
+              DTS:ExecutableType="Microsoft.Pipeline"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="DFT Load Data to dwh_FactPopulation"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values"
+                      componentClassID="Microsoft.DerivedColumn"
+                      contactInfo="Производный столбец;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;0"
+                      description="Создает новые значения столбцов путем применения выражений к входным столбцам преобразования. Создает новые столбцы или перезаписывает существующие. Пример: объединение значений столбцов &quot;first name&quot; и &quot;last name&quot; и создание столбца &quot;full name&quot;."
+                      name="DER Default values"
+                      usesDispositions="true">
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values.Inputs[Вход производного столбца]"
+                          description="Ввод преобразования &quot;Производный столбец&quot;"
+                          name="Вход производного столбца">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values.Inputs[Вход производного столбца].Columns[DimGeographyKey]"
+                              cachedDataType="i4"
+                              cachedName="DimGeographyKey"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[DimGeographyKey]" />
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values.Inputs[Вход производного столбца].Columns[DateSK]"
+                              cachedDataType="i4"
+                              cachedName="DateSK"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[DateSK]" />
+                          </inputColumns>
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values.Outputs[Выход производного столбца]"
+                          description="Выход по умолчанию преобразования &quot;Производный столбец&quot;"
+                          exclusionGroup="1"
+                          name="Выход производного столбца"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values.Inputs[Вход производного столбца]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values.Outputs[Выход производного столбца].Columns[DimGeographyKey]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Вычисление"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values.Outputs[Выход производного столбца].Columns[DimGeographyKey]"
+                              name="DimGeographyKey"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Выражение производного столбца"
+                                  name="Expression">[ISNULL](#{Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Outputs[Вывод совпадений преобразования "Уточняющий запрос"].Columns[DimGeographyKey]}) ? -1 : #{Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Outputs[Вывод совпадений преобразования "Уточняющий запрос"].Columns[DimGeographyKey]}</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Понятное выражение производного столбца"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">ISNULL(DimGeographyKey) ? -1 : DimGeographyKey</property>
+                              </properties>
+                            </outputColumn>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values.Outputs[Выход производного столбца].Columns[DateSK]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Вычисление"
+                              errorRowDisposition="FailComponent"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values.Outputs[Выход производного столбца].Columns[DateSK]"
+                              name="DateSK"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Выражение производного столбца"
+                                  name="Expression">[ISNULL](#{Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Outputs[Вывод совпадений преобразования "Уточняющий запрос"].Columns[DateSK]}) ? -1 : #{Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Outputs[Вывод совпадений преобразования "Уточняющий запрос"].Columns[DateSK]}</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Понятное выражение производного столбца"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">ISNULL(DateSK) ? -1 : DateSK</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values.Outputs[Вывод ошибок производного столбца]"
+                          description="Вывод ошибок преобразования &quot;Производный столбец&quot;"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Вывод ошибок производного столбца"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values.Inputs[Вход производного столбца]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values.Outputs[Вывод ошибок производного столбца].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values.Outputs[Вывод ошибок производного столбца].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values.Outputs[Вывод ошибок производного столбца].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values.Outputs[Вывод ошибок производного столбца].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey"
+                      componentClassID="Microsoft.Lookup"
+                      contactInfo="Уточняющий запрос;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;6"
+                      description="Присоединяет дополнительные столбцы к потоку данных путем поиска значений в таблице. Пример: соединение со столбцом &quot;employee id&quot; таблицы employees позволяет получить значения &quot;hire date&quot; и &quot;employee name&quot;. Рекомендуется воспользоваться этим преобразованием, если таблица подстановки не помещается в памяти."
+                      name="Lookup DimDateKey"
+                      usesDispositions="true"
+                      version="6">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Задает инструкцию SQL, которая формирует таблицу уточняющих запросов."
+                          expressionType="Notify"
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dwh].[DimDate]</property>
+                        <property
+                          dataType="System.String"
+                          description="Задает инструкцию SQL, которая использует параметры для формирования таблицы уточняющих запросов."
+                          expressionType="Notify"
+                          name="SqlCommandParam"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dwh].[DimDate]) [refTable]
+where [refTable].[DateSK] = ?</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает тип соединения, используемого для доступа к эталонному набору данных."
+                          name="ConnectionType"
+                          typeConverter="LookupConnectionType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает тип кэша таблицы уточняющих запросов."
+                          name="CacheType"
+                          typeConverter="CacheType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает, как преобразование &quot;Уточняющий запрос&quot; обрабатывает строки без совпадающих элементов в эталонном наборе данных."
+                          name="NoMatchBehavior"
+                          typeConverter="LookupNoMatchBehavior">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает долю кэша (в процентах), выделенную для строк без совпадающих элементов в эталонном наборе данных."
+                          name="NoMatchCachePercentage">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Максимальный объем памяти для кэша ссылок на 32-разрядной платформе."
+                          name="MaxMemoryUsage">25</property>
+                        <property
+                          dataType="System.Int64"
+                          description="Максимальный объем памяти для кэша ссылок на 64-разрядной платформе."
+                          name="MaxMemoryUsage64">25</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает, следует ли ссылаться на метаданные в формате XML."
+                          name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DateSK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DateBK" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CalendarMonth" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CalendarMonthLongName" dataType="DT_WSTR" length="9" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CalendarMonthShortName" dataType="DT_WSTR" length="3" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CalendarQuarter" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CalendarQuarterShortName" dataType="DT_WSTR" length="2" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CalendarYear" dataType="DT_WSTR" length="4" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CalendarYearMonth" dataType="DT_WSTR" length="7" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CalendarYearQuarter" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayLongName" dataType="DT_WSTR" length="9" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayShortName" dataType="DT_WSTR" length="3" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayWeekNumber" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sysCreatedAt" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sysChangedAt" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sysChangedBy" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sysCreatedBy" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Задает список идентификаторов журнала обращений и преобразований, сопоставляемый с параметрами, которые использует инструкция SQL в свойстве SQLCommand. Элементы списка разделяются точками с запятой."
+                          name="ParameterMap">#{Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника "OLE DB"].Columns[DateKeySRC]};</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                          name="DefaultCodePage">1251</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Определяет, должны ли повторяющиеся ключи в ссылочных данных обрабатываться как ошибки при использовании режима полного кэширования."
+                          name="TreatDuplicateKeysAsError">false</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Connections[OleDbConnection]"
+                          connectionManagerID="{E0E2352B-4082-474C-B66D-96A6987B21DE}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[CrimeStatistic.DWH]"
+                          description="Диспетчер соединений, используемый для доступа к данным уточняющих запросов."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+                          name="Ввод преобразования &quot;Уточняющий запрос&quot;">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;].Columns[DateKeySRC]"
+                              cachedDataType="i4"
+                              cachedName="DateKeySRC"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[DateKeySRC]">
+                              <properties>
+                                <property
+                                  dataType="System.String"
+                                  description="Указывает в ссылочной таблице столбец, который соединен с данным столбцом."
+                                  name="JoinToReferenceColumn">DateSK</property>
+                                <property
+                                  dataType="System.Null"
+                                  description="Указывает в ссылочной таблице столбец, из которого копируется данный столбец."
+                                  name="CopyFromReferenceColumn" />
+                              </properties>
+                            </inputColumn>
+                          </inputColumns>
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
+                          errorOrTruncationOperation="Уточняющий запрос"
+                          errorRowDisposition="FailComponent"
+                          exclusionGroup="1"
+                          name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[DateSK]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Копировать столбец"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[DateSK]"
+                              name="DateSK"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  dataType="System.String"
+                                  description="Указывает в ссылочной таблице столбец, из которого копируется данный столбец."
+                                  name="CopyFromReferenceColumn">DateSK</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Outputs[Выход несовпадающих строк уточняющего запроса]"
+                          description="Вывод преобразования &quot;Уточняющий запрос&quot;, которое обрабатывает строки без совпадающих элементов в эталонном наборе данных. Используйте этот выход, если свойство NoMatchBehavior имеет значение &quot;Отправить строки без совпадающих элементов в выход несовпадающих строк&quot;."
+                          exclusionGroup="1"
+                          name="Выход несовпадающих строк уточняющего запроса"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Вывод ошибок преобразования &quot;Уточняющий запрос&quot;"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey"
+                      componentClassID="Microsoft.Lookup"
+                      contactInfo="Уточняющий запрос;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;6"
+                      description="Присоединяет дополнительные столбцы к потоку данных путем поиска значений в таблице. Пример: соединение со столбцом &quot;employee id&quot; таблицы employees позволяет получить значения &quot;hire date&quot; и &quot;employee name&quot;. Рекомендуется воспользоваться этим преобразованием, если таблица подстановки не помещается в памяти."
+                      name="Lookup DimGeographyKey"
+                      usesDispositions="true"
+                      version="6">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Задает инструкцию SQL, которая формирует таблицу уточняющих запросов."
+                          expressionType="Notify"
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [DimGeographyKey]
+      ,UPPER([CountryCode]) AS [CountryCode]
+  FROM [dwh].[DimGeography]</property>
+                        <property
+                          dataType="System.String"
+                          description="Задает инструкцию SQL, которая использует параметры для формирования таблицы уточняющих запросов."
+                          expressionType="Notify"
+                          name="SqlCommandParam"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT [DimGeographyKey]
+      ,UPPER([CountryCode]) AS [CountryCode]
+  FROM [dwh].[DimGeography]) [refTable]
+where [refTable].[CountryCode] = ?</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает тип соединения, используемого для доступа к эталонному набору данных."
+                          name="ConnectionType"
+                          typeConverter="LookupConnectionType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает тип кэша таблицы уточняющих запросов."
+                          name="CacheType"
+                          typeConverter="CacheType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает, как преобразование &quot;Уточняющий запрос&quot; обрабатывает строки без совпадающих элементов в эталонном наборе данных."
+                          name="NoMatchBehavior"
+                          typeConverter="LookupNoMatchBehavior">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает долю кэша (в процентах), выделенную для строк без совпадающих элементов в эталонном наборе данных."
+                          name="NoMatchCachePercentage">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Максимальный объем памяти для кэша ссылок на 32-разрядной платформе."
+                          name="MaxMemoryUsage">25</property>
+                        <property
+                          dataType="System.Int64"
+                          description="Максимальный объем памяти для кэша ссылок на 64-разрядной платформе."
+                          name="MaxMemoryUsage64">25</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает, следует ли ссылаться на метаданные в формате XML."
+                          name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DimGeographyKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CountryCode" dataType="DT_WSTR" length="3" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Задает список идентификаторов журнала обращений и преобразований, сопоставляемый с параметрами, которые использует инструкция SQL в свойстве SQLCommand. Элементы списка разделяются точками с запятой."
+                          name="ParameterMap">#{Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника "OLE DB"].Columns[CountryCode]};</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                          name="DefaultCodePage">1251</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Определяет, должны ли повторяющиеся ключи в ссылочных данных обрабатываться как ошибки при использовании режима полного кэширования."
+                          name="TreatDuplicateKeysAsError">false</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Connections[OleDbConnection]"
+                          connectionManagerID="{E0E2352B-4082-474C-B66D-96A6987B21DE}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[CrimeStatistic.DWH]"
+                          description="Диспетчер соединений, используемый для доступа к данным уточняющих запросов."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+                          name="Ввод преобразования &quot;Уточняющий запрос&quot;">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;].Columns[CountryCode]"
+                              cachedDataType="wstr"
+                              cachedLength="3"
+                              cachedName="CountryCode"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CountryCode]">
+                              <properties>
+                                <property
+                                  dataType="System.String"
+                                  description="Указывает в ссылочной таблице столбец, который соединен с данным столбцом."
+                                  name="JoinToReferenceColumn">CountryCode</property>
+                                <property
+                                  dataType="System.Null"
+                                  description="Указывает в ссылочной таблице столбец, из которого копируется данный столбец."
+                                  name="CopyFromReferenceColumn" />
+                              </properties>
+                            </inputColumn>
+                          </inputColumns>
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
+                          errorOrTruncationOperation="Уточняющий запрос"
+                          exclusionGroup="1"
+                          name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[DimGeographyKey]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Копировать столбец"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[DimGeographyKey]"
+                              name="DimGeographyKey"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  dataType="System.String"
+                                  description="Указывает в ссылочной таблице столбец, из которого копируется данный столбец."
+                                  name="CopyFromReferenceColumn">DimGeographyKey</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Outputs[Выход несовпадающих строк уточняющего запроса]"
+                          description="Вывод преобразования &quot;Уточняющий запрос&quot;, которое обрабатывает строки без совпадающих элементов в эталонном наборе данных. Используйте этот выход, если свойство NoMatchBehavior имеет значение &quot;Отправить строки без совпадающих элементов в выход несовпадающих строк&quot;."
+                          exclusionGroup="1"
+                          name="Выход несовпадающих строк уточняющего запроса"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Вывод ошибок преобразования &quot;Уточняющий запрос&quot;"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation"
+                      componentClassID="Microsoft.OLEDBDestination"
+                      contactInfo="Назначение &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;4"
+                      description="Назначение &quot;OLE DB&quot;"
+                      name="OLEDST FactPopulation"
+                      usesDispositions="true"
+                      version="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                          name="OpenRowset">[dwh].[FactPopulation]</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="Команда SQL для выполнения."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                          name="DefaultCodePage">1251</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает используемый режим доступа к базе данных."
+                          name="AccessMode"
+                          typeConverter="AccessMode">3</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Указывает, должны ли значения в столбцах идентификаторов копироваться в назначение. Если свойство имеет значение false, значения в столбцах идентификаторов будут созданы автоматически в месте назначения. Применяется только в том случае, если включена быстрая загрузка."
+                          name="FastLoadKeepIdentity">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Указывает, будут ли в назначение вставляться значения NULL для столбцов, содержащих их. Значение false показывает, что если столбец имеет значение NULL, то в назначение будет вставлено его значение по умолчанию. Применяется только в случае, если включена быстрая загрузка."
+                          name="FastLoadKeepNulls">false</property>
+                        <property
+                          dataType="System.String"
+                          description="Задает параметры быстрой загрузки. Применяется только в том случае, если включена быстрая загрузка."
+                          name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Задает, когда выдаются сообщения о фиксации транзакции в ходе вставки данных. Значение 0 задает, что по окончании вставки данных будет выдано одно сообщение о фиксации транзакции. Применяется только в том случае, если включена быстрая загрузка."
+                          name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Connections[OleDbConnection]"
+                          connectionManagerID="{E0E2352B-4082-474C-B66D-96A6987B21DE}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[CrimeStatistic.DWH]"
+                          description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;]"
+                          errorOrTruncationOperation="Вставить"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="Вход назначения &quot;OLE DB&quot;">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[Population]"
+                              cachedDataType="i8"
+                              cachedName="Population"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Population]"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Population]" />
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[DimGeographyKey]"
+                              cachedDataType="i4"
+                              cachedName="DimGeographyKey"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[DimGeographyKey]"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[DimGeographyKey]" />
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[DateSK]"
+                              cachedDataType="i4"
+                              cachedName="DateSK"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[DimDateKey]"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[DateSK]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[FactPopulationKey]"
+                              dataType="i4"
+                              name="FactPopulationKey" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[DimGeographyKey]"
+                              dataType="i4"
+                              name="DimGeographyKey" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[DimDateKey]"
+                              dataType="i4"
+                              name="DimDateKey" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Population]"
+                              dataType="i8"
+                              name="Population" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[sysCreatedAt]"
+                              dataType="dbTimeStamp"
+                              name="sysCreatedAt" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[sysChangedAt]"
+                              dataType="dbTimeStamp"
+                              name="sysChangedAt" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[sysChangedBy]"
+                              dataType="i4"
+                              name="sysChangedBy" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[sysCreatedBy]"
+                              dataType="i4"
+                              name="sysCreatedBy" />
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Вывод ошибок назначения &quot;OLE DB&quot;"
+                          synchronousInputId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted"
+                      componentClassID="Microsoft.OLEDBSource"
+                      contactInfo="Источник &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;7"
+                      description="Источник &quot;OLE DB&quot;"
+                      name="OLESRC staging_population_unpivoted"
+                      usesDispositions="true"
+                      version="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                          name="OpenRowset">[staging].[population_unpivoted]</property>
+                        <property
+                          dataType="System.String"
+                          description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="Команда SQL для выполнения."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
+      [CountryCode]
+      ,CAST([Year]+'01'+'01' AS INT) AS DateKeySRC
+	  ,[Population]
+  FROM [staging].[population_unpivoted]</property>
+                        <property
+                          dataType="System.String"
+                          description="Переменная, содержащая команду SQL для выполнения."
+                          name="SqlCommandVariable"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                          name="DefaultCodePage">1251</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Указывает используемый режим доступа к базе данных."
+                          name="AccessMode"
+                          typeConverter="AccessMode">2</property>
+                        <property
+                          dataType="System.String"
+                          description="Сопоставления между параметрами в команде SQL и переменными."
+                          name="ParameterMapping"></property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Connections[OleDbConnection]"
+                          connectionManagerID="{E0E2352B-4082-474C-B66D-96A6987B21DE}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[CrimeStatistic.DWH]"
+                          description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                          name="OleDbConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;]"
+                          name="Выход источника &quot;OLE DB&quot;">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CountryCode]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Преобразование"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[CountryCode]"
+                              length="3"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CountryCode]"
+                              name="CountryCode"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Population]"
+                              dataType="i8"
+                              errorOrTruncationOperation="Преобразование"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Population]"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Population]"
+                              name="Population"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[DateKeySRC]"
+                              dataType="i4"
+                              errorOrTruncationOperation="Преобразование"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[DateKeySRC]"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[DateKeySRC]"
+                              name="DateKeySRC"
+                              truncationRowDisposition="FailComponent" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[CountryCode]"
+                              dataType="wstr"
+                              length="3"
+                              name="CountryCode" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Population]"
+                              dataType="i8"
+                              name="Population" />
+                            <externalMetadataColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[DateKeySRC]"
+                              dataType="i4"
+                              name="DateKeySRC" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;]"
+                          isErrorOut="true"
+                          name="Вывод ошибок источника &quot;OLE DB&quot;">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[CountryCode]"
+                              dataType="wstr"
+                              length="3"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[CountryCode]"
+                              name="CountryCode" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[DateKeySRC]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[DateKeySRC]"
+                              name="DateKeySRC" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Population]"
+                              dataType="i8"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Population]"
+                              name="Population" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All"
+                      componentClassID="Microsoft.UnionAll"
+                      contactInfo="Union All;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;1"
+                      description="Объединяет строки из нескольких потоков данных без сортировки. Пример: добавление строк назад в поток данных после исправления ошибок. Если сортировка имеет значение, рекомендуется использовать преобразование &quot;Слияние&quot;."
+                      name="Union All"
+                      version="1">
+                      <inputs>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All.Inputs[Union All Вход 1]"
+                          name="Union All Вход 1">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All.Inputs[Union All Вход 1].Columns[CountryCode]"
+                              cachedDataType="wstr"
+                              cachedLength="3"
+                              cachedName="CountryCode"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CountryCode]">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="ID журнала преобразований выходного столбца"
+                                  name="OutputColumnLineageID">#{Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All.Outputs[Union All Выход 1].Columns[CountryCode]}</property>
+                              </properties>
+                            </inputColumn>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All.Inputs[Union All Вход 1].Columns[Population]"
+                              cachedDataType="i8"
+                              cachedName="Population"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Population]">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="ID журнала преобразований выходного столбца"
+                                  name="OutputColumnLineageID">#{Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All.Outputs[Union All Выход 1].Columns[Population]}</property>
+                              </properties>
+                            </inputColumn>
+                            <inputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All.Inputs[Union All Вход 1].Columns[DateKeySRC]"
+                              cachedDataType="i4"
+                              cachedName="DateKeySRC"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;].Columns[DateKeySRC]">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.Int32"
+                                  description="ID журнала преобразований выходного столбца"
+                                  name="OutputColumnLineageID">#{Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All.Outputs[Union All Выход 1].Columns[DateKeySRC]}</property>
+                              </properties>
+                            </inputColumn>
+                          </inputColumns>
+                          <externalMetadataColumns />
+                        </input>
+                        <input
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All.Inputs[Входные данные 1 Union All]"
+                          dangling="true"
+                          hasSideEffects="true"
+                          name="Входные данные 1 Union All">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All.Outputs[Union All Выход 1]"
+                          name="Union All Выход 1">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All.Outputs[Union All Выход 1].Columns[CountryCode]"
+                              dataType="wstr"
+                              length="3"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All.Outputs[Union All Выход 1].Columns[CountryCode]"
+                              name="CountryCode" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All.Outputs[Union All Выход 1].Columns[Population]"
+                              dataType="i8"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All.Outputs[Union All Выход 1].Columns[Population]"
+                              name="Population" />
+                            <outputColumn
+                              refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All.Outputs[Union All Выход 1].Columns[DateKeySRC]"
+                              dataType="i4"
+                              lineageId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All.Outputs[Union All Выход 1].Columns[DateKeySRC]"
+                              name="DateKeySRC" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
+                      endId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+                      name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+                      startId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]" />
+                    <path
+                      refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;1]"
+                      endId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values.Inputs[Вход производного столбца]"
+                      name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+                      startId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]" />
+                    <path
+                      refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation.Paths[Выход источника &quot;OLE DB&quot;]"
+                      endId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+                      name="Выход источника &quot;OLE DB&quot;"
+                      startId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted.Outputs[Выход источника &quot;OLE DB&quot;]" />
+                    <path
+                      refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation.Paths[Выход несовпадающих строк уточняющего запроса]"
+                      endId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All.Inputs[Union All Вход 1]"
+                      name="Выход несовпадающих строк уточняющего запроса"
+                      startId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey.Outputs[Выход несовпадающих строк уточняющего запроса]" />
+                    <path
+                      refId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation.Paths[Выход производного столбца]"
+                      endId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation.Inputs[Вход назначения &quot;OLE DB&quot;]"
+                      name="Выход производного столбца"
+                      startId="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values.Outputs[Выход производного столбца]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Main\SEQC Preparation FactPopulation"
+          DTS:CreationName="STOCK:SEQUENCE"
+          DTS:Description="Sequence Container"
+          DTS:DTSID="{E658BDB1-DC29-4F2B-ADE8-6CF7EA56DEBD}"
+          DTS:ExecutableType="STOCK:SEQUENCE"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SEQC Preparation FactPopulation">
+          <DTS:Variables />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\SEQC Main\SEQC Preparation FactPopulation\SQL Truncate dwh_FactPopulation"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{F52B245E-3B11-4AC6-88F8-C6ED79342A1F}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL Truncate dwh_FactPopulation"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{E0E2352B-4082-474C-B66D-96A6987B21DE}"
+                  SQLTask:SqlStatementSource="TRUNCATE TABLE [dwh].[FactPopulation]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC Main.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{947BBF8C-D21E-4DCE-A4DB-9E0F5C1D988A}"
+          DTS:From="Package\SEQC Main\SEQC Preparation FactPopulation"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SEQC Main\SEQC Load FactPopulation" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Log Package end"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C0A95F00-1767-432E-A74A-3337E1098BF0}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Log Package end"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E0E2352B-4082-474C-B66D-96A6987B21DE}"
+          SQLTask:SqlStatementSource="EXEC [etl].[usp_PackageExecutionHistory_Update] ?,?,'seccess', 'test'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Log Package Failure"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{014BF208-199C-4BF9-AE32-3E9AD59D4272}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Log Package Failure"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E0E2352B-4082-474C-B66D-96A6987B21DE}"
+          SQLTask:SqlStatementSource="EXEC [etl].[usp_PackageExecutionHistory_Update] ?,?,'failed', 'test'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Log Package start"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{71CA3F7E-9C18-452C-8E4D-843F88321EBE}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Log Package start"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E0E2352B-4082-474C-B66D-96A6987B21DE}"
+          SQLTask:SqlStatementSource="EXEC [etl].[usp_PackageExecutionHistory_Create] ?,?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::ExecutionInstanceGUID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{22962AE1-D5CE-403F-BB21-505D4E413C3D}"
+      DTS:From="Package\SQL Log Package start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SEQC Main" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{8CDDE310-C768-4B7C-A8DE-7F9B6A74D0EA}"
+      DTS:From="Package\SEQC Main"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1 1"
+      DTS:To="Package\SQL Log Package end" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{0C9B82C6-8A91-49A2-B341-1A049354EC69}"
+      DTS:From="Package\SEQC Main"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SQL Log Package Failure"
+      DTS:Value="1" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="260,42"
+          Id="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="271,103"
+          Size="271,146"
+          Id="Package\SEQC Main\SEQC Load FactPopulation"
+          TopLeft="5.50000000000006,211.5" />
+        <NodeLayout
+          Size="241,42"
+          Id="Package\SEQC Main\SEQC Preparation FactPopulation\SQL Truncate dwh_FactPopulation"
+          TopLeft="5.5,5.5" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="252,103"
+          Size="252,146"
+          Id="Package\SEQC Main\SEQC Preparation FactPopulation"
+          TopLeft="15,5.5" />
+        <EdgeLayout
+          Id="Package\SEQC Main.PrecedenceConstraints[Constraint]"
+          TopLeft="141,151.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="282,413"
+          Size="282,456"
+          Id="Package\SEQC Main"
+          TopLeft="204,107.5" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\SQL Log Package end"
+          TopLeft="91.5000000000001,623.5" />
+        <NodeLayout
+          Size="195,42"
+          Id="Package\SQL Log Package Failure"
+          TopLeft="338.5,623.5" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\SQL Log Package start"
+          TopLeft="252.5,5.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="345,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1 1]"
+          TopLeft="299.333333333333,563.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-117.333333333333,60"
+              Start="0,0"
+              End="-117.333333333333,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2031029619182" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2031029619182"
+                    Point2="0,24.2031029619182"
+                    Point3="-4,24.2031029619182" />
+                  <mssgle:LineSegment
+                    End="-113.333333333333,24.2031029619182" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-113.333333333333,24.2031029619182"
+                    Point2="-117.333333333333,24.2031029619182"
+                    Point3="-117.333333333333,28.2031029619182" />
+                  <mssgle:LineSegment
+                    End="-117.333333333333,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="390.666666666667,563.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="45.3333333333334,60"
+              Start="0,0"
+              End="45.3333333333334,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2031029619182" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.2031029619182"
+                    Point2="0,24.2031029619182"
+                    Point3="4,24.2031029619182" />
+                  <mssgle:LineSegment
+                    End="41.3333333333334,24.2031029619182" />
+                  <mssgle:CubicBezierSegment
+                    Point1="41.3333333333334,24.2031029619182"
+                    Point2="45.3333333333334,24.2031029619182"
+                    Point3="45.3333333333334,28.2031029619182" />
+                  <mssgle:LineSegment
+                    End="45.3333333333334,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="7.42531901041669,29.2031029619182,30.4826953125,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="174,42"
+          Id="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey"
+          TopLeft="405,350" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation"
+          TopLeft="388,576" />
+        <NodeLayout
+          Size="121,42"
+          Id="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Union All"
+          TopLeft="817,218" />
+        <NodeLayout
+          Size="262,42"
+          Id="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted"
+          TopLeft="352,97" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey"
+          TopLeft="386,218" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\DER Default values"
+          TopLeft="402,460" />
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation.Paths[Выход производного столбца]"
+          TopLeft="484.75,502">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,74"
+              Start="0,0"
+              End="0,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation.Paths[Выход несовпадающих строк уточняющего запроса]"
+          TopLeft="589,239">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="228,0"
+              Start="0,0"
+              End="220.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="220.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-9.34835937500002,5,239.19671875,11.2822265625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation.Paths[Выход источника &quot;OLE DB&quot;]"
+          TopLeft="485.25,139">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,79"
+              Start="0,0"
+              End="0,71.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,71.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;1]"
+          TopLeft="489.25,392">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68"
+              Start="0,0"
+              End="0,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-134.68986328125,24.25,269.3797265625,12"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
+          TopLeft="489.75,260">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,90"
+              Start="0,0"
+              End="0,82.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,82.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-134.68986328125,35.25,269.3797265625,12"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimDateKey">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dwh].[DimDate]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLEDST FactPopulation">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\OLESRC staging_population_unpivoted">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Main\SEQC Load FactPopulation\DFT Load Data to dwh_FactPopulation\Lookup DimGeographyKey">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
