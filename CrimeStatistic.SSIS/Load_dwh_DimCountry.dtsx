@@ -12,8 +12,8 @@
   DTS:MaxErrorCount="2"
   DTS:ObjectName="Load_dwh_DimCountry"
   DTS:PackageType="5"
-  DTS:VersionBuild="49"
-  DTS:VersionGUID="{6D168DF5-485E-4752-BD75-F00CE2E8AC8F}">
+  DTS:VersionBuild="55"
+  DTS:VersionGUID="{34ABC436-AEDD-4059-84D2-1A75514C7392}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -32,7 +32,7 @@
           <DTS:Password
             DTS:Name="pwd"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAArGZWON7MOUaTniK7AaJ/CAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAToBOrDoTBdCP3PGeLb67N9TnlToWmSlsAMFBPgoKK8wAAAAAOgAAAAAIAACAAAABpTs6pAf9RAHJ7h2o9PVqQZlA54vtnasR/98nMT8Oz9CAAAABmWtotvg+Zn04aDEHPKwZbZeinTVmJW7MqYW1chl/7+kAAAACY6vGL1J1I82I9ydYy5iFO6z7v5Y4bKxtQWb/BYklr+xtFyIkR2jvMZ47rhBG8r18yrGH7WomGJR9ya90P/bav</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAArGZWON7MOUaTniK7AaJ/CAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACHHvG/P9ojNnPqkLwteV6SAZATZFKUwt9J+1k0mqQMnAAAAAAOgAAAAAIAACAAAAA89yBQ2DguOZedQABjSzUFYkELA+a5td4ZSAydM6yV9yAAAADyqdmBCvmfWDT19HYgEnWH08bqR6bTug8X6yRzeuNJ/EAAAAC3lZoFXhMw1qYWO0Dl1/RT5JyTsFDxIfaaF30pxduH4z8S7yCSWlvNvceu4Tv6/u91YSnGq3K+VGy5bJO432gU</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -1095,7 +1095,7 @@
               <DTS:ObjectData>
                 <SQLTask:SqlTaskData
                   SQLTask:Connection="{92000F18-FB6A-40AE-A460-8EA7717A6FB3}"
-                  SQLTask:SqlStatementSource="Select 1;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+                  SQLTask:SqlStatementSource="IF NOT EXISTS (SELECT 1 FROM [dwh].[DimGeography] WHERE [DimGeographyKey]=-1)&#xA;BEGIN&#xA;SET IDENTITY_INSERT [dwh].[DimGeography] ON&#xA;INSERT INTO [dwh].[DimGeography]&#xA;([DimGeographyKey],&#xA;[Region],&#xA;[SubRegion],&#xA;[Country],&#xA;[CountryCode])&#xA;VALUES&#xA;(-1,&#xA;N'Unknown',&#xA;N'Unknown',&#xA;N'Unknown',&#xA;N'Unk')&#xA;SET IDENTITY_INSERT [dwh].[DimGeography] OFF&#xA;END" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
               </DTS:ObjectData>
             </DTS:Executable>
           </DTS:Executables>
@@ -1361,14 +1361,14 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="715.333333333334,256"
+          PanelSize="715.333333333334,256.666666666667"
           Size="715.333333333334,299.333333333334"
           Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography"
           TopLeft="45.4821425941553,167.221805635392" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="640,50"
+          PanelSize="640,50.6666666666667"
           Size="640,93.3333333333334"
           Id="Package\SEQC Main\SEQC Preparation"
           TopLeft="76.0595196859825,11.9899753261533" />
@@ -1397,7 +1397,7 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="794,515.333333333334"
+          PanelSize="794,516"
           Size="794,558.666666666667"
           Id="Package\SEQC Main"
           TopLeft="200.5,108.166666666666" />
@@ -1554,53 +1554,75 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="228,42.6666666666667"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography\OLE_DST dwh_DimGeography"
+          TopLeft="246.597218547637,404.140358484132" />
+        <NodeLayout
+          Size="208,42.6666666666667"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography\DER Replace NULL values"
+          TopLeft="258.333329483867,307.134508705022" />
+        <NodeLayout
           Size="257.333333333334,42.6666666666667"
           Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography\OLE_SCR Table Staging_CountryRef"
           TopLeft="43.1249993573881,26.0000004893856" />
         <NodeLayout
-          Size="228,42.6666666666667"
-          Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography\OLE_DST dwh_DimGeography"
-          TopLeft="246.597218547637,404.140358484132" />
+          Size="132,42.6666666666667"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography\Merge Join"
+          TopLeft="300.624995520338,117.684212741429" />
         <NodeLayout
           Size="276,42.6666666666667"
           Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography\OLE_SCR Table Staging_DimGeography"
           TopLeft="434.999993517995,26.0000004893855" />
         <NodeLayout
-          Size="132,42.6666666666667"
-          Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography\Merge Join"
-          TopLeft="300.624995520338,117.684212741429" />
+          Size="157.333333333334,42.6666666666667"
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography\Conditional Split"
+          TopLeft="284.027773545434,215.146202880003" />
         <EdgeLayout
-          Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography.Paths[Выход источника &quot;OLE DB&quot;]"
-          TopLeft="171.791666024055,68.6666671560522">
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography.Paths[Выход соединения слиянием]"
+          TopLeft="364.65971786622,160.350879408096">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="194.833329496284,49.0175455853769"
+              EndConnector="0,54.7953234719071"
               Start="0,0"
-              End="194.833329496284,41.5175455853769">
+              End="0,47.2953234719071">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.5087727926885" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.5087727926885"
-                    Point2="0,24.5087727926885"
-                    Point3="4,24.5087727926885" />
-                  <mssgle:LineSegment
-                    End="190.833329496284,24.5087727926885" />
-                  <mssgle:CubicBezierSegment
-                    Point1="190.833329496284,24.5087727926885"
-                    Point2="194.833329496284,24.5087727926885"
-                    Point3="194.833329496284,28.5087727926885" />
-                  <mssgle:LineSegment
-                    End="194.833329496284,41.5175455853769" />
+                    End="0,47.2953234719071" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography.Paths[Выход производного столбца]"
+          TopLeft="361.465274015752,349.801175371689">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.3391831124437"
+              Start="0,0"
+              End="0,46.8391831124437">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.8391831124437" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -1634,39 +1656,47 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="157.333333333334,42.6666666666667"
-          Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography\Conditional Split"
-          TopLeft="284.027773545434,215.146202880003" />
         <EdgeLayout
-          Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography.Paths[Выход соединения слиянием]"
-          TopLeft="364.65971786622,160.350879408096">
+          Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography.Paths[Выход источника &quot;OLE DB&quot;]"
+          TopLeft="171.791666024055,68.6666671560522">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,54.7953234719071"
+              EndConnector="194.833329496284,49.0175455853769"
               Start="0,0"
-              End="0,47.2953234719071">
+              End="194.833329496284,41.5175455853769">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,47.2953234719071" />
+                    End="0,20.5087727926885" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5087727926885"
+                    Point2="0,24.5087727926885"
+                    Point3="4,24.5087727926885" />
+                  <mssgle:LineSegment
+                    End="190.833329496284,24.5087727926885" />
+                  <mssgle:CubicBezierSegment
+                    Point1="190.833329496284,24.5087727926885"
+                    Point2="194.833329496284,24.5087727926885"
+                    Point3="194.833329496284,28.5087727926885" />
+                  <mssgle:LineSegment
+                    End="194.833329496284,41.5175455853769" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="208,42.6666666666667"
-          Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography\DER Replace NULL values"
-          TopLeft="258.333329483867,307.134508705022" />
         <EdgeLayout
           Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography.Paths[New Country]"
           TopLeft="362.513884847984,257.81286954667">
@@ -1691,33 +1721,11 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <EdgeLayout
-          Id="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography.Paths[Выход производного столбца]"
-          TopLeft="361.465274015752,349.801175371689">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,54.3391831124437"
-              Start="0,0"
-              End="0,46.8391831124437">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,46.8391831124437" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography\OLE_SCR Table Staging_CountryRef">
+    design-time-name="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography\OLE_DST dwh_DimGeography">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1730,7 +1738,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography\OLE_DST dwh_DimGeography">
+    design-time-name="Package\SEQC Main\SEQC Load Data to dwh_DimGeography\DFT Load data from Stagging_CountryRef to dwh_DimGeography\OLE_SCR Table Staging_CountryRef">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
