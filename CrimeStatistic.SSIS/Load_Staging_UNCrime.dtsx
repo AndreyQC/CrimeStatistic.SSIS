@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Load_Staging_UNCrime"
   DTS:PackageType="5"
-  DTS:VersionBuild="26"
-  DTS:VersionGUID="{34BB965D-BE2C-4B0F-98F6-048395FBC88A}">
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{D6A28341-FF17-4A38-96BF-540009A95860}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -22,7 +22,7 @@
       DTS:DTSID="{0D0A5F7E-D805-4FC3-8A6C-A89575764B07}"
       DTS:ObjectName="FFCUNDoccsvfile">
       <DTS:PropertyExpression
-        DTS:Name="ConnectionString">@[User::CurrentFile]</DTS:PropertyExpression>
+        DTS:Name="ConnectionString">@[$Project::UNDocSourceFileFolder]+"\\"+ @[User::CurrentFile]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Format="Delimited"
@@ -356,7 +356,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="CurrentFile">
       <DTS:VariableValue
-        DTS:DataType="8">\\epamssislabstac.file.core.windows.net\rubilabssis\RU.BI.LAB.SSIS\Source files\undoc-changed\csv\burglary.csv</DTS:VariableValue>
+        DTS:DataType="8">burglary.csv</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -487,7 +487,7 @@
                 DTS:DTSID="{95eb5d8d-d2f3-4cf8-978a-7ea9a71da81b}"
                 DTS:ObjectName="{7F3DD01D-70E0-4A21-B7A5-554D40F99926}">
                 <DTS:PropertyExpression
-                  DTS:Name="Directory">@[User::SourceFileFolder]</DTS:PropertyExpression>
+                  DTS:Name="Directory">@[$Project::UNDocSourceFileFolder]</DTS:PropertyExpression>
                 <DTS:ObjectData>
                   <ForEachFileEnumeratorProperties>
                     <FEFEProperty
@@ -495,7 +495,7 @@
                     <FEFEProperty
                       FileSpec="*.csv" />
                     <FEFEProperty
-                      FileNameRetrievalType="0" />
+                      FileNameRetrievalType="1" />
                     <FEFEProperty
                       Recurse="0" />
                   </ForEachFileEnumeratorProperties>
@@ -558,13 +558,13 @@
                                       containsID="true"
                                       dataType="System.String"
                                       description="Derived Column Expression"
-                                      name="Expression">(DT_WSTR,100)"File"</property>
+                                      name="Expression">(DT_WSTR,100)@[User::CurrentFile]</property>
                                     <property
                                       containsID="true"
                                       dataType="System.String"
                                       description="Derived Column Friendly Expression"
                                       expressionType="Notify"
-                                      name="FriendlyExpression">(DT_WSTR,100)"File"</property>
+                                      name="FriendlyExpression">(DT_WSTR,100)@[User::CurrentFile]</property>
                                   </properties>
                                 </outputColumn>
                               </outputColumns>
@@ -2070,8 +2070,8 @@
               <DTS:ForEachVariableMappings>
                 <DTS:ForEachVariableMapping
                   DTS:CreationName=""
-                  DTS:DTSID="{91711324-51d3-4c5e-ae93-bdcb440818a2}"
-                  DTS:ObjectName="{DFED3642-BC59-4FE4-B152-27EB04A42521}"
+                  DTS:DTSID="{63A87ACB-E477-4947-9B5E-F2237A52B0CC}"
+                  DTS:ObjectName="{63A87ACB-E477-4947-9B5E-F2237A52B0CC}"
                   DTS:ValueIndex="0"
                   DTS:VariableName="User::CurrentFile" />
               </DTS:ForEachVariableMappings>
@@ -2117,7 +2117,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL Log Package end"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -2146,7 +2146,7 @@
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="SQL Log Package failure"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -2398,7 +2398,7 @@
     design-time-name="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterates UNdoc source files\DFT Load staging uncrime_untyped">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="244,42"
           Id="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterates UNdoc source files\DFT Load staging uncrime_untyped\OLE DST staging uncrime_untyped"
@@ -2411,30 +2411,6 @@
           Size="149,42"
           Id="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterates UNdoc source files\DFT Load staging uncrime_untyped\DER FileName"
           TopLeft="203.5,148.958332593449" />
-        <EdgeLayout
-          Id="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterates UNdoc source files\DFT Load staging uncrime_untyped.Paths[Derived Column Output]"
-          TopLeft="278.25,190.958332593449">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,28.9583329808795"
-              Start="0,0"
-              End="0,21.4583329808795">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,21.4583329808795" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterates UNdoc source files\DFT Load staging uncrime_untyped.Paths[Flat File Source Output]"
           TopLeft="277.375,89.1249997659276">
@@ -2454,9 +2430,29 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Main\SEQC Load staging uncrime_untyped\FORLC iterates UNdoc source files\DFT Load staging uncrime_untyped.Paths[Derived Column Output]"
+          TopLeft="278.25,190.958332593449">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28.9583329808795"
+              Start="0,0"
+              End="0,21.4583329808795">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.4583329808795" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
