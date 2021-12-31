@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Load_Staging_UNCrime"
   DTS:PackageType="5"
-  DTS:VersionBuild="26"
-  DTS:VersionGUID="{87F88069-F39E-4E2B-8D52-1C158BF29304}">
+  DTS:VersionBuild="28"
+  DTS:VersionGUID="{EDE0B2E8-B9C3-4E28-BAD9-EA032BE70347}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -32,7 +32,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\epamssislabstac.file.core.windows.net\rubilabssis\RU.BI.LAB.SSIS\Source files\undoc-changed\csv\burglary.csv">
+          DTS:ConnectionString="burglary.csv">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -356,7 +356,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="CurrentFile">
       <DTS:VariableValue
-        DTS:DataType="8">\\epamssislabstac.file.core.windows.net\rubilabssis\RU.BI.LAB.SSIS\Source files\undoc-changed\csv\burglary.csv</DTS:VariableValue>
+        DTS:DataType="8">burglary.csv</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -488,7 +488,7 @@
                 DTS:DTSID="{FE3BDA70-2F6F-435E-A3DA-A5D5DCCF050D}"
                 DTS:ObjectName="{FE3BDA70-2F6F-435E-A3DA-A5D5DCCF050D}">
                 <DTS:PropertyExpression
-                  DTS:Name="Directory">@[$Project::pSourceFolderPath]</DTS:PropertyExpression>
+                  DTS:Name="Directory">@[$Project::UNDocSourceFileFolder]</DTS:PropertyExpression>
                 <DTS:ObjectData>
                   <ForEachFileEnumeratorProperties>
                     <FEFEProperty
@@ -496,7 +496,7 @@
                     <FEFEProperty
                       FileSpec="*.csv" />
                     <FEFEProperty
-                      FileNameRetrievalType="0" />
+                      FileNameRetrievalType="1" />
                     <FEFEProperty
                       Recurse="0" />
                   </ForEachFileEnumeratorProperties>
@@ -2057,8 +2057,8 @@
               <DTS:ForEachVariableMappings>
                 <DTS:ForEachVariableMapping
                   DTS:CreationName=""
-                  DTS:DTSID="{38C354A1-6B60-40A3-ABDE-6D2BC5F0CD06}"
-                  DTS:ObjectName="{38C354A1-6B60-40A3-ABDE-6D2BC5F0CD06}"
+                  DTS:DTSID="{3CC29068-1FCB-4FA3-B5A4-7E637B58473F}"
+                  DTS:ObjectName="{3CC29068-1FCB-4FA3-B5A4-7E637B58473F}"
                   DTS:ValueIndex="1"
                   DTS:VariableName="User::CurrentFile" />
               </DTS:ForEachVariableMappings>
@@ -2223,10 +2223,6 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="185,42"
-          Id="Package\SQL Log Package start"
-          TopLeft="243.5,24.75" />
-        <NodeLayout
           Size="245,42"
           Id="Package\SEQC Main\SEQC Load staging uncrime_unpivoted\FORLC iterate UNdoc source files\DFT Load staging unicode_untyped"
           TopLeft="79.25,29.75" />
@@ -2240,10 +2236,14 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="525,296"
+          PanelSize="525,297"
           Size="525,340"
           Id="Package\SEQC Main\SEQC Load staging uncrime_unpivoted"
           TopLeft="9.25,98.333333333333" />
+        <NodeLayout
+          Size="273,42"
+          Id="Package\SEQC Main\SQL Truncate staging uncrime_unpivoted"
+          TopLeft="142.25,18.6666666666667" />
         <EdgeLayout
           Id="Package\SEQC Main.PrecedenceConstraints[Constraint]"
           TopLeft="275.25,60.6666666666667">
@@ -2266,10 +2266,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="273,42"
-          Id="Package\SEQC Main\SQL Truncate staging uncrime_unpivoted"
-          TopLeft="142.25,18.6666666666667" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -2285,6 +2281,10 @@
           Size="193,42"
           Id="Package\SQL Log Package failure"
           TopLeft="415.25,695.75" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\SQL Log Package start"
+          TopLeft="243.5,24.75" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="336.5,66.75">
