@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
   DTS:CreationDate="5/6/2022 6:27:33 PM"
@@ -12,22 +12,11 @@
   DTS:LocaleID="2057"
   DTS:MaxErrorCount="0"
   DTS:ObjectName="Task 01"
-  DTS:VersionGUID="{E8672C9B-EE9D-4F56-B205-C4BC8239A9C5}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{7F9A7B90-0658-4F50-BCF9-F56E2DD42B30}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{082C9F73-38CA-45A4-8B25-6FC5D3A022FA}"
-      DTS:ObjectName="DestinationConnectionOLEDB">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=EPUALVIW08C8;Initial Catalog=CrimeStatistic.DWH;Provider=SQLNCLI11;Integrated Security=SSPI;Auto Translate=false;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[SourceConnectionOLEDB]"
       DTS:CreationName="OLEDB"
@@ -37,7 +26,12 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=ECSC00A014AD\MSSQL2019;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11;Auto Translate=false;" />
+          DTS:ConnectionString="Data Source=ECSC00A014AD\MSSQL2019;User ID=student_reader;Initial Catalog=RU.BI.LAB.SSIS.DB;Provider=SQLNCLI11.1;Auto Translate=false;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAcY2C0rkfkE+PTXrHEMi+1gAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAD5f1frtqj0HNtpzJFDB8dTauDSi6zwWj520alYc+owgAAAAAAOgAAAAAIAACAAAACtBz7yF2lmNBJBehMzLtfCCLsagO9Pw6nGx9zGTHu6dyAAAAAekYdfRqJiAeLJG4xcWI94VvyfV2G1wq+D4zjNd/hjpUAAAADXWZrPnIKHH+2ruiT1s5h0m0c384vZeFUb7YkpCEs5yfQOxTb2GvB+Y9G7OH7Zvm7oezsXsBMD9xEzmYnZZ3bt</DTS:Password>
+        </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -119,8 +113,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task 1\Destination - CountryRef.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
-                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerID="{082C9F73-38CA-45A4-8B25-6FC5D3A022FA}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CrimeStatisticDWH]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -629,7 +623,7 @@
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[{CBCD9C8C-5136-4FF9-A6D0-361B74FC508E\}]"
+      DTS:refId="Package.PrecedenceConstraints[{65F0A6E6-2850-4702-B812-AA2F51790B1E\}]"
       DTS:CreationName=""
       DTS:DTSID="{65F0A6E6-2850-4702-B812-AA2F51790B1E}"
       DTS:From="Package\Preparation SQL Task 1"
@@ -637,4 +631,50 @@
       DTS:ObjectName="{65F0A6E6-2850-4702-B812-AA2F51790B1E}"
       DTS:To="Package\Data Flow Task 1" />
   </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="159.2,41.6"
+          Id="Package\Data Flow Task 1"
+          TopLeft="20.7,107.1" />
+        <NodeLayout
+          Size="189.6,41.6"
+          Id="Package\Preparation SQL Task 1"
+          TopLeft="5.50000000000001,5.49999999999995" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[{65F0A6E6-2850-4702-B812-AA2F51790B1E\}]"
+          TopLeft="100.3,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>
