@@ -11,8 +11,8 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Load_Staging_UNCrime"
   DTS:PackageType="5"
-  DTS:VersionBuild="26"
-  DTS:VersionGUID="{7D10AA8B-E19B-4F74-B3B0-47A9826117AE}">
+  DTS:VersionBuild="29"
+  DTS:VersionGUID="{4F53A0E1-6574-43A2-ADE6-1516E5D6A9BC}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -22,7 +22,7 @@
       DTS:DTSID="{FECC3769-F564-4BA1-99D9-5CD02BBFEBF3}"
       DTS:ObjectName="FFC_UNDoc">
       <DTS:PropertyExpression
-        DTS:Name="ConnectionString">@[User::CurrentFile]</DTS:PropertyExpression>
+        DTS:Name="ConnectionString">@[$Project::UNDocSourceFileFolder]+"\\"+ @[User::CurrentFile]</DTS:PropertyExpression>
       <DTS:ObjectData>
         <DTS:ConnectionManager
           DTS:Format="Delimited"
@@ -32,7 +32,7 @@
           DTS:RowDelimiter=""
           DTS:TextQualifier="_x003C_none_x003E_"
           DTS:CodePage="1252"
-          DTS:ConnectionString="\\epamssislabstac.file.core.windows.net\rubilabssis\RU.BI.LAB.SSIS\Source files\undoc-changed\csv\burglary.csv">
+          DTS:ConnectionString="\\epamssislabstac.file.core.windows.net\rubilabssis\RU.BI.LAB.SSIS\Source Files\undoc-changed\csv\burglary.csv">
           <DTS:FlatFileColumns>
             <DTS:FlatFileColumn
               DTS:ColumnType="Delimited"
@@ -356,7 +356,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="CurrentFile">
       <DTS:VariableValue
-        DTS:DataType="8">\\epamssislabstac.file.core.windows.net\rubilabssis\RU.BI.LAB.SSIS\Source files\undoc-changed\csv\burglary.csv</DTS:VariableValue>
+        DTS:DataType="8">burglary.csv</DTS:VariableValue>
     </DTS:Variable>
   </DTS:Variables>
   <DTS:LoggingOptions
@@ -464,11 +464,11 @@
                 <DTS:ObjectData>
                   <ForEachFileEnumeratorProperties>
                     <FEFEProperty
-                      Folder="\\epamssislabstac.file.core.windows.net\rubilabssis\RU.BI.LAB.SSIS\Source Files\undoc-changed\csv\" />
+                      Folder="\\epamssislabstac.file.core.windows.net\rubilabssis\RU.BI.LAB.SSIS\Source Files\undoc-changed\csv" />
                     <FEFEProperty
                       FileSpec="*.csv" />
                     <FEFEProperty
-                      FileNameRetrievalType="0" />
+                      FileNameRetrievalType="1" />
                     <FEFEProperty
                       Recurse="0" />
                   </ForEachFileEnumeratorProperties>
@@ -2043,8 +2043,8 @@
               <DTS:ForEachVariableMappings>
                 <DTS:ForEachVariableMapping
                   DTS:CreationName=""
-                  DTS:DTSID="{22032476-E006-46EF-A622-78F892C825D1}"
-                  DTS:ObjectName="{22032476-E006-46EF-A622-78F892C825D1}"
+                  DTS:DTSID="{4DE064C9-AEAD-4219-A51F-B1F10450523C}"
+                  DTS:ObjectName="{4DE064C9-AEAD-4219-A51F-B1F10450523C}"
                   DTS:ValueIndex="0"
                   DTS:VariableName="User::CurrentFile" />
               </DTS:ForEachVariableMappings>
@@ -2226,6 +2226,10 @@
           Size="436.8,300.8"
           Id="Package\SEQ Main\SEQC Load staging uncrime_untyped"
           TopLeft="38.8333320087858,154.733335599369" />
+        <NodeLayout
+          Size="261.6,41.6"
+          Id="Package\SEQ Main\SQL Truncate staging uncrime_untyped"
+          TopLeft="132.166661633386,39.4666680166457" />
         <EdgeLayout
           Id="Package\SEQ Main.PrecedenceConstraints[Constraint]"
           TopLeft="260.099996821086,81.0666680166456">
@@ -2248,10 +2252,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="261.6,41.6"
-          Id="Package\SEQ Main\SQL Truncate staging uncrime_untyped"
-          TopLeft="132.166661633386,39.4666680166457" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -2259,6 +2259,14 @@
           Size="512.8,592.8"
           Id="Package\SEQ Main"
           TopLeft="261.666656268968,151.666667872005" />
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\SQL log package end"
+          TopLeft="206.666658454472,799.200003884633" />
+        <NodeLayout
+          Size="188.8,41.6"
+          Id="Package\SQL log package failure"
+          TopLeft="572.499977250895,802.733334524896" />
         <NodeLayout
           Size="180.8,41.6"
           Id="Package\SQL log package start"
@@ -2285,10 +2293,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="188.8,41.6"
-          Id="Package\SQL log package failure"
-          TopLeft="572.499977250895,802.733334524896" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
           TopLeft="518.066656268968,744.466667872005">
@@ -2325,10 +2329,6 @@
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="178.4,41.6"
-          Id="Package\SQL log package end"
-          TopLeft="206.666658454472,799.200003884633" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
           TopLeft="433.933322935635,744.466667872005">
